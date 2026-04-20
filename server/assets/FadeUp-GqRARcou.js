@@ -1,4 +1,4 @@
-import { r as reactExports, T as jsxRuntimeExports } from "./worker-entry-C7LP1yKX.js";
+import { r as reactExports, T as jsxRuntimeExports } from "./worker-entry-BkQn58Dh.js";
 function FadeUp({ children, delay = 0, className = "", as = "div" }) {
   const ref = reactExports.useRef(null);
   const [visible, setVisible] = reactExports.useState(false);

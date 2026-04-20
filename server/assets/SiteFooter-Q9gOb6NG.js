@@ -1,5 +1,5 @@
-import { M as useRouter, r as reactExports, T as jsxRuntimeExports } from "./worker-entry-C7LP1yKX.js";
-import { u as useI18n, L as Link } from "./router-BKP1cpJb.js";
+import { M as useRouter, r as reactExports, T as jsxRuntimeExports } from "./worker-entry-BkQn58Dh.js";
+import { u as useI18n, L as Link } from "./router-Bt0jznIB.js";
 function useLocation(opts) {
   const router = useRouter();
   {

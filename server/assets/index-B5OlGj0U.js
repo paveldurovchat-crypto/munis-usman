@@ -1,7 +1,7 @@
-import { T as jsxRuntimeExports } from "./worker-entry-C7LP1yKX.js";
-import { u as useI18n, L as Link, e as embroideryHands, f as fabricDetails, a as collection1, c as collection3, p as phoneCase, j as journal3, b as products } from "./router-BKP1cpJb.js";
-import { S as SiteNav, l as logoGreen, a as SiteFooter } from "./SiteFooter-MBQLa_Ev.js";
-import { F as FadeUp } from "./FadeUp-Da8JNI6t.js";
+import { T as jsxRuntimeExports } from "./worker-entry-BkQn58Dh.js";
+import { u as useI18n, L as Link, e as embroideryHands, f as fabricDetails, a as collection1, c as collection3, p as phoneCase, j as journal3, b as products } from "./router-Bt0jznIB.js";
+import { S as SiteNav, l as logoGreen, a as SiteFooter } from "./SiteFooter-Q9gOb6NG.js";
+import { F as FadeUp } from "./FadeUp-GqRARcou.js";
 import { a as journal2, j as journal1 } from "./journal-2-B9mFl-uL.js";
 import "node:events";
 import "node:async_hooks";
