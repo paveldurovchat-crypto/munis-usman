@@ -1,26 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteNav } from "@/components/SiteNav";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Craft } from "@/components/Craft";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "MUNIS USMAN — Couture с 2014 года" },
+      {
+        name: "description",
+        content:
+          "Дизайнерский бренд MUNIS USMAN: ручная работа, натуральные ткани, вечная элегантность. Каждая деталь коллекции — отражение неподдельного стиля.",
+      },
+      { property: "og:title", content: "MUNIS USMAN — Couture с 2014 года" },
+      {
+        property: "og:description",
+        content: "Философия, воплощённая в каждом изделии. Ручная работа, вне времени.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <SiteNav />
+      <main>
+        <Hero />
+        <About />
+        <Craft />
+      </main>
+      <SiteFooter />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
