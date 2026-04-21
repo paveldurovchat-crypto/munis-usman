@@ -8,6 +8,10 @@ import caseBukharaAirpods from "@/assets/case-bukhara-airpods.jpg";
 import caseSamarkandStone from "@/assets/case-samarkand-stone.jpg";
 import jacketMusician from "@/assets/jacket-musician.jpg";
 import artPomegranateWoman from "@/assets/art-pomegranate-woman.jpg";
+import caseTashkentNight from "@/assets/case-tashkent-night.jpg";
+import caseSwallowBlossom from "@/assets/case-swallow-blossom.jpg";
+import artIkatBrideLight from "@/assets/art-ikat-bride-light.jpg";
+import artIkatBrideDark from "@/assets/art-ikat-bride-dark.jpg";
 
 export type Product = {
   slug: string;
@@ -86,6 +90,34 @@ export const products: Product[] = [
     image: artPomegranateWoman,
     nameKey: "collection.item10Name",
     descKey: "collection.item10Desc",
+    tagKey: "collection.madeToOrder",
+  },
+  {
+    slug: "case-tashkent-night",
+    image: caseTashkentNight,
+    nameKey: "collection.item11Name",
+    descKey: "collection.item11Desc",
+    tagKey: "collection.limited",
+  },
+  {
+    slug: "case-swallow-blossom",
+    image: caseSwallowBlossom,
+    nameKey: "collection.item12Name",
+    descKey: "collection.item12Desc",
+    tagKey: "collection.limited",
+  },
+  {
+    slug: "art-ikat-bride-light",
+    image: artIkatBrideLight,
+    nameKey: "collection.item13Name",
+    descKey: "collection.item13Desc",
+    tagKey: "collection.madeToOrder",
+  },
+  {
+    slug: "art-ikat-bride-dark",
+    image: artIkatBrideDark,
+    nameKey: "collection.item14Name",
+    descKey: "collection.item14Desc",
     tagKey: "collection.madeToOrder",
   },
 ];
