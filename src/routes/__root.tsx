@@ -40,6 +40,13 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "MUNIS USMAN" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
+      { name: "twitter:title", content: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
+      { name: "description", content: "MUNIS USMAN is a designer brand offering handcrafted fashion and wearable art." },
+      { property: "og:description", content: "MUNIS USMAN is a designer brand offering handcrafted fashion and wearable art." },
+      { name: "twitter:description", content: "MUNIS USMAN is a designer brand offering handcrafted fashion and wearable art." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07d31852-901a-4033-8d8c-39118c06d72b/id-preview-1c615c81--3343d92d-ec8c-426c-9479-0554cc34e663.lovable.app-1776753850830.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07d31852-901a-4033-8d8c-39118c06d72b/id-preview-1c615c81--3343d92d-ec8c-426c-9479-0554cc34e663.lovable.app-1776753850830.png" },
     ],
     links: [
       {
