@@ -13,12 +13,15 @@ import caseSwallowBlossom from "@/assets/case-swallow-blossom.jpg";
 import artIkatBrideLight from "@/assets/art-ikat-bride-light.jpg";
 import artIkatBrideDark from "@/assets/art-ikat-bride-dark.jpg";
 
+export type ProductCategory = "cases" | "art";
+
 export type Product = {
   slug: string;
   image: string;
   nameKey: string;
   descKey: string;
   tagKey: "collection.limited" | "collection.madeToOrder";
+  category: ProductCategory;
 };
 
 export const products: Product[] = [
@@ -28,6 +31,7 @@ export const products: Product[] = [
     nameKey: "collection.item1Name",
     descKey: "collection.item1Desc",
     tagKey: "collection.limited",
+    category: "cases",
   },
   {
     slug: "case-samarkand-dome",
@@ -35,6 +39,7 @@ export const products: Product[] = [
     nameKey: "collection.item2Name",
     descKey: "collection.item2Desc",
     tagKey: "collection.limited",
+    category: "cases",
   },
   {
     slug: "case-samarkand-arch",
@@ -42,6 +47,7 @@ export const products: Product[] = [
     nameKey: "collection.item3Name",
     descKey: "collection.item3Desc",
     tagKey: "collection.limited",
+    category: "cases",
   },
   {
     slug: "case-orange-ornament",
@@ -49,6 +55,7 @@ export const products: Product[] = [
     nameKey: "collection.item4Name",
     descKey: "collection.item4Desc",
     tagKey: "collection.madeToOrder",
+    category: "cases",
   },
   {
     slug: "case-swallow-pomegranate",
@@ -56,6 +63,7 @@ export const products: Product[] = [
     nameKey: "collection.item5Name",
     descKey: "collection.item5Desc",
     tagKey: "collection.limited",
+    category: "cases",
   },
   {
     slug: "case-pomegranate-woman",
@@ -63,6 +71,7 @@ export const products: Product[] = [
     nameKey: "collection.item6Name",
     descKey: "collection.item6Desc",
     tagKey: "collection.madeToOrder",
+    category: "cases",
   },
   {
     slug: "case-bukhara-sky",
@@ -70,6 +79,7 @@ export const products: Product[] = [
     nameKey: "collection.item7Name",
     descKey: "collection.item7Desc",
     tagKey: "collection.limited",
+    category: "cases",
   },
   {
     slug: "case-samarkand-stone",
@@ -77,20 +87,7 @@ export const products: Product[] = [
     nameKey: "collection.item8Name",
     descKey: "collection.item8Desc",
     tagKey: "collection.limited",
-  },
-  {
-    slug: "jacket-musician",
-    image: jacketMusician,
-    nameKey: "collection.item9Name",
-    descKey: "collection.item9Desc",
-    tagKey: "collection.madeToOrder",
-  },
-  {
-    slug: "art-pomegranate-woman",
-    image: artPomegranateWoman,
-    nameKey: "collection.item10Name",
-    descKey: "collection.item10Desc",
-    tagKey: "collection.madeToOrder",
+    category: "cases",
   },
   {
     slug: "case-tashkent-night",
@@ -98,6 +95,7 @@ export const products: Product[] = [
     nameKey: "collection.item11Name",
     descKey: "collection.item11Desc",
     tagKey: "collection.limited",
+    category: "cases",
   },
   {
     slug: "case-swallow-blossom",
@@ -105,6 +103,23 @@ export const products: Product[] = [
     nameKey: "collection.item12Name",
     descKey: "collection.item12Desc",
     tagKey: "collection.limited",
+    category: "cases",
+  },
+  {
+    slug: "jacket-musician",
+    image: jacketMusician,
+    nameKey: "collection.item9Name",
+    descKey: "collection.item9Desc",
+    tagKey: "collection.madeToOrder",
+    category: "art",
+  },
+  {
+    slug: "art-pomegranate-woman",
+    image: artPomegranateWoman,
+    nameKey: "collection.item10Name",
+    descKey: "collection.item10Desc",
+    tagKey: "collection.madeToOrder",
+    category: "art",
   },
   {
     slug: "art-ikat-bride-light",
@@ -112,6 +127,7 @@ export const products: Product[] = [
     nameKey: "collection.item13Name",
     descKey: "collection.item13Desc",
     tagKey: "collection.madeToOrder",
+    category: "art",
   },
   {
     slug: "art-ikat-bride-dark",
@@ -119,6 +135,7 @@ export const products: Product[] = [
     nameKey: "collection.item14Name",
     descKey: "collection.item14Desc",
     tagKey: "collection.madeToOrder",
+    category: "art",
   },
 ];
 
