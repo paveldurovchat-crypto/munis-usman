@@ -1,4 +1,4 @@
-import{u as d,R as x,p as m,j as e,L as l}from"./index-ulbc0Be6.js";import{S as g,m as p,B as u,a as h}from"./SiteFooter-CZFVsq4r.js";import{F as t}from"./FadeUp-BfU_vtHm.js";function b(){const{t:s}=d(),{product:a}=x.useLoaderData(),o=m.filter(r=>r.slug!==a.slug).slice(0,3),c=`Inquiry: ${a.slug}`,n=`Hello MUNIS USMAN,
+import{u as d,R as x,p as m,j as e,L as l}from"./index-64S1ISwg.js";import{S as g,m as p,B as u,a as h}from"./SiteFooter-CY7ReYk2.js";import{F as t}from"./FadeUp-BEkWJlur.js";function b(){const{t:s}=d(),{product:a}=x.useLoaderData(),o=m.filter(r=>r.slug!==a.slug).slice(0,3),c=`Inquiry: ${a.slug}`,n=`Hello MUNIS USMAN,
 
 I'm interested in "${a.slug}". Please share more details.
 
