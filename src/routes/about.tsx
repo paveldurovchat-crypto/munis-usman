@@ -30,7 +30,7 @@ function AboutPage() {
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 lg:grid-cols-2 lg:gap-24 lg:px-12">
             <FadeUp>
               <div className="relative aspect-[3/4] overflow-hidden">
-                <img src={collection3} alt="Atelier" loading="lazy" className="h-full w-full object-cover" />
+                <img src={collection3} alt="Studio" loading="lazy" className="h-full w-full object-cover" />
               </div>
             </FadeUp>
             <div className="flex flex-col justify-center gap-8">

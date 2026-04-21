@@ -109,7 +109,7 @@ function CustomPage() {
                     rel="noreferrer noopener"
                     className="text-xs uppercase tracking-[0.28em] text-gold-soft transition-colors hover:text-gold"
                   >
-                    Instagram DM
+                    Instagram
                   </a>
                 </div>
               </form>
