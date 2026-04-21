@@ -1,10 +1,13 @@
-import collection1 from "@/assets/collection-1.jpg";
-import collection2 from "@/assets/collection-2.jpg";
-import collection3 from "@/assets/collection-3.jpg";
-import fabricDetails from "@/assets/fabric-details.jpg";
-import phoneCase from "@/assets/phone-case.jpg";
-import embroideryHands from "@/assets/embroidery-hands.jpg";
-import journal3 from "@/assets/journal-3.jpg";
+import caseBukharaHand from "@/assets/case-bukhara-hand.jpg";
+import caseSamarkandDome from "@/assets/case-samarkand-dome.jpg";
+import caseSamarkandArch from "@/assets/case-samarkand-arch.jpg";
+import caseOrangeOrnament from "@/assets/case-orange-ornament.jpg";
+import caseSwallowPomegranate from "@/assets/case-swallow-pomegranate.jpg";
+import casePomegranateWoman from "@/assets/case-pomegranate-woman.jpg";
+import caseBukharaAirpods from "@/assets/case-bukhara-airpods.jpg";
+import caseSamarkandStone from "@/assets/case-samarkand-stone.jpg";
+import jacketMusician from "@/assets/jacket-musician.jpg";
+import artPomegranateWoman from "@/assets/art-pomegranate-woman.jpg";
 
 export type Product = {
   slug: string;
@@ -16,45 +19,73 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    slug: "emerald-dress",
-    image: collection1,
+    slug: "case-bukhara",
+    image: caseBukharaHand,
     nameKey: "collection.item1Name",
     descKey: "collection.item1Desc",
     tagKey: "collection.limited",
   },
   {
-    slug: "pomegranate-scarf",
-    image: embroideryHands,
+    slug: "case-samarkand-dome",
+    image: caseSamarkandDome,
     nameKey: "collection.item2Name",
     descKey: "collection.item2Desc",
-    tagKey: "collection.madeToOrder",
+    tagKey: "collection.limited",
   },
   {
-    slug: "tashkent-coat",
-    image: collection3,
+    slug: "case-samarkand-arch",
+    image: caseSamarkandArch,
     nameKey: "collection.item3Name",
     descKey: "collection.item3Desc",
     tagKey: "collection.limited",
   },
   {
-    slug: "sand-dress",
-    image: journal3,
+    slug: "case-orange-ornament",
+    image: caseOrangeOrnament,
     nameKey: "collection.item4Name",
     descKey: "collection.item4Desc",
     tagKey: "collection.madeToOrder",
   },
   {
-    slug: "ornament-case",
-    image: phoneCase,
+    slug: "case-swallow-pomegranate",
+    image: caseSwallowPomegranate,
     nameKey: "collection.item5Name",
     descKey: "collection.item5Desc",
     tagKey: "collection.limited",
   },
   {
-    slug: "dawn-silk",
-    image: fabricDetails,
+    slug: "case-pomegranate-woman",
+    image: casePomegranateWoman,
     nameKey: "collection.item6Name",
     descKey: "collection.item6Desc",
+    tagKey: "collection.madeToOrder",
+  },
+  {
+    slug: "case-bukhara-sky",
+    image: caseBukharaAirpods,
+    nameKey: "collection.item7Name",
+    descKey: "collection.item7Desc",
+    tagKey: "collection.limited",
+  },
+  {
+    slug: "case-samarkand-stone",
+    image: caseSamarkandStone,
+    nameKey: "collection.item8Name",
+    descKey: "collection.item8Desc",
+    tagKey: "collection.limited",
+  },
+  {
+    slug: "jacket-musician",
+    image: jacketMusician,
+    nameKey: "collection.item9Name",
+    descKey: "collection.item9Desc",
+    tagKey: "collection.madeToOrder",
+  },
+  {
+    slug: "art-pomegranate-woman",
+    image: artPomegranateWoman,
+    nameKey: "collection.item10Name",
+    descKey: "collection.item10Desc",
     tagKey: "collection.madeToOrder",
   },
 ];
