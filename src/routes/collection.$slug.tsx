@@ -97,7 +97,7 @@ function ProductPage() {
                   rel="noreferrer noopener"
                   className="inline-flex items-center gap-3 border border-forest/30 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-foreground transition-all hover:border-forest"
                 >
-                  Instagram DM
+                  Instagram
                 </a>
               </div>
             </FadeUp>

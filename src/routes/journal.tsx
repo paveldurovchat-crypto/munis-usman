@@ -13,9 +13,9 @@ export const Route = createFileRoute("/journal")({
   head: () => ({
     meta: [
       { title: "Дневник · MUNIS USMAN" },
-      { name: "description", content: "Истории из ателье — о ремесле, вдохновении и процессе." },
+      { name: "description", content: "Истории из мастерской — о ремесле, вдохновении и процессе." },
       { property: "og:title", content: "Journal · MUNIS USMAN" },
-      { property: "og:description", content: "Stories from the atelier — on craft, inspiration and process." },
+      { property: "og:description", content: "Stories from the studio — on craft, inspiration and process." },
     ],
   }),
 });

@@ -36,7 +36,7 @@ export const en = {
     processBody:
       "Every piece travels from sketch and fabric selection through hand embroidery to a final fitting. We do not rush — art asks for time.",
     galleryKicker: "Atmosphere",
-    galleryTitle: "Inside the atelier",
+    galleryTitle: "Inside the studio",
     gallerySubtitle: "Fragments of the process — fabric, texture, detail",
   },
   about: {
@@ -83,7 +83,7 @@ export const en = {
     materials: "Materials",
     craftsmanship: "Craftsmanship",
     madeToOrderNote:
-      "Each piece is made to order in our atelier in Tashkent. Lead time: 4 to 8 weeks.",
+      "Each piece is made to order in our studio in Tashkent. Lead time: 4 to 8 weeks.",
     inquireTitle: "Order this piece",
     inquireBody:
       "Write to us — we will discuss size, details and personal wishes. Each piece is made especially for you.",
@@ -96,7 +96,7 @@ export const en = {
       "We accept a limited number of custom orders. It is your chance to become a co-author of a piece that exists only once.",
     step1Title: "01 · Consultation",
     step1Body:
-      "We meet, listen to your idea, talk about the occasion and the mood. Online or at the atelier.",
+      "We meet, listen to your idea, talk about the occasion and the mood. Online or at the studio.",
     step2Title: "02 · Sketch and fabric",
     step2Body:
       "We create sketches, select fabrics and threads. You receive samples and a final visualisation before work begins.",
@@ -116,7 +116,7 @@ export const en = {
   },
   journal: {
     kicker: "Journal",
-    title: "Stories from the atelier",
+    title: "Stories from the studio",
     subtitle: "On craft, inspiration and process",
     readMore: "Read more",
     post1Title: "Gold thread: an art that refuses to be rushed",
@@ -137,7 +137,7 @@ export const en = {
     title: "Let's talk",
     subtitle:
       "We reply to emails within 48 hours. For urgent enquiries write us on Instagram.",
-    locationLabel: "Atelier",
+    locationLabel: "Studio",
     locationValue: "Tashkent, Uzbekistan",
     emailLabel: "Email",
     instagramLabel: "Instagram",
@@ -152,7 +152,7 @@ export const en = {
   footer: {
     tagline: "Wearable Art. Crafted in Tashkent.",
     explore: "Explore",
-    atelier: "Atelier",
+    atelier: "Studio",
     follow: "Follow",
     rights: "All rights reserved",
     crafted: "Crafted by hand · Worn beyond seasons",
