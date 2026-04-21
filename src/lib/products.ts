@@ -13,12 +13,15 @@ import caseSwallowBlossom from "@/assets/case-swallow-blossom.jpg";
 import artIkatBrideLight from "@/assets/art-ikat-bride-light.jpg";
 import artIkatBrideDark from "@/assets/art-ikat-bride-dark.jpg";
 
+export type ProductCategory = "cases" | "art";
+
 export type Product = {
   slug: string;
   image: string;
   nameKey: string;
   descKey: string;
   tagKey: "collection.limited" | "collection.madeToOrder";
+  category: ProductCategory;
 };
 
 export const products: Product[] = [
