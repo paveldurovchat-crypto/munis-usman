@@ -45,7 +45,7 @@ export function SiteNav() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 lg:px-12">
         {/* Left: desktop nav */}
-        <nav className={`hidden items-center gap-8 text-[11px] uppercase tracking-[0.24em] lg:flex ${textClass}`}>
+        <nav className={`hidden items-center gap-8 text-[11px] uppercase tracking-[0.18em] font-sans font-light lg:flex ${textClass}`}>
           {links.slice(0, 3).map((l) => (
             <Link
               key={l.to}
@@ -68,7 +68,7 @@ export function SiteNav() {
         </Link>
 
         {/* Right: desktop nav + lang */}
-        <div className={`hidden items-center gap-8 text-[11px] uppercase tracking-[0.24em] lg:flex ${textClass}`}>
+        <div className={`hidden items-center gap-8 text-[11px] uppercase tracking-[0.18em] font-sans font-light lg:flex ${textClass}`}>
           {links.slice(3).map((l) => (
             <Link
               key={l.to}
@@ -99,7 +99,7 @@ export function SiteNav() {
       {open && (
         <div className="lg:hidden">
           <nav className="border-t border-border/50 bg-cream/95 px-6 py-6 backdrop-blur-md">
-            <ul className="flex flex-col gap-5 text-sm uppercase tracking-[0.28em] text-foreground">
+            <ul className="flex flex-col gap-5 text-sm uppercase tracking-[0.18em] font-sans font-light text-foreground">
               <li>
                 <Link to="/" className="block py-1" activeProps={{ className: "text-accent" }}>
                   {t("nav.home")}
@@ -136,7 +136,7 @@ function LangToggle({
   t: (k: string) => string;
 }) {
   return (
-    <div className={`flex items-center gap-1 text-[11px] uppercase tracking-[0.24em] ${textClass}`}>
+    <div className={`flex items-center gap-1 text-[11px] uppercase tracking-[0.18em] font-sans font-light ${textClass}`}>
       <button
         onClick={() => setLang("ru")}
         className={`transition-colors hover:text-accent ${lang === "ru" ? "text-accent" : "opacity-70"}`}
