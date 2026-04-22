@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Lora:wght@400;500&family=Jost:wght@300;400;500&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -6,10 +6,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -29,72 +29,84 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
+
+  /* Brand palette — Munis Usman */
+  --color-green: var(--green);
+  --color-green-deep: var(--green-deep);
   --color-sand: var(--sand);
-  --color-sand-deep: var(--sand-deep);
-  --color-cream: var(--cream);
-  --color-ivory: var(--ivory);
-  --color-forest: var(--forest);
-  --color-forest-deep: var(--forest-deep);
-  --color-burgundy: var(--burgundy);
-  --color-burgundy-deep: var(--burgundy-deep);
+  --color-sand-dark: var(--sand-dark);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-white-warm: var(--white-warm);
+
+  /* Legacy aliases kept so existing components keep compiling */
+  --color-cream: var(--sand);
+  --color-ivory: var(--white-warm);
+  --color-sand-deep: var(--sand-dark);
+  --color-forest: var(--green);
+  --color-forest-deep: var(--green-deep);
+  --color-burgundy: var(--green);
+  --color-burgundy-deep: var(--green-deep);
+  --color-gold-soft: var(--gold-light);
+
   --font-serif: "Cormorant Garamond", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-body: "Lora", Georgia, serif;
+  --font-sans: "Jost", system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.25rem;
 
-  /* Brand palette — Munis Usman */
-  --cream: oklch(0.972 0.012 85);
-  --ivory: oklch(0.965 0.018 82);
-  --sand: oklch(0.852 0.055 80);
-  --sand-deep: oklch(0.755 0.065 75);
-  --forest: oklch(0.345 0.025 145);
-  --forest-deep: oklch(0.235 0.022 145);
-  --burgundy: oklch(0.34 0.09 22);
-  --burgundy-deep: oklch(0.24 0.07 22);
-  --gold: oklch(0.78 0.13 85);
-  --gold-soft: oklch(0.88 0.08 85);
+  /* Brand palette — Munis Usman (Camping Green / Sand / Gold) */
+  --green: oklch(0.398 0.024 145);        /* #3E5040 Camping Green */
+  --green-deep: oklch(0.31 0.02 145);     /* darker green for depth */
+  --sand: oklch(0.945 0.028 92);          /* #F5EDD8 main sand bg */
+  --sand-dark: oklch(0.905 0.04 88);      /* #EDE0C4 deeper sand */
+  --gold: oklch(0.71 0.135 78);           /* #C4992D gold accent */
+  --gold-light: oklch(0.78 0.115 80);     /* #D4AE58 hover */
+  --text: oklch(0.18 0.005 90);           /* near black */
+  --text-muted: oklch(0.45 0.012 88);     /* warm muted gray */
+  --white-warm: oklch(0.985 0.01 90);     /* warm white */
 
   --gradient-gold: linear-gradient(
     135deg,
     #b89953 0%,
-    #cab57e 12%,
-    #f7edd4 24%,
-    #f2d484 38%,
-    #e8d182 56%,
-    #c49574 72%,
-    #f3da99 100%
+    #cab57e 18%,
+    #f3e0b1 38%,
+    #d4ae58 58%,
+    #c4992d 80%,
+    #e8cf95 100%
   );
-  --gradient-fade: linear-gradient(180deg, transparent 0%, rgba(58, 70, 61, 0.85) 100%);
-  --shadow-soft: 0 30px 80px -30px rgba(58, 70, 61, 0.35);
+  --gradient-fade: linear-gradient(180deg, transparent 0%, rgba(62, 80, 64, 0.85) 100%);
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
 
-  --background: var(--cream);
-  --foreground: var(--forest-deep);
-  --card: oklch(1 0 0);
-  --card-foreground: var(--forest-deep);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--forest-deep);
-  --primary: var(--forest);
-  --primary-foreground: var(--cream);
-  --secondary: var(--sand);
-  --secondary-foreground: var(--forest-deep);
-  --muted: oklch(0.94 0.015 85);
-  --muted-foreground: oklch(0.45 0.02 145);
+  --background: var(--sand);
+  --foreground: var(--text);
+  --card: var(--white-warm);
+  --card-foreground: var(--text);
+  --popover: var(--white-warm);
+  --popover-foreground: var(--text);
+  --primary: var(--green);
+  --primary-foreground: var(--sand);
+  --secondary: var(--sand-dark);
+  --secondary-foreground: var(--text);
+  --muted: var(--sand-dark);
+  --muted-foreground: var(--text-muted);
   --accent: var(--gold);
-  --accent-foreground: var(--forest-deep);
+  --accent-foreground: var(--green-deep);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.88 0.025 80);
-  --input: oklch(0.88 0.025 80);
+  --border: oklch(0.86 0.025 85);
+  --input: oklch(0.86 0.025 85);
   --ring: var(--gold);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: var(--green);
+  --chart-2: var(--gold);
+  --chart-3: var(--sand-dark);
+  --chart-4: var(--gold-light);
+  --chart-5: var(--green-deep);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -103,22 +115,22 @@
 }
 
 .dark {
-  --background: var(--forest-deep);
-  --foreground: var(--cream);
-  --card: oklch(0.28 0.025 145);
-  --card-foreground: var(--cream);
-  --popover: oklch(0.28 0.025 145);
-  --popover-foreground: var(--cream);
-  --primary: var(--cream);
-  --primary-foreground: var(--forest-deep);
-  --secondary: var(--forest);
-  --secondary-foreground: var(--cream);
-  --muted: oklch(0.3 0.02 145);
-  --muted-foreground: oklch(0.7 0.02 85);
+  --background: var(--green-deep);
+  --foreground: var(--sand);
+  --card: oklch(0.32 0.02 145);
+  --card-foreground: var(--sand);
+  --popover: oklch(0.32 0.02 145);
+  --popover-foreground: var(--sand);
+  --primary: var(--sand);
+  --primary-foreground: var(--green-deep);
+  --secondary: var(--green);
+  --secondary-foreground: var(--sand);
+  --muted: oklch(0.34 0.02 145);
+  --muted-foreground: oklch(0.78 0.02 85);
   --accent: var(--gold);
-  --accent-foreground: var(--forest-deep);
+  --accent-foreground: var(--green-deep);
   --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: var(--cream);
+  --destructive-foreground: var(--sand);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: var(--gold);
@@ -136,8 +148,8 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
-    font-weight: 300;
+    font-family: var(--font-body);
+    font-weight: 400;
     letter-spacing: 0.005em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -154,14 +166,29 @@
     letter-spacing: -0.012em;
   }
 
+  /* Slightly desaturate imagery so green/gold reads dominant */
+  img {
+    filter: saturate(0.92);
+  }
+
   ::selection {
     background-color: var(--gold);
-    color: var(--forest-deep);
+    color: var(--green-deep);
   }
 }
 
 @utility font-display {
   font-family: var(--font-serif);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-label {
+  font-family: var(--font-sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 @utility text-gold-gradient {
@@ -170,7 +197,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gold-shimmer 8s ease infinite;
+  animation: gold-shimmer 10s ease infinite;
 }
 
 @utility btn-outline-gold {
@@ -179,8 +206,9 @@
   gap: 0.75rem;
   padding: 1rem 2rem;
   font-size: 0.75rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  font-family: var(--font-sans);
   border: 1px solid color-mix(in oklab, var(--gold) 70%, transparent);
   color: inherit;
   transition: all 0.4s ease;
@@ -188,7 +216,7 @@
 
 @utility btn-outline-gold-hover {
   background-color: var(--gold);
-  color: var(--forest-deep);
+  color: var(--green-deep);
 }
 
 @keyframes gold-shimmer {
@@ -243,7 +271,7 @@
 
 /* Soft, tender utilities */
 @utility shadow-tender {
-  box-shadow: 0 30px 60px -40px color-mix(in oklab, var(--forest-deep) 35%, transparent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 @utility hairline-divider {
@@ -251,7 +279,15 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in oklab, var(--gold) 50%, transparent) 50%,
+    color-mix(in oklab, var(--gold) 30%, transparent) 50%,
     transparent 100%
   );
+}
+
+@utility ornament-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: color-mix(in oklab, var(--gold) 60%, transparent);
 }

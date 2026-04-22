@@ -19,16 +19,16 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
+      { title: "MUNIS USMAN — Ташкент" },
       {
         name: "description",
         content:
-          "Дизайнерский бренд носимого искусства из Ташкента. Ручная вышивка и роспись, ограниченные серии, изделия на заказ с 2014 года.",
+          "Мастерская в Ташкенте с 2014 года. Шьём и вышиваем вручную — небольшими партиями, для конкретных людей.",
       },
-      { property: "og:title", content: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
+      { property: "og:title", content: "MUNIS USMAN — Tashkent" },
       {
         property: "og:description",
-        content: "Hand-embroidered couture. Limited editions and made-to-order since 2014.",
+        content: "A Tashkent studio since 2014. We sew and embroider by hand — in small batches, for specific people.",
       },
     ],
   }),
@@ -124,9 +124,9 @@ function Index() {
               <div className="mt-16 flex justify-center">
                 <Link
                   to="/collection"
-                  className="group inline-flex items-center gap-3 border border-forest/40 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-foreground transition-all hover:bg-forest hover:text-cream"
+                  className="group inline-flex items-center gap-3 border border-forest/40 px-8 py-4 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all hover:bg-forest hover:text-cream font-sans"
                 >
-                  {t("cta.explore")}
+                  {t("home.featuredCta")}
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               </div>
@@ -159,9 +159,9 @@ function Index() {
               <FadeUp delay={240}>
                 <Link
                   to="/custom"
-                  className="mt-10 inline-flex items-center gap-3 border border-gold/70 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-gold hover:text-forest-deep"
+                  className="mt-10 inline-flex items-center gap-3 border border-gold/70 px-8 py-4 text-[11px] uppercase tracking-[0.18em] text-cream transition-all hover:bg-gold hover:text-forest-deep font-sans"
                 >
-                  {t("cta.customOrder")} →
+                  {t("home.processCta")} →
                 </Link>
               </FadeUp>
             </div>

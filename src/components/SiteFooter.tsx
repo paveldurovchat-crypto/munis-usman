@@ -82,9 +82,9 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-cream/10 pt-8 text-xs uppercase tracking-[0.25em] text-cream/40 sm:flex-row sm:items-center">
-          <span>© {new Date().getFullYear()} MUNIS USMAN · {t("footer.rights")}</span>
-          <span>{t("footer.crafted")}</span>
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-cream/10 pt-8 text-xs uppercase tracking-[0.18em] text-cream/40 sm:flex-row sm:items-center" style={{ fontFamily: "Jost, system-ui, sans-serif" }}>
+          <span>© {new Date().getFullYear()} MUNIS USMAN · {t("footer.rights")} · {t("footer.crafted")}</span>
+          <span>{BRAND.location}</span>
         </div>
       </div>
     </footer>

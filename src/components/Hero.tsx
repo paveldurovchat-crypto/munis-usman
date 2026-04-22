@@ -5,10 +5,7 @@ import { useI18n } from "@/lib/i18n";
 export function Hero() {
   const { t, lang } = useI18n();
 
-  const sub =
-    lang === "en"
-      ? "A small house in Tashkent. Hand-embroidered, hand-painted, made for one person at a time — since 2014."
-      : "Маленькая мастерская в Ташкенте. Ручная вышивка и роспись, вещи, которые делаются для одного человека — с 2014 года.";
+  const sub = t("home.heroSubtitle");
 
   return (
     <section className="relative h-screen min-h-[720px] w-full overflow-hidden bg-forest-deep">
@@ -67,23 +64,25 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 animate-fade-up">
           <Link
             to="/collection"
-            className="group inline-flex items-center gap-3 rounded-full border border-gold/60 bg-cream/[0.04] px-7 py-3.5 text-[11px] uppercase tracking-[0.28em] text-cream backdrop-blur-sm transition-all duration-500 hover:bg-gold hover:text-forest-deep hover:border-gold"
+            className="group inline-flex items-center gap-3 border border-gold/60 bg-cream/[0.04] px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-cream backdrop-blur-sm transition-all duration-500 hover:bg-gold hover:text-forest-deep hover:border-gold"
+            style={{ fontFamily: "Jost, system-ui, sans-serif" }}
           >
-            {t("cta.explore")}
+            {t("home.heroCta1")}
             <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
           </Link>
           <Link
             to="/custom"
-            className="inline-flex items-center gap-3 rounded-full border border-cream/25 px-7 py-3.5 text-[11px] uppercase tracking-[0.28em] text-cream/90 transition-all duration-500 hover:border-cream/70 hover:text-cream"
+            className="inline-flex items-center gap-3 border border-cream/25 px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-cream/90 transition-all duration-500 hover:border-cream/70 hover:text-cream"
+            style={{ fontFamily: "Jost, system-ui, sans-serif" }}
           >
-            {t("cta.customOrder")}
+            {t("home.heroCta2")}
           </Link>
         </div>
       </div>
 
       {/* Quiet scroll indicator */}
       <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex-col items-center gap-2 text-cream/55 hidden lg:flex">
-        <span className="text-[9px] uppercase tracking-[0.4em]">
+        <span className="text-[9px] uppercase tracking-[0.4em]" style={{ fontFamily: "Jost, system-ui, sans-serif" }}>
           {lang === "en" ? "Scroll" : "Листать"}
         </span>
         <span className="block h-12 w-px animate-scroll-line bg-cream/40" />
