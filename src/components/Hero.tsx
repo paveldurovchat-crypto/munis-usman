@@ -3,52 +3,90 @@ import heroGif from "@/assets/hero.gif";
 import { useI18n } from "@/lib/i18n";
 
 export function Hero() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+
+  const sub =
+    lang === "en"
+      ? "A small house in Tashkent. Hand-embroidered, hand-painted, made for one person at a time — since 2014."
+      : "Маленькая мастерская в Ташкенте. Ручная вышивка и роспись, вещи, которые делаются для одного человека — с 2014 года.";
+
   return (
-    <section className="relative h-screen min-h-[720px] w-full overflow-hidden">
+    <section className="relative h-screen min-h-[720px] w-full overflow-hidden bg-forest-deep">
+      {/* Background image */}
       <img
         src={heroGif}
-        alt="MUNIS USMAN — Wearable Art"
+        alt="MUNIS USMAN — wearable art from Tashkent"
         className="absolute inset-0 h-full w-full object-cover object-center animate-kenburns"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/30 via-forest-deep/20 to-forest-deep/80" />
-      <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/60 via-transparent to-forest-deep/30" />
 
-      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-24 lg:px-20 lg:pb-32">
-        <div className="max-w-3xl animate-fade-up">
-          <p className="mb-6 text-[11px] uppercase tracking-[0.4em] text-gold-soft">
-            {t("home.heroKicker")}
-          </p>
-          <h1 className="font-display text-5xl leading-[0.95] text-cream sm:text-6xl lg:text-[7.5rem]">
-            <span className="block">Wearable Art.</span>
-            <em className="not-italic text-gold-gradient">Crafted in Tashkent.</em>
-          </h1>
-          <p className="mt-8 max-w-md text-base font-light leading-relaxed text-cream/85">
-            {t("brand.tagline") === "Wearable Art. Crafted in Tashkent."
-              ? "Designer brand of hand-embroidered, limited-edition pieces. Since 2014."
-              : "Дизайнерский бренд ручной работы. Ограниченные серии и изделия на заказ — с 2014 года."}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              to="/collection"
-              className="group inline-flex items-center gap-3 border border-gold/70 bg-transparent px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-gold hover:text-forest-deep"
-            >
-              {t("cta.explore")}
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-            <Link
-              to="/custom"
-              className="inline-flex items-center gap-3 border border-cream/30 bg-transparent px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:border-cream/80"
-            >
-              {t("cta.customOrder")}
-            </Link>
-          </div>
+      {/* Soft, layered washes — keep the image breathing */}
+      <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/45 via-forest-deep/20 to-forest-deep/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/55 via-transparent to-forest-deep/25" />
+      {/* very subtle vignette */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.35) 100%)",
+        }}
+      />
+
+      {/* Massive wordmark over the video */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
+        <p className="mb-6 text-[10px] uppercase tracking-[0.55em] text-gold-soft/90 animate-fade-in">
+          {t("home.heroKicker")}
+        </p>
+
+        <h1 className="font-display text-cream leading-[0.86] animate-fade-up">
+          <span
+            className="block text-gold-gradient"
+            style={{
+              fontSize: "clamp(3.25rem, 14vw, 14rem)",
+              letterSpacing: "0.02em",
+              fontWeight: 400,
+            }}
+          >
+            Munis
+          </span>
+          <span
+            className="mt-1 block italic text-cream/95"
+            style={{
+              fontSize: "clamp(3rem, 13vw, 13rem)",
+              letterSpacing: "0.04em",
+              fontWeight: 300,
+            }}
+          >
+            Usman
+          </span>
+        </h1>
+
+        <p className="mt-10 max-w-xl text-sm font-light leading-relaxed text-cream/80 sm:text-base animate-fade-up">
+          {sub}
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 animate-fade-up">
+          <Link
+            to="/collection"
+            className="group inline-flex items-center gap-3 rounded-full border border-gold/60 bg-cream/[0.04] px-7 py-3.5 text-[11px] uppercase tracking-[0.28em] text-cream backdrop-blur-sm transition-all duration-500 hover:bg-gold hover:text-forest-deep hover:border-gold"
+          >
+            {t("cta.explore")}
+            <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
+          </Link>
+          <Link
+            to="/custom"
+            className="inline-flex items-center gap-3 rounded-full border border-cream/25 px-7 py-3.5 text-[11px] uppercase tracking-[0.28em] text-cream/90 transition-all duration-500 hover:border-cream/70 hover:text-cream"
+          >
+            {t("cta.customOrder")}
+          </Link>
         </div>
       </div>
 
-      <div className="absolute bottom-8 right-8 z-10 hidden flex-col items-end gap-2 text-cream/60 lg:flex">
-        <div className="h-12 w-px bg-cream/40" />
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+      {/* Quiet scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex-col items-center gap-2 text-cream/55 hidden lg:flex">
+        <span className="text-[9px] uppercase tracking-[0.4em]">
+          {lang === "en" ? "Scroll" : "Листать"}
+        </span>
+        <span className="block h-12 w-px animate-scroll-line bg-cream/40" />
       </div>
     </section>
   );
