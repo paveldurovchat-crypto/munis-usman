@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import heroGif from "@/assets/hero.gif";
+import heroVideo from "@/assets/hero-video.mp4";
 import { useI18n } from "@/lib/i18n";
 
 export function Hero() {
