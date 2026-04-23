@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import heroGif from "@/assets/hero.gif";
+import heroVideo from "@/assets/hero-video.mp4";
 import { useI18n } from "@/lib/i18n";
 
 export function Hero() {
@@ -9,10 +9,14 @@ export function Hero() {
 
   return (
     <section className="relative h-screen min-h-[720px] w-full overflow-hidden bg-forest-deep">
-      {/* Background image */}
-      <img
-        src={heroGif}
-        alt="MUNIS USMAN — wearable art from Tashkent"
+      {/* Background video */}
+      <video
+        src={heroVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-label="MUNIS USMAN — wearable art from Tashkent"
         className="absolute inset-0 h-full w-full object-cover object-center animate-kenburns"
       />
 
