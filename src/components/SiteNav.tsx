@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import logoGold from "@/assets/logo-gold.svg";
 import logoGreen from "@/assets/logo-green.svg";
 import { useI18n } from "@/lib/i18n";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 
 export function SiteNav() {
   const { lang, setLang, t } = useI18n();
@@ -121,6 +122,8 @@ export function SiteNav() {
         </div>
       )}
     </header>
+      <MobileBottomNav />
+    </>
   );
 }
 
