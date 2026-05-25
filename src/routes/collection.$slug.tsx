@@ -5,7 +5,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import { getProduct, products } from "@/lib/products";
+import { getProduct, products, type ProductColor, type ProductSpec } from "@/lib/products";
 import { BRAND, mailtoLink } from "@/lib/brand";
 
 export const Route = createFileRoute("/collection/$slug")({
@@ -96,7 +96,7 @@ function ProductPage() {
               {product.colors && product.colors.length > 0 && (
                 <div className="mt-5">
                   <div className="flex items-center gap-3">
-                    {product.colors.map((c, idx) => {
+                    {product.colors.map((c: ProductColor, idx: number) => {
                       const isSel = idx === selectedColorIdx;
                       return (
                         <button
@@ -126,7 +126,7 @@ function ProductPage() {
             {product.specs && product.specs.length > 0 && (
               <FadeUp delay={80}>
                 <div className="mt-8">
-                  {product.specs.map((s) => (
+                  {product.specs.map((s: ProductSpec) => (
                     <div key={s.label} className="flex items-center justify-between border-b border-border py-3">
                       <span className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground">{s.label}</span>
                       <span className="text-sm text-foreground">{s.value}</span>
