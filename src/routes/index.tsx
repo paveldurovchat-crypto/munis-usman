@@ -19,16 +19,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "MUNIS USMAN — Ташкент" },
+      { title: "MUNIS USMAN. Handmade accessories and clothing from Tashkent" },
       {
         name: "description",
         content:
-          "Мастерская в Ташкенте с 2014 года. Шьём и вышиваем вручную — небольшими партиями, для конкретных людей.",
+          "MUNIS USMAN is a handcraft studio in Tashkent making embroidered accessories, phone cases and wearable art since 2014. Limited editions and made to order.",
       },
-      { property: "og:title", content: "MUNIS USMAN — Tashkent" },
+      { property: "og:title", content: "MUNIS USMAN. Handmade accessories and clothing from Tashkent" },
       {
         property: "og:description",
-        content: "A Tashkent studio since 2014. We sew and embroider by hand — in small batches, for specific people.",
+        content:
+          "Handcraft studio in Tashkent. Embroidered accessories, phone cases and wearable art since 2014.",
       },
     ],
   }),
