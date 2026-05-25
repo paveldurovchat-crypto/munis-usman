@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import logoGold from "@/assets/logo-gold.svg";
 import logoGreen from "@/assets/logo-green.svg";
 import { useI18n } from "@/lib/i18n";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 
 export function SiteNav() {
   const { lang, setLang, t } = useI18n();
@@ -36,6 +37,7 @@ export function SiteNav() {
   const textClass = solid ? "text-foreground" : "text-cream";
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         solid
@@ -121,6 +123,8 @@ export function SiteNav() {
         </div>
       )}
     </header>
+      <MobileBottomNav />
+    </>
   );
 }
 
