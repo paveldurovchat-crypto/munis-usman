@@ -76,6 +76,18 @@ function Index() {
           </div>
         </section>
 
+        {/* Signature accent */}
+        <section className="bg-forest-deep py-20 lg:py-28">
+          <div className="mx-auto max-w-4xl px-6 text-center lg:px-12">
+            <FadeUp>
+              <p className="font-display italic text-gold-soft text-3xl sm:text-4xl lg:text-5xl">
+                {t("home.philosophyAccent")}
+              </p>
+            </FadeUp>
+          </div>
+        </section>
+
+
         {/* Featured Collection */}
         <section className="bg-ivory py-28 lg:py-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -168,6 +180,42 @@ function Index() {
             </div>
           </div>
         </section>
+
+        {/* Collaboration */}
+        <section className="bg-cream py-28 lg:py-40">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-12 lg:gap-16 lg:px-12">
+            <div className="lg:col-span-5">
+              <FadeUp>
+                <p className="mb-4 text-xs uppercase tracking-[0.4em] text-muted-foreground">
+                  {t("home.collaborationKicker")}
+                </p>
+              </FadeUp>
+              <FadeUp delay={80}>
+                <h2 className="font-display text-4xl leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
+                  {t("home.collaborationTitle")}
+                </h2>
+              </FadeUp>
+            </div>
+            <div className="lg:col-span-7">
+              <FadeUp delay={120}>
+                <p className="text-base leading-relaxed text-muted-foreground">
+                  {t("home.collaborationBody")}
+                </p>
+              </FadeUp>
+              <FadeUp delay={200}>
+                <Link
+                  to="/contact"
+                  className="group mt-10 inline-flex items-center gap-3 border border-forest/40 px-8 py-4 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all hover:bg-forest hover:text-cream font-sans"
+                >
+                  {t("home.collaborationCta")}
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </FadeUp>
+            </div>
+          </div>
+        </section>
+
+
 
         {/* Gallery — instagram-style */}
         <section className="bg-cream py-28 lg:py-40">
