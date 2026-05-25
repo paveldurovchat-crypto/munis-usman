@@ -1,4 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
+import { Heart } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
@@ -21,7 +23,7 @@ export const Route = createFileRoute("/collection/$slug")({
           <div>
             <h1 className="font-display text-4xl text-foreground">Не найдено</h1>
             <Link to="/collection" className="mt-6 inline-block text-sm uppercase tracking-[0.28em] text-accent">
-              ← Collection
+              Collection
             </Link>
           </div>
         </div>
@@ -46,16 +48,21 @@ export const Route = createFileRoute("/collection/$slug")({
 function ProductPage() {
   const { t } = useI18n();
   const { product } = Route.useLoaderData();
+  const [selectedColorIdx, setSelectedColorIdx] = useState(0);
+  const [liked, setLiked] = useState(false);
 
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+  const selectedColor = product.colors?.[selectedColorIdx];
 
   const subject = `Inquiry: ${product.slug}`;
   const body = `Hello MUNIS USMAN,\n\nI'm interested in "${product.slug}". Please share more details.\n\nThank you!`;
 
+  const isMadeToOrder = product.tagKey === "collection.madeToOrder";
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
-      <main className="pt-28 lg:pt-36">
+      <main className="pt-28 pb-24 lg:pt-36 lg:pb-0">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <Link to="/collection" className="text-xs uppercase tracking-[0.28em] text-muted-foreground hover:text-accent">
             {t("product.backToCollection")}
@@ -72,30 +79,95 @@ function ProductPage() {
           <div className="flex flex-col justify-center lg:col-span-5">
             <FadeUp>
               <p className="text-[10px] uppercase tracking-[0.3em] text-accent">{t(product.tagKey)}</p>
-              <h1 className="mt-4 font-display text-4xl leading-[1.05] text-foreground lg:text-5xl">
-                {t(product.nameKey)}
-              </h1>
+              <div className="mt-4 flex items-start justify-between gap-4">
+                <h1 className="font-display text-4xl leading-[1.05] text-foreground lg:text-5xl">
+                  {t(product.nameKey)}
+                </h1>
+                <button
+                  aria-label="Wishlist"
+                  onClick={() => setLiked((v) => !v)}
+                  className="mt-2 shrink-0 text-foreground transition-colors hover:text-accent"
+                >
+                  <Heart className="h-5 w-5" fill={liked ? "currentColor" : "none"} strokeWidth={1.5} />
+                </button>
+              </div>
+              <p className="mt-3 font-display text-2xl text-foreground">${product.price}</p>
+
+              {product.colors && product.colors.length > 0 && (
+                <div className="mt-5">
+                  <div className="flex items-center gap-3">
+                    {product.colors.map((c, idx) => {
+                      const isSel = idx === selectedColorIdx;
+                      return (
+                        <button
+                          key={c.hex}
+                          aria-label={c.name}
+                          onClick={() => setSelectedColorIdx(idx)}
+                          className={`block h-5 w-5 rounded-full transition-all ${
+                            isSel ? "scale-110 border-2 border-foreground" : "border border-border/60"
+                          }`}
+                          style={{ backgroundColor: c.hex }}
+                        />
+                      );
+                    })}
+                    {selectedColor && (
+                      <span className="text-xs text-muted-foreground">
+                        {t("product.selectedColor") /* not defined intentionally falls back */}
+                        {selectedColor.name}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">{t(product.descKey)}</p>
             </FadeUp>
+
+            {product.specs && product.specs.length > 0 && (
+              <FadeUp delay={80}>
+                <div className="mt-8">
+                  {product.specs.map((s) => (
+                    <div key={s.label} className="flex items-center justify-between border-b border-border py-3">
+                      <span className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground">{s.label}</span>
+                      <span className="text-sm text-foreground">{s.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </FadeUp>
+            )}
+
             <FadeUp delay={120}>
-              <div className="mt-10 border-t border-border pt-8 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-8 border-t border-border pt-6 text-sm leading-relaxed text-muted-foreground">
                 <p>{t("product.madeToOrderNote")}</p>
               </div>
             </FadeUp>
+
             <FadeUp delay={200}>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={mailtoLink(subject, body)}
-                  className="group inline-flex items-center gap-3 border border-forest/60 bg-forest px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest-deep"
-                >
-                  {t("cta.inquire")}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
+              <div className="mt-8 flex flex-col gap-3">
+                {isMadeToOrder ? (
+                  <a
+                    href={mailtoLink(subject, body)}
+                    className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest"
+                  >
+                    {t("product.orderNow")}
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => {
+                      // TODO: wire up cart
+                    }}
+                    className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest"
+                  >
+                    {t("product.addToCart")}
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </button>
+                )}
                 <a
                   href={BRAND.instagram}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-3 border border-forest/30 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-foreground transition-all hover:border-forest"
+                  className="inline-flex w-full items-center justify-center gap-3 border border-forest/30 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-foreground transition-all hover:border-forest"
                 >
                   Instagram
                 </a>
