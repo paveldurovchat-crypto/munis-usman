@@ -37,6 +37,7 @@ export function SiteNav() {
   const textClass = solid ? "text-foreground" : "text-cream";
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         solid
