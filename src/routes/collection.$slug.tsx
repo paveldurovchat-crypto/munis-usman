@@ -112,7 +112,6 @@ function ProductPage() {
                     })}
                     {selectedColor && (
                       <span className="text-xs text-muted-foreground">
-                        {t("product.selectedColor") /* not defined intentionally falls back */}
                         {selectedColor.name}
                       </span>
                     )}
