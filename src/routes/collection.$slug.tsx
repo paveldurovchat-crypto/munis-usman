@@ -161,7 +161,7 @@ function ProductPage() {
 
         <section className="mt-32 bg-cream py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <h2 className="font-display text-3xl text-foreground lg:text-4xl">You may also like</h2>
+            <h2 className="font-display text-3xl text-foreground lg:text-4xl">{t("collection.related")}</h2>
             <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
               {related.map((p, i) => {
                 const rName = pickLocalized(p, "name", lang);
