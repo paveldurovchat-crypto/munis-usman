@@ -1,0 +1,48 @@
+REVOKE ALL ON public.orders FROM anon;
+REVOKE ALL ON public.order_items FROM anon;
+REVOKE ALL ON public.payment_transactions FROM anon;
+REVOKE ALL ON public.profiles FROM anon;
+REVOKE ALL ON public.user_roles FROM anon;
+REVOKE ALL ON public.products FROM anon;
+REVOKE ALL ON public.product_colors FROM anon;
+REVOKE ALL ON public.product_images FROM anon;
+REVOKE ALL ON public.product_specs FROM anon;
+REVOKE ALL ON public.media_assets FROM anon;
+REVOKE ALL ON public.journal_posts FROM anon;
+REVOKE ALL ON public.site_settings FROM anon;
+
+GRANT SELECT ON public.products TO anon;
+GRANT SELECT ON public.product_colors TO anon;
+GRANT SELECT ON public.product_images TO anon;
+GRANT SELECT ON public.product_specs TO anon;
+GRANT SELECT ON public.media_assets TO anon;
+GRANT SELECT ON public.journal_posts TO anon;
+GRANT SELECT ON public.site_settings TO anon;
+GRANT INSERT ON public.orders TO anon;
+GRANT INSERT ON public.order_items TO anon;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.products TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.product_colors TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.product_images TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.product_specs TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.media_assets TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.journal_posts TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.site_settings TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.orders TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.order_items TO authenticated;
+GRANT SELECT ON public.payment_transactions TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.profiles TO authenticated;
+GRANT SELECT ON public.user_roles TO authenticated;
+
+GRANT ALL ON public.products TO service_role;
+GRANT ALL ON public.product_colors TO service_role;
+GRANT ALL ON public.product_images TO service_role;
+GRANT ALL ON public.product_specs TO service_role;
+GRANT ALL ON public.media_assets TO service_role;
+GRANT ALL ON public.journal_posts TO service_role;
+GRANT ALL ON public.site_settings TO service_role;
+GRANT ALL ON public.orders TO service_role;
+GRANT ALL ON public.order_items TO service_role;
+GRANT ALL ON public.payment_transactions TO service_role;
+GRANT ALL ON public.profiles TO service_role;
+GRANT ALL ON public.user_roles TO service_role;
