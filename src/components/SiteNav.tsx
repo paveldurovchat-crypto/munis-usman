@@ -143,6 +143,24 @@ export function SiteNav() {
                   </Link>
                 </li>
               ))}
+              {isAdmin && (
+                <li>
+                  <Link to="/admin" className="block py-1" activeProps={{ className: "text-accent" }}>
+                    Admin
+                  </Link>
+                </li>
+              )}
+              <li>
+                {user ? (
+                  <button onClick={signOut} className="block py-1 text-left w-full">
+                    Sign out
+                  </button>
+                ) : (
+                  <Link to="/login" className="block py-1" activeProps={{ className: "text-accent" }}>
+                    Sign in
+                  </Link>
+                )}
+              </li>
             </ul>
           </nav>
         </div>
