@@ -1,10 +1,13 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logoGold from "@/assets/logo-gold.svg";
 import logoGreen from "@/assets/logo-green.svg";
 import { useI18n } from "@/lib/i18n";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { useAuth } from "@/hooks/use-auth";
+import { useIsAdmin } from "@/hooks/use-is-admin";
+import { supabase } from "@/integrations/supabase/client";
 
 export function SiteNav() {
   const { lang, setLang, t } = useI18n();
