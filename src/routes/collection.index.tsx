@@ -3,6 +3,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useI18n } from "@/lib/i18n";
 import { products, type ProductCategory } from "@/lib/products";
 
@@ -90,12 +91,16 @@ function CollectionPage() {
                       className="group block"
                     >
                       <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                        <img
-                          src={p.image}
-                          alt={t(p.nameKey)}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
-                        />
+                        {p.image ? (
+                          <img
+                            src={p.image}
+                            alt={t(p.nameKey)}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
+                          />
+                        ) : (
+                          <ImagePlaceholder variant="sand" label={t(p.tagKey)} />
+                        )}
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-deep/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                         <span className="absolute bottom-3 right-3 bg-cream/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-foreground">
                           ${p.price}

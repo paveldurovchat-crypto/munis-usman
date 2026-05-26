@@ -4,6 +4,7 @@ import { Heart } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useI18n } from "@/lib/i18n";
 import { getProduct, products, type ProductColor, type ProductSpec } from "@/lib/products";
 import { BRAND, mailtoLink } from "@/lib/brand";
