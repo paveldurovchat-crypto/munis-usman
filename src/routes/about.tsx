@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import collection3 from "@/assets/collection-3.jpg";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -30,7 +30,7 @@ function AboutPage() {
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 lg:grid-cols-2 lg:gap-24 lg:px-12">
             <FadeUp>
               <div className="relative aspect-[3/4] overflow-hidden">
-                <img src={collection3} alt="Studio" loading="lazy" className="h-full w-full object-cover" />
+                <ImagePlaceholder variant="sand" label={t("about.kicker")} />
               </div>
             </FadeUp>
             <div className="flex flex-col justify-center gap-8">
