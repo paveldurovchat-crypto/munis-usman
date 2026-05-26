@@ -62,7 +62,7 @@ function Index() {
 
         {/* Philosophy */}
         <section id="philosophy" className="relative overflow-hidden bg-cream py-28 lg:py-40">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-12 lg:gap-20 lg:px-12">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-16 px-6 lg:grid-cols-12 lg:gap-20 lg:px-12">
             <FadeUp className="lg:col-span-4">
               <p className="mb-6 text-xs uppercase tracking-[0.4em] text-muted-foreground">
                 {t("home.philosophyKicker")}
@@ -71,18 +71,18 @@ function Index() {
             </FadeUp>
             <div className="lg:col-span-8">
               <FadeUp>
-                <h2 className="whitespace-pre-line font-display text-4xl leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
+                <h2 className="whitespace-pre-line text-balance font-display text-4xl leading-[1.1] text-foreground sm:text-5xl lg:text-[3.25rem]">
                   {t("home.philosophyTitle")}
                 </h2>
               </FadeUp>
-              <div className="mt-12 grid gap-10 border-t border-border pt-10 sm:grid-cols-2">
+              <div className="mt-12 grid gap-10 border-t border-border pt-10 sm:grid-cols-2 sm:gap-12">
                 <FadeUp delay={100}>
-                  <p className="text-base leading-relaxed text-muted-foreground">
+                  <p className="text-pretty text-base leading-relaxed text-muted-foreground">
                     {t("home.philosophyBody1")}
                   </p>
                 </FadeUp>
                 <FadeUp delay={200}>
-                  <p className="text-base leading-relaxed text-muted-foreground">
+                  <p className="text-pretty text-base leading-relaxed text-muted-foreground">
                     {t("home.philosophyBody2")}
                   </p>
                 </FadeUp>
@@ -90,6 +90,7 @@ function Index() {
             </div>
           </div>
         </section>
+
 
         {/* Signature accent */}
         <section className="bg-forest-deep py-20 lg:py-28">
