@@ -5,6 +5,8 @@ import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { useJournalPosts, pickLocalized } from "@/lib/site-data";
+import { mediaUrl } from "@/lib/media";
 
 export const Route = createFileRoute("/journal")({
   component: JournalPage,
@@ -19,12 +21,8 @@ export const Route = createFileRoute("/journal")({
 });
 
 function JournalPage() {
-  const { t } = useI18n();
-  const posts = [
-    { title: t("journal.post1Title"), excerpt: t("journal.post1Excerpt"), date: t("journal.post1Date") },
-    { title: t("journal.post2Title"), excerpt: t("journal.post2Excerpt"), date: t("journal.post2Date") },
-    { title: t("journal.post3Title"), excerpt: t("journal.post3Excerpt"), date: t("journal.post3Date") },
-  ];
+  const { t, lang } = useI18n();
+  const { data: posts, isLoading } = useJournalPosts(true);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -34,25 +32,34 @@ function JournalPage() {
 
         <section className="bg-cream py-20 lg:py-28">
           <div className="mx-auto max-w-6xl space-y-24 px-6 lg:px-12">
-            {posts.map((post, i) => (
-              <FadeUp key={post.title}>
-                <article className={`grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <ImagePlaceholder variant={i % 2 ? "cream" : "sand"} label={post.date} />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{post.date}</p>
-                    <h2 className="mt-4 font-display text-3xl leading-[1.1] text-foreground lg:text-5xl">
-                      {post.title}
-                    </h2>
-                    <p className="mt-6 text-base leading-relaxed text-muted-foreground">{post.excerpt}</p>
-                    <button className="mt-8 w-fit text-xs uppercase tracking-[0.28em] text-accent transition-colors hover:text-forest">
-                      {t("journal.readMore")} →
-                    </button>
-                  </div>
-                </article>
-              </FadeUp>
-            ))}
+            {isLoading && <p className="text-center text-sm text-muted-foreground">…</p>}
+            {!isLoading && (posts ?? []).length === 0 && (
+              <p className="text-center text-sm text-muted-foreground">Скоро здесь появятся истории из мастерской.</p>
+            )}
+            {(posts ?? []).map((post, i) => {
+              const title = pickLocalized(post, "title", lang);
+              const excerpt = pickLocalized(post, "excerpt", lang);
+              const cover = mediaUrl(post.cover_path);
+              const date = post.published_at
+                ? new Date(post.published_at).toLocaleDateString(lang === "ru" ? "ru-RU" : "en-US", { year: "numeric", month: "long" })
+                : "";
+              return (
+                <FadeUp key={post.id}>
+                  <article className={`grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                    <div className="relative aspect-[4/5] overflow-hidden">
+                      {cover
+                        ? <img src={cover} alt={title} className="h-full w-full object-cover" />
+                        : <ImagePlaceholder variant={i % 2 ? "cream" : "sand"} label={date} />}
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{date}</p>
+                      <h2 className="mt-4 font-display text-3xl leading-[1.1] text-foreground lg:text-5xl">{title}</h2>
+                      <p className="mt-6 text-base leading-relaxed text-muted-foreground">{excerpt}</p>
+                    </div>
+                  </article>
+                </FadeUp>
+              );
+            })}
           </div>
         </section>
       </main>

@@ -7,7 +7,11 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useI18n } from "@/lib/i18n";
 import logoGreen from "@/assets/logo-green.svg";
 import logoGold from "@/assets/logo-gold.svg";
-import { products } from "@/lib/products";
+import { useProducts, pickLocalized } from "@/lib/site-data";
+import { mediaUrl } from "@/lib/media";
+import { formatUzs } from "@/lib/format";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -30,8 +34,25 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { t } = useI18n();
-  const featured = products.slice(0, 3);
+  const { t, lang } = useI18n();
+  const { data: products } = useProducts();
+  const featured = (products ?? []).slice(0, 3);
+
+  // Map first product image per product (lightweight)
+  const { data: covers } = useQuery({
+    queryKey: ["home-covers", featured.map((p) => p.id).join(",")],
+    enabled: featured.length > 0,
+    queryFn: async () => {
+      const ids = featured.map((p) => p.id);
+      const { data } = await supabase.from("product_images").select("product_id, storage_path, sort_order")
+        .in("product_id", ids).order("sort_order");
+      const map: Record<string, string> = {};
+      (data ?? []).forEach((r: { product_id: string; storage_path: string }) => {
+        if (!map[r.product_id]) map[r.product_id] = r.storage_path;
+      });
+      return map;
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -99,36 +120,33 @@ function Index() {
             </FadeUp>
 
             <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-              {featured.map((p, i) => (
-                <FadeUp key={p.slug} delay={i * 120}>
-                  <Link
-                    to="/collection/$slug"
-                    params={{ slug: p.slug }}
-                    className="group block"
-                  >
-                    <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                      {p.image ? (
-                        <img
-                          src={p.image}
-                          alt={t(p.nameKey)}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
-                        />
-                      ) : (
-                        <ImagePlaceholder variant="sand" label={t(p.tagKey)} />
-                      )}
-                    </div>
-                    <div className="mt-5">
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-accent">
-                        {t(p.tagKey)}
-                      </p>
-                      <h3 className="mt-2 font-display text-2xl text-foreground">{t(p.nameKey)}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{t(p.descKey)}</p>
-                    </div>
-                  </Link>
-                </FadeUp>
-              ))}
+              {featured.map((p, i) => {
+                const cover = mediaUrl(covers?.[p.id] ?? null);
+                const name = pickLocalized(p, "name", lang);
+                const desc = pickLocalized(p, "desc", lang);
+                const tagLabel = p.tag === "madeToOrder" ? t("collection.madeToOrder") : t("collection.limited");
+                return (
+                  <FadeUp key={p.slug} delay={i * 120}>
+                    <Link to="/collection/$slug" params={{ slug: p.slug }} className="group block">
+                      <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                        {cover ? (
+                          <img src={cover} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
+                        ) : (
+                          <ImagePlaceholder variant="sand" label={tagLabel} />
+                        )}
+                        <span className="absolute bottom-3 right-3 bg-cream/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-foreground">{formatUzs(p.price_uzs, lang)}</span>
+                      </div>
+                      <div className="mt-5">
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-accent">{tagLabel}</p>
+                        <h3 className="mt-2 font-display text-2xl text-foreground">{name}</h3>
+                        <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
+                      </div>
+                    </Link>
+                  </FadeUp>
+                );
+              })}
             </div>
+
 
             <FadeUp delay={200}>
               <div className="mt-16 flex justify-center">
