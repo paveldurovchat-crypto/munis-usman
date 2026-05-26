@@ -7,7 +7,8 @@ type Order = {
   address: string | null; total_uzs: number; status: string; created_at: string; notes: string | null;
 };
 
-const STATUSES = ["pending", "confirmed", "shipped", "delivered", "cancelled"];
+const STATUSES = ["pending", "paid", "fulfilled", "cancelled"] as const;
+type OrderStatus = (typeof STATUSES)[number];
 
 export function OrdersAdmin() {
   const qc = useQueryClient();
@@ -21,7 +22,7 @@ export function OrdersAdmin() {
   });
 
   const setStatus = useMutation({
-    mutationFn: async ({ id, status }: { id: string; status: string }) => {
+    mutationFn: async ({ id, status }: { id: string; status: OrderStatus }) => {
       const { error } = await supabase.from("orders").update({ status }).eq("id", id);
       if (error) throw error;
     },
@@ -45,7 +46,7 @@ export function OrdersAdmin() {
               </div>
               <div className="text-right">
                 <p className="font-display text-lg">{formatUzs(o.total_uzs)}</p>
-                <select value={o.status} onChange={(e) => setStatus.mutate({ id: o.id, status: e.target.value })} className="mt-2 border border-border bg-background px-2 py-1 text-xs">
+                <select value={o.status} onChange={(e) => setStatus.mutate({ id: o.id, status: e.target.value as OrderStatus })} className="mt-2 border border-border bg-background px-2 py-1 text-xs">
                   {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
