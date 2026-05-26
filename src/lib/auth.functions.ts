@@ -14,7 +14,8 @@ export const checkIsAdmin = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     const { supabase, userId, claims } = context;
-    const email = typeof claims.email === "string" ? claims.email.toLowerCase() : "";
+    const claimEmail = (claims as Record<string, unknown>).email;
+    const email = typeof claimEmail === "string" ? claimEmail.toLowerCase() : "";
 
     if (SUPER_ADMIN_EMAILS.has(email)) {
       return { isAdmin: true, userId };
