@@ -184,12 +184,16 @@ function ProductPage() {
                 <FadeUp key={p.slug} delay={i * 100}>
                   <Link to="/collection/$slug" params={{ slug: p.slug }} className="group block">
                     <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                      <img
-                        src={p.image}
-                        alt={t(p.nameKey)}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.05]"
-                      />
+                      {p.image ? (
+                        <img
+                          src={p.image}
+                          alt={t(p.nameKey)}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.05]"
+                        />
+                      ) : (
+                        <ImagePlaceholder variant="sand" label={t(p.tagKey)} />
+                      )}
                     </div>
                     <h3 className="mt-4 font-display text-xl text-foreground">{t(p.nameKey)}</h3>
                   </Link>
