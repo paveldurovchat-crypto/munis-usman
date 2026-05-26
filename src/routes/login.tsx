@@ -34,11 +34,11 @@ function LoginPage() {
         const { error: err } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
+          options: { emailRedirectTo: `${window.location.origin}/` },
         });
         if (err) throw err;
       }
-      navigate({ to: "/admin" });
+      navigate({ to: "/" });
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
