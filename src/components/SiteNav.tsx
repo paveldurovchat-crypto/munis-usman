@@ -1,17 +1,28 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logoGold from "@/assets/logo-gold.svg";
 import logoGreen from "@/assets/logo-green.svg";
 import { useI18n } from "@/lib/i18n";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { useAuth } from "@/hooks/use-auth";
+import { useIsAdmin } from "@/hooks/use-is-admin";
+import { supabase } from "@/integrations/supabase/client";
 
 export function SiteNav() {
   const { lang, setLang, t } = useI18n();
+  const { user } = useAuth();
+  const { isAdmin } = useIsAdmin();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    navigate({ to: "/" });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -81,6 +92,20 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
+          {isAdmin && (
+            <Link to="/admin" className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>
+              Admin
+            </Link>
+          )}
+          {user ? (
+            <button onClick={signOut} className="transition-colors hover:text-accent">
+              Sign out
+            </button>
+          ) : (
+            <Link to="/login" className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>
+              Sign in
+            </Link>
+          )}
           <LangToggle lang={lang} setLang={setLang} textClass={textClass} t={t} />
         </div>
 
@@ -118,6 +143,24 @@ export function SiteNav() {
                   </Link>
                 </li>
               ))}
+              {isAdmin && (
+                <li>
+                  <Link to="/admin" className="block py-1" activeProps={{ className: "text-accent" }}>
+                    Admin
+                  </Link>
+                </li>
+              )}
+              <li>
+                {user ? (
+                  <button onClick={signOut} className="block py-1 text-left w-full">
+                    Sign out
+                  </button>
+                ) : (
+                  <Link to="/login" className="block py-1" activeProps={{ className: "text-accent" }}>
+                    Sign in
+                  </Link>
+                )}
+              </li>
             </ul>
           </nav>
         </div>
