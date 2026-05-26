@@ -1,18 +1,3 @@
-import caseBukharaHand from "@/assets/case-bukhara-hand.jpg";
-import caseSamarkandDome from "@/assets/case-samarkand-dome.jpg";
-import caseSamarkandArch from "@/assets/case-samarkand-arch.jpg";
-import caseOrangeOrnament from "@/assets/case-orange-ornament.jpg";
-import caseSwallowPomegranate from "@/assets/case-swallow-pomegranate.jpg";
-import casePomegranateWoman from "@/assets/case-pomegranate-woman.jpg";
-import caseBukharaAirpods from "@/assets/case-bukhara-airpods.jpg";
-import caseSamarkandStone from "@/assets/case-samarkand-stone.jpg";
-import jacketMusician from "@/assets/jacket-musician.jpg";
-import artPomegranateWoman from "@/assets/art-pomegranate-woman.jpg";
-import caseTashkentNight from "@/assets/case-tashkent-night.jpg";
-import caseSwallowBlossom from "@/assets/case-swallow-blossom.jpg";
-import artIkatBrideLight from "@/assets/art-ikat-bride-light.jpg";
-import artIkatBrideDark from "@/assets/art-ikat-bride-dark.jpg";
-
 export type ProductCategory = "accessories" | "cloth" | "home" | "couture";
 
 export type ProductColor = { name: string; hex: string };
@@ -20,7 +5,10 @@ export type ProductSpec = { label: string; value: string };
 
 export type Product = {
   slug: string;
-  image: string;
+  image?: string | null;
+  nameKey: string;
+  descKey: string;
+
   nameKey: string;
   descKey: string;
   tagKey: "collection.limited" | "collection.madeToOrder";
