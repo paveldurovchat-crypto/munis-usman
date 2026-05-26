@@ -45,8 +45,8 @@ function ProductPage() {
         <SiteNav />
         <div className="flex min-h-[60vh] items-center justify-center px-6 pt-32 text-center">
           <div>
-            <h1 className="font-display text-4xl text-foreground">Не найдено</h1>
-            <Link to="/collection" className="mt-6 inline-block text-sm uppercase tracking-[0.28em] text-accent">Collection</Link>
+            <h1 className="font-display text-4xl text-foreground">{t("collection.notFound")}</h1>
+            <Link to="/collection" className="mt-6 inline-block text-sm uppercase tracking-[0.28em] text-accent">{t("collection.kicker")}</Link>
           </div>
         </div>
         <SiteFooter />
@@ -161,7 +161,7 @@ function ProductPage() {
 
         <section className="mt-32 bg-cream py-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <h2 className="font-display text-3xl text-foreground lg:text-4xl">You may also like</h2>
+            <h2 className="font-display text-3xl text-foreground lg:text-4xl">{t("collection.related")}</h2>
             <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
               {related.map((p, i) => {
                 const rName = pickLocalized(p, "name", lang);

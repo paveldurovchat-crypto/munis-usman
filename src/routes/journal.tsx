@@ -32,9 +32,9 @@ function JournalPage() {
 
         <section className="bg-cream py-20 lg:py-28">
           <div className="mx-auto max-w-6xl space-y-24 px-6 lg:px-12">
-            {isLoading && <p className="text-center text-sm text-muted-foreground">…</p>}
+            {isLoading && <p className="text-center text-sm text-muted-foreground">{t("journal.loading")}</p>}
             {!isLoading && (posts ?? []).length === 0 && (
-              <p className="text-center text-sm text-muted-foreground">Скоро здесь появятся истории из мастерской.</p>
+              <p className="text-center text-sm text-muted-foreground">{t("journal.empty")}</p>
             )}
             {(posts ?? []).map((post, i) => {
               const title = pickLocalized(post, "title", lang);
