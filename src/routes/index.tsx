@@ -7,7 +7,11 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useI18n } from "@/lib/i18n";
 import logoGreen from "@/assets/logo-green.svg";
 import logoGold from "@/assets/logo-gold.svg";
-import { products } from "@/lib/products";
+import { useProducts, pickLocalized } from "@/lib/site-data";
+import { mediaUrl } from "@/lib/media";
+import { formatUzs } from "@/lib/format";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -30,8 +34,25 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { t } = useI18n();
-  const featured = products.slice(0, 3);
+  const { t, lang } = useI18n();
+  const { data: products } = useProducts();
+  const featured = (products ?? []).slice(0, 3);
+
+  // Map first product image per product (lightweight)
+  const { data: covers } = useQuery({
+    queryKey: ["home-covers", featured.map((p) => p.id).join(",")],
+    enabled: featured.length > 0,
+    queryFn: async () => {
+      const ids = featured.map((p) => p.id);
+      const { data } = await supabase.from("product_images").select("product_id, storage_path, sort_order")
+        .in("product_id", ids).order("sort_order");
+      const map: Record<string, string> = {};
+      (data ?? []).forEach((r: { product_id: string; storage_path: string }) => {
+        if (!map[r.product_id]) map[r.product_id] = r.storage_path;
+      });
+      return map;
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground">
