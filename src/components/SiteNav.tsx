@@ -92,6 +92,20 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
+          {isAdmin && (
+            <Link to="/admin" className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>
+              Admin
+            </Link>
+          )}
+          {user ? (
+            <button onClick={signOut} className="transition-colors hover:text-accent">
+              Sign out
+            </button>
+          ) : (
+            <Link to="/login" className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>
+              Sign in
+            </Link>
+          )}
           <LangToggle lang={lang} setLang={setLang} textClass={textClass} t={t} />
         </div>
 
