@@ -1,18 +1,3 @@
-import caseBukharaHand from "@/assets/case-bukhara-hand.jpg";
-import caseSamarkandDome from "@/assets/case-samarkand-dome.jpg";
-import caseSamarkandArch from "@/assets/case-samarkand-arch.jpg";
-import caseOrangeOrnament from "@/assets/case-orange-ornament.jpg";
-import caseSwallowPomegranate from "@/assets/case-swallow-pomegranate.jpg";
-import casePomegranateWoman from "@/assets/case-pomegranate-woman.jpg";
-import caseBukharaAirpods from "@/assets/case-bukhara-airpods.jpg";
-import caseSamarkandStone from "@/assets/case-samarkand-stone.jpg";
-import jacketMusician from "@/assets/jacket-musician.jpg";
-import artPomegranateWoman from "@/assets/art-pomegranate-woman.jpg";
-import caseTashkentNight from "@/assets/case-tashkent-night.jpg";
-import caseSwallowBlossom from "@/assets/case-swallow-blossom.jpg";
-import artIkatBrideLight from "@/assets/art-ikat-bride-light.jpg";
-import artIkatBrideDark from "@/assets/art-ikat-bride-dark.jpg";
-
 export type ProductCategory = "accessories" | "cloth" | "home" | "couture";
 
 export type ProductColor = { name: string; hex: string };
@@ -20,7 +5,7 @@ export type ProductSpec = { label: string; value: string };
 
 export type Product = {
   slug: string;
-  image: string;
+  image?: string | null;
   nameKey: string;
   descKey: string;
   tagKey: "collection.limited" | "collection.madeToOrder";
@@ -38,7 +23,7 @@ const caseSpecs = (material = "эко кожа"): ProductSpec[] => [
 export const products: Product[] = [
   {
     slug: "case-bukhara",
-    image: caseBukharaHand,
+    image: null,
     nameKey: "collection.item1Name",
     descKey: "collection.item1Desc",
     tagKey: "collection.limited",
@@ -52,7 +37,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-samarkand-dome",
-    image: caseSamarkandDome,
+    image: null,
     nameKey: "collection.item2Name",
     descKey: "collection.item2Desc",
     tagKey: "collection.limited",
@@ -66,7 +51,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-samarkand-arch",
-    image: caseSamarkandArch,
+    image: null,
     nameKey: "collection.item3Name",
     descKey: "collection.item3Desc",
     tagKey: "collection.limited",
@@ -77,7 +62,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-orange-ornament",
-    image: caseOrangeOrnament,
+    image: null,
     nameKey: "collection.item4Name",
     descKey: "collection.item4Desc",
     tagKey: "collection.madeToOrder",
@@ -95,7 +80,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-swallow-pomegranate",
-    image: caseSwallowPomegranate,
+    image: null,
     nameKey: "collection.item5Name",
     descKey: "collection.item5Desc",
     tagKey: "collection.limited",
@@ -109,7 +94,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-pomegranate-woman",
-    image: casePomegranateWoman,
+    image: null,
     nameKey: "collection.item6Name",
     descKey: "collection.item6Desc",
     tagKey: "collection.madeToOrder",
@@ -124,7 +109,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-bukhara-sky",
-    image: caseBukharaAirpods,
+    image: null,
     nameKey: "collection.item7Name",
     descKey: "collection.item7Desc",
     tagKey: "collection.limited",
@@ -138,7 +123,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-samarkand-stone",
-    image: caseSamarkandStone,
+    image: null,
     nameKey: "collection.item8Name",
     descKey: "collection.item8Desc",
     tagKey: "collection.limited",
@@ -152,7 +137,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-tashkent-night",
-    image: caseTashkentNight,
+    image: null,
     nameKey: "collection.item11Name",
     descKey: "collection.item11Desc",
     tagKey: "collection.limited",
@@ -163,7 +148,7 @@ export const products: Product[] = [
   },
   {
     slug: "case-swallow-blossom",
-    image: caseSwallowBlossom,
+    image: null,
     nameKey: "collection.item12Name",
     descKey: "collection.item12Desc",
     tagKey: "collection.limited",
@@ -177,7 +162,7 @@ export const products: Product[] = [
   },
   {
     slug: "jacket-musician",
-    image: jacketMusician,
+    image: null,
     nameKey: "collection.item9Name",
     descKey: "collection.item9Desc",
     tagKey: "collection.madeToOrder",
@@ -195,7 +180,7 @@ export const products: Product[] = [
   },
   {
     slug: "art-pomegranate-woman",
-    image: artPomegranateWoman,
+    image: null,
     nameKey: "collection.item10Name",
     descKey: "collection.item10Desc",
     tagKey: "collection.madeToOrder",
@@ -210,7 +195,7 @@ export const products: Product[] = [
   },
   {
     slug: "art-ikat-bride-light",
-    image: artIkatBrideLight,
+    image: null,
     nameKey: "collection.item13Name",
     descKey: "collection.item13Desc",
     tagKey: "collection.madeToOrder",
@@ -227,7 +212,7 @@ export const products: Product[] = [
   },
   {
     slug: "art-ikat-bride-dark",
-    image: artIkatBrideDark,
+    image: null,
     nameKey: "collection.item14Name",
     descKey: "collection.item14Desc",
     tagKey: "collection.madeToOrder",

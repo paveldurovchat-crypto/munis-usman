@@ -3,16 +3,10 @@ import { SiteNav } from "@/components/SiteNav";
 import { Hero } from "@/components/Hero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useI18n } from "@/lib/i18n";
 import logoGreen from "@/assets/logo-green.svg";
-import embroideryHands from "@/assets/embroidery-hands.jpg";
-import fabricDetails from "@/assets/fabric-details.jpg";
-import collection1 from "@/assets/collection-1.jpg";
-import collection3 from "@/assets/collection-3.jpg";
-import phoneCase from "@/assets/phone-case.jpg";
-import journal1 from "@/assets/journal-1.jpg";
-import journal2 from "@/assets/journal-2.jpg";
-import journal3 from "@/assets/journal-3.jpg";
+import logoGold from "@/assets/logo-gold.svg";
 import { products } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
@@ -87,7 +81,6 @@ function Index() {
           </div>
         </section>
 
-
         {/* Featured Collection */}
         <section className="bg-ivory py-28 lg:py-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
@@ -114,12 +107,16 @@ function Index() {
                     className="group block"
                   >
                     <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                      <img
-                        src={p.image}
-                        alt={t(p.nameKey)}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
-                      />
+                      {p.image ? (
+                        <img
+                          src={p.image}
+                          alt={t(p.nameKey)}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                        />
+                      ) : (
+                        <ImagePlaceholder variant="sand" label={t(p.tagKey)} />
+                      )}
                     </div>
                     <div className="mt-5">
                       <p className="text-[10px] uppercase tracking-[0.3em] text-accent">
@@ -147,11 +144,19 @@ function Index() {
           </div>
         </section>
 
-        {/* Process — burgundy section */}
+        {/* Process — burgundy section, no photo */}
         <section className="bg-burgundy text-cream">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="relative aspect-[4/5] overflow-hidden lg:aspect-auto">
-              <img src={embroideryHands} alt="Hand embroidery" loading="lazy" className="h-full w-full object-cover" />
+            <div className="relative flex items-center justify-center px-6 py-20 lg:py-0 lg:aspect-auto lg:min-h-[520px]">
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 30% 30%, #C4992D 1.5px, transparent 1.5px), radial-gradient(circle at 70% 70%, #C4992D 1px, transparent 1px)",
+                  backgroundSize: "40px 40px, 28px 28px",
+                }}
+              />
+              <img src={logoGold} alt="" className="relative h-32 w-auto opacity-80 lg:h-44" loading="lazy" />
             </div>
             <div className="flex flex-col justify-center px-6 py-20 lg:px-16 lg:py-28">
               <FadeUp>
@@ -211,43 +216,6 @@ function Index() {
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               </FadeUp>
-            </div>
-          </div>
-        </section>
-
-
-
-        {/* Gallery — instagram-style */}
-        <section className="bg-cream py-28 lg:py-40">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <FadeUp>
-              <p className="mb-4 text-xs uppercase tracking-[0.4em] text-muted-foreground">
-                {t("home.galleryKicker")}
-              </p>
-            </FadeUp>
-            <FadeUp delay={80}>
-              <div className="flex flex-wrap items-end justify-between gap-6">
-                <h2 className="font-display text-4xl leading-[1.05] text-foreground lg:text-6xl">
-                  {t("home.galleryTitle")}
-                </h2>
-                <p className="max-w-sm text-sm text-muted-foreground">{t("home.gallerySubtitle")}</p>
-              </div>
-            </FadeUp>
-            <div className="mt-16 grid grid-cols-2 gap-3 md:grid-cols-4">
-              {[fabricDetails, collection1, journal2, collection3, journal1, phoneCase, journal3, embroideryHands].map(
-                (src, i) => (
-                  <FadeUp key={i} delay={i * 60}>
-                    <div className="group relative aspect-square overflow-hidden bg-muted">
-                      <img
-                        src={src}
-                        alt=""
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-                      />
-                    </div>
-                  </FadeUp>
-                )
-              )}
             </div>
           </div>
         </section>

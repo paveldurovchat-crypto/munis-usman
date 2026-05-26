@@ -4,9 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import journal1 from "@/assets/journal-1.jpg";
-import journal2 from "@/assets/journal-2.jpg";
-import journal3 from "@/assets/journal-3.jpg";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 export const Route = createFileRoute("/journal")({
   component: JournalPage,
@@ -23,9 +21,9 @@ export const Route = createFileRoute("/journal")({
 function JournalPage() {
   const { t } = useI18n();
   const posts = [
-    { img: journal1, title: t("journal.post1Title"), excerpt: t("journal.post1Excerpt"), date: t("journal.post1Date") },
-    { img: journal2, title: t("journal.post2Title"), excerpt: t("journal.post2Excerpt"), date: t("journal.post2Date") },
-    { img: journal3, title: t("journal.post3Title"), excerpt: t("journal.post3Excerpt"), date: t("journal.post3Date") },
+    { title: t("journal.post1Title"), excerpt: t("journal.post1Excerpt"), date: t("journal.post1Date") },
+    { title: t("journal.post2Title"), excerpt: t("journal.post2Excerpt"), date: t("journal.post2Date") },
+    { title: t("journal.post3Title"), excerpt: t("journal.post3Excerpt"), date: t("journal.post3Date") },
   ];
 
   return (
@@ -40,7 +38,7 @@ function JournalPage() {
               <FadeUp key={post.title}>
                 <article className={`grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <img src={post.img} alt={post.title} loading="lazy" className="h-full w-full object-cover" />
+                    <ImagePlaceholder variant={i % 2 ? "cream" : "sand"} label={post.date} />
                   </div>
                   <div className="flex flex-col justify-center">
                     <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{post.date}</p>
