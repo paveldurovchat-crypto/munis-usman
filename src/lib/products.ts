@@ -8,9 +8,6 @@ export type Product = {
   image?: string | null;
   nameKey: string;
   descKey: string;
-
-  nameKey: string;
-  descKey: string;
   tagKey: "collection.limited" | "collection.madeToOrder";
   category: ProductCategory;
   price: number;
