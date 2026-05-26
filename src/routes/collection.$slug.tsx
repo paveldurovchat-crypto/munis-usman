@@ -73,7 +73,11 @@ function ProductPage() {
         <section className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-12 lg:gap-16 lg:px-12">
           <FadeUp className="lg:col-span-7">
             <div className="relative aspect-[4/5] overflow-hidden bg-muted">
-              <img src={product.image} alt={t(product.nameKey)} className="h-full w-full object-cover" />
+              {product.image ? (
+                <img src={product.image} alt={t(product.nameKey)} className="h-full w-full object-cover" />
+              ) : (
+                <ImagePlaceholder variant="sand" label={t(product.tagKey)} />
+              )}
             </div>
           </FadeUp>
 
