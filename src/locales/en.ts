@@ -159,6 +159,8 @@ export const en = {
     title: "Notes from the studio",
     subtitle: "About the craft, the people who make these things, and how it all works.",
     readMore: "Read",
+    empty: "Stories from the studio will appear here soon.",
+    loading: "Loading…",
     post1Title: "Gold thread and the time it demands",
     post1Excerpt: "How one embroidered piece can take hundreds of hours, and why we stopped fighting it.",
     post1Date: "March 2025",
