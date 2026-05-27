@@ -35,6 +35,11 @@ export function youtubeThumb(url: string | null | undefined): string | null {
   return id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
 }
 
+/** True if the URL is a YouTube Shorts link (vertical 9:16 video). */
+export function isYoutubeShort(url: string | null | undefined): boolean {
+  return !!url && /youtube\.com\/shorts\//i.test(url);
+}
+
 export function youtubeEmbed(url: string | null | undefined): string | null {
   const id = youtubeId(url);
   return id ? `https://www.youtube.com/embed/${id}` : null;

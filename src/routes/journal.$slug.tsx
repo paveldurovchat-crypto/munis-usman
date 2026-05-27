@@ -5,7 +5,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useI18n } from "@/lib/i18n";
 import { useJournalPostBySlug, pickLocalized } from "@/lib/site-data";
-import { mediaUrl, youtubeEmbed, youtubeThumb } from "@/lib/media";
+import { mediaUrl, youtubeEmbed, youtubeThumb, isYoutubeShort } from "@/lib/media";
 
 export const Route = createFileRoute("/journal/$slug")({
   component: JournalPostPage,
@@ -78,7 +78,13 @@ function JournalPostPage() {
               )}
 
               {ytEmbed ? (
-                <div className="mt-10 aspect-video w-full overflow-hidden bg-black">
+                <div
+                  className={`mt-10 overflow-hidden bg-black ${
+                    isYoutubeShort(post.youtube_url)
+                      ? "mx-auto aspect-[9/16] w-full max-w-[400px]"
+                      : "aspect-video w-full"
+                  }`}
+                >
                   <iframe
                     src={ytEmbed}
                     title={title}
