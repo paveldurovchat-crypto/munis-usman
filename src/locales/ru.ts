@@ -136,6 +136,8 @@ export const ru = {
     orderNow: "Заказать",
     addToCart: "В корзину",
     addedToCart: "Добавлено в корзину",
+    addedToWishlist: "Добавлено в избранное",
+    removedFromWishlist: "Удалено из избранного",
     inCart: "В корзине",
     price: "Цена",
     specs: "Характеристики",
