@@ -66,9 +66,27 @@ function ProductPage() {
   const selectedColor = product.colors[selectedColorIdx];
 
   const related = (allProducts ?? []).filter((p) => p.slug !== product.slug).slice(0, 3);
+  const liked = wishlist.has(product.id);
 
-  const subject = `Inquiry: ${product.slug}`;
-  const body = `Hello MUNIS USMAN,\n\nI'm interested in "${name}". Please share more details.\n\nThank you!`;
+  const handleAddToCart = () => {
+    cart.add(
+      {
+        productId: product.id,
+        slug: product.slug,
+        name_ru: product.name_ru,
+        name_en: product.name_en,
+        price_uzs: product.price_uzs,
+        image: product.images[0]?.storage_path ?? null,
+        color: selectedColor?.name ?? null,
+      },
+      1,
+    );
+    toast.success(t("product.addedToCart"));
+  };
+
+  const handleToggleWishlist = async () => {
+    await wishlist.toggle(product.id);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
