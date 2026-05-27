@@ -136,6 +136,8 @@ export const en = {
     orderNow: "Order now",
     addToCart: "Add to cart",
     addedToCart: "Added to cart",
+    addedToWishlist: "Added to wishlist",
+    removedFromWishlist: "Removed from wishlist",
     inCart: "In cart",
     price: "Price",
     specs: "Details",
