@@ -57,6 +57,17 @@ export function MediaAdmin() {
     }
     await supabase.from("media_assets").delete().eq("id", a.id);
     qc.invalidateQueries({ queryKey: ["admin", "media"] });
+    qc.invalidateQueries({ queryKey: ["media-library"] });
+  };
+
+  const updateSlot = async (a: Asset, slot: string) => {
+    const { error } = await supabase
+      .from("media_assets")
+      .update({ used_for: slot || null })
+      .eq("id", a.id);
+    if (error) { alert(error.message); return; }
+    qc.invalidateQueries({ queryKey: ["admin", "media"] });
+    qc.invalidateQueries({ queryKey: ["media-library"] });
   };
 
   return (
