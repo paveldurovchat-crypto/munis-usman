@@ -142,6 +142,14 @@ export function MediaAdmin() {
               {a.kind === "youtube" ? "▶ " : ""}{a.label ?? (a.kind === "youtube" ? a.storage_path : a.storage_path.split("/").pop())}
             </p>
             {a.used_for && <p className="text-[10px] text-accent">{a.used_for}</p>}
+            <select
+              className="mt-2 w-full border border-border bg-background px-2 py-1 text-[10px]"
+              value={a.used_for ?? ""}
+              onChange={(e) => updateSlot(a, e.target.value)}
+            >
+              <option value="">— not used —</option>
+              {MEDIA_SLOTS.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
             <div className="mt-2 flex gap-2">
               <button
                 onClick={() => {
