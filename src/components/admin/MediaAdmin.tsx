@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { mediaUrl, youtubeId, youtubeThumb, youtubeEmbed } from "@/lib/media";
+import { MEDIA_SLOTS } from "@/lib/media-slots";
 
 type Asset = { id: string; storage_path: string; label: string | null; kind: string; used_for: string | null };
 
@@ -60,13 +61,21 @@ export function MediaAdmin() {
 
   return (
     <div>
-      <h2 className="mb-6 font-display text-2xl">Media library</h2>
+      <h2 className="mb-2 font-display text-2xl">Media library</h2>
+      <p className="mb-6 text-xs text-muted-foreground">
+        To place a file on the homepage, set <span className="font-mono">Used for</span> to one of:&nbsp;
+        <span className="font-mono">{MEDIA_SLOTS.join(", ")}</span>. The hero accepts image, video, or YouTube (Shorts work too).
+      </p>
+
+      <datalist id="media-slots">
+        {MEDIA_SLOTS.map((s) => <option key={s} value={s} />)}
+      </datalist>
 
       <div className="mb-6 border border-border bg-background p-4">
         <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Upload new asset</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <input placeholder="Label (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={label} onChange={(e) => setLabel(e.target.value)} />
-          <input placeholder="Used for, e.g. hero-video, about-photo (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={usedFor} onChange={(e) => setUsedFor(e.target.value)} />
+          <input list="media-slots" placeholder="Used for, e.g. hero, tile-accessories" className="border border-border bg-background px-3 py-2 text-sm" value={usedFor} onChange={(e) => setUsedFor(e.target.value)} />
           <input type="file" accept="image/*,video/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); }} className="text-sm" />
         </div>
       </div>
@@ -76,7 +85,7 @@ export function MediaAdmin() {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
           <input placeholder="YouTube URL" className="border border-border bg-background px-3 py-2 text-sm md:col-span-2" value={ytUrl} onChange={(e) => setYtUrl(e.target.value)} />
           <input placeholder="Label (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={ytLabel} onChange={(e) => setYtLabel(e.target.value)} />
-          <input placeholder="Used for (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={ytUsedFor} onChange={(e) => setYtUsedFor(e.target.value)} />
+          <input list="media-slots" placeholder="Used for, e.g. hero" className="border border-border bg-background px-3 py-2 text-sm" value={ytUsedFor} onChange={(e) => setYtUsedFor(e.target.value)} />
         </div>
         <button
           onClick={addYoutube}

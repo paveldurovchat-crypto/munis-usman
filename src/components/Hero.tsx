@@ -2,21 +2,50 @@ import { Link } from "@tanstack/react-router";
 import heroRelief from "@/assets/home-hero-relief.jpg";
 import logoGreen from "@/assets/logo-green.svg";
 import { useI18n } from "@/lib/i18n";
+import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, assetYoutubeId } from "@/lib/media-slots";
 
 export function Hero() {
   const { t } = useI18n();
+  const { data: assets } = useMediaLibrary();
+  const heroAsset = pickAssetBySlot(assets, "hero");
+
+  const isVideo = heroAsset?.kind === "video";
+  const isYoutube = heroAsset?.kind === "youtube";
+  const isImage = heroAsset?.kind === "image";
+  const ytId = assetYoutubeId(heroAsset);
+  const url = assetDisplayUrl(heroAsset);
 
   return (
     <section className="relative w-full overflow-hidden bg-sand">
-      {/* Carved relief background — soft, cream */}
       <div className="relative h-[88vh] min-h-[560px] w-full">
-        <img
-          src={heroRelief}
-          alt=""
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ filter: "saturate(0.85) brightness(1.03)" }}
-        />
+        {isVideo && url ? (
+          <video
+            src={url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : isYoutube && ytId ? (
+          <div className="absolute inset-0 h-full w-full overflow-hidden">
+            <iframe
+              src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playlist=${ytId}&playsinline=1`}
+              title="Hero video"
+              allow="autoplay; encrypted-media"
+              className="absolute left-1/2 top-1/2 h-[120vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 max-w-none border-0"
+            />
+          </div>
+        ) : (
+          <img
+            src={isImage && url ? url : heroRelief}
+            alt=""
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={!heroAsset ? { filter: "saturate(0.85) brightness(1.03)" } : undefined}
+          />
+        )}
+
         {/* Gentle cream wash so logo reads */}
         <div className="absolute inset-0 bg-gradient-to-b from-sand/40 via-sand/10 to-sand/55" />
 

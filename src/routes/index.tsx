@@ -13,6 +13,7 @@ import aboutPortrait from "@/assets/home-about-portrait.jpg";
 import craft1 from "@/assets/home-craft-1.jpg";
 import craft2 from "@/assets/home-craft-2.jpg";
 import craft3 from "@/assets/home-craft-3.jpg";
+import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -39,16 +40,28 @@ type Tile = {
   label: string;
   subKey: string;
   image: string;
+  slot: MediaSlot;
 };
 
 function Index() {
   const { t } = useI18n();
+  const { data: mediaAssets } = useMediaLibrary();
+  const pick = (slot: MediaSlot, fallback: string) =>
+    assetDisplayUrl(pickAssetBySlot(mediaAssets, slot)) ?? fallback;
 
   const tiles: Tile[] = [
-    { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: tileAccessories },
-    { cat: "cloth", label: t("collection.tabCloth"), subKey: "home.tileClothSub", image: tileCloth },
-    { cat: "home", label: t("collection.tabHome"), subKey: "home.tileHomeSub", image: tileHome },
-    { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: tileCouture },
+    { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: pick("tile-accessories", tileAccessories), slot: "tile-accessories" },
+    { cat: "cloth", label: t("collection.tabCloth"), subKey: "home.tileClothSub", image: pick("tile-cloth", tileCloth), slot: "tile-cloth" },
+    { cat: "home", label: t("collection.tabHome"), subKey: "home.tileHomeSub", image: pick("tile-home", tileHome), slot: "tile-home" },
+    { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: pick("tile-couture", tileCouture), slot: "tile-couture" },
+  ];
+
+  const artOfHandsImg = pick("art-of-hands", artOfHands);
+  const aboutPortraitImg = pick("about-portrait", aboutPortrait);
+  const craftImgs = [
+    pick("craft-1", craft1),
+    pick("craft-2", craft2),
+    pick("craft-3", craft3),
   ];
 
   return (
@@ -102,7 +115,7 @@ function Index() {
         <section className="relative bg-sand">
           <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden">
             <img
-              src={artOfHands}
+              src={artOfHandsImg}
               alt={t("home.artHandsTitle").replace("\n", " ")}
               loading="lazy"
               className="h-full w-full object-cover"
@@ -160,7 +173,7 @@ function Index() {
                 <FadeUp delay={120}>
                   <div className="relative aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
                     <img
-                      src={aboutPortrait}
+                      src={aboutPortraitImg}
                       alt="MUNIS USMAN — studio portrait"
                       loading="lazy"
                       className="h-full w-full object-cover"
@@ -172,7 +185,7 @@ function Index() {
 
             {/* Craft trio */}
             <div className="mt-14 grid grid-cols-3 gap-3 sm:gap-4 lg:mt-20 lg:gap-6">
-              {[craft1, craft2, craft3].map((src, i) => (
+              {craftImgs.map((src, i) => (
                 <FadeUp key={i} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
                     <img
