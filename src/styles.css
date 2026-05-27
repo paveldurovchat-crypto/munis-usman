@@ -62,8 +62,8 @@
   /* Brand palette — Munis Usman (Camping Green / Sand / Gold) */
   --green: oklch(0.398 0.024 145);        /* #3E5040 Camping Green */
   --green-deep: oklch(0.31 0.02 145);     /* darker green for depth */
-  --sand: oklch(0.945 0.028 92);          /* #F5EDD8 main sand bg */
-  --sand-dark: oklch(0.905 0.04 88);      /* #EDE0C4 deeper sand */
+  --sand: oklch(0.99 0.004 90);           /* warm white (was sand) */
+  --sand-dark: oklch(0.965 0.006 90);     /* slightly deeper warm white */
   --gold: oklch(0.71 0.135 78);           /* #C4992D gold accent */
   --gold-light: oklch(0.78 0.115 80);     /* #D4AE58 hover */
   --text: oklch(0.18 0.005 90);           /* near black */
