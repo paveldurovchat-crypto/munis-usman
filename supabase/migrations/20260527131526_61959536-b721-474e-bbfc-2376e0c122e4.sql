@@ -1,0 +1,1 @@
+ALTER TABLE public.journal_posts ADD COLUMN IF NOT EXISTS youtube_url text;
