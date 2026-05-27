@@ -10,6 +10,8 @@ import { useProductBySlug, useProducts, pickLocalized } from "@/lib/site-data";
 import { mediaUrl } from "@/lib/media";
 import { formatUzs } from "@/lib/format";
 import { BRAND, mailtoLink } from "@/lib/brand";
+import { useCart } from "@/lib/cart";
+import { useWishlist } from "@/lib/wishlist";
 
 export const Route = createFileRoute("/collection/$slug")({
   component: ProductPage,

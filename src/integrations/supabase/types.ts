@@ -151,6 +151,7 @@ export type Database = {
           subtotal_uzs: number
           total_uzs: number
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           address?: string | null
@@ -168,6 +169,7 @@ export type Database = {
           subtotal_uzs?: number
           total_uzs?: number
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           address?: string | null
@@ -185,6 +187,7 @@ export type Database = {
           subtotal_uzs?: number
           total_uzs?: number
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -378,6 +381,8 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
+          city: string | null
           created_at: string
           email: string | null
           id: string
@@ -386,6 +391,8 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          address?: string | null
+          city?: string | null
           created_at?: string
           email?: string | null
           id: string
@@ -394,6 +401,8 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          address?: string | null
+          city?: string | null
           created_at?: string
           email?: string | null
           id?: string
@@ -438,6 +447,27 @@ export type Database = {
           created_at?: string
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      wishlists: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string
           user_id?: string
         }
         Relationships: []
