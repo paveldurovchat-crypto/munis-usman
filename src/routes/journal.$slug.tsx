@@ -78,7 +78,13 @@ function JournalPostPage() {
               )}
 
               {ytEmbed ? (
-                <div className="mt-10 aspect-video w-full overflow-hidden bg-black">
+                <div
+                  className={`mt-10 overflow-hidden bg-black ${
+                    isYoutubeShort(post.youtube_url)
+                      ? "mx-auto aspect-[9/16] w-full max-w-[400px]"
+                      : "aspect-video w-full"
+                  }`}
+                >
                   <iframe
                     src={ytEmbed}
                     title={title}
