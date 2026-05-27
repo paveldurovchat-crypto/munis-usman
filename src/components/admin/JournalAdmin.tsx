@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { mediaUrl } from "@/lib/media";
+import { mediaUrl, youtubeThumb } from "@/lib/media";
 import type { JournalPostRow } from "@/lib/site-data";
 
 type Draft = Partial<JournalPostRow> & { id?: string };
@@ -30,6 +30,7 @@ export function JournalAdmin() {
         body_md_ru: d.body_md_ru ?? null,
         body_md_en: d.body_md_en ?? null,
         cover_path: d.cover_path ?? null,
+        youtube_url: d.youtube_url ?? null,
         is_published: d.is_published ?? false,
         published_at: d.is_published ? (d.published_at ?? new Date().toISOString()) : null,
       };
@@ -70,7 +71,7 @@ export function JournalAdmin() {
           <div key={p.id} className="flex items-center justify-between border border-border bg-background p-4">
             <div>
               <p className="font-display text-lg">{p.title_ru}</p>
-              <p className="text-xs text-muted-foreground">{p.slug} · {p.is_published ? "Published" : "Draft"}</p>
+              <p className="text-xs text-muted-foreground">{p.slug} · {p.is_published ? "Published" : "Draft"}{p.youtube_url ? " · 🎬 video" : ""}</p>
             </div>
             <div className="flex gap-3 text-sm">
               <button onClick={() => setEditing(p)} className="text-accent hover:underline">Edit</button>
@@ -86,6 +87,9 @@ export function JournalAdmin() {
 function PostForm({ draft, onCancel, onSave, saving }: { draft: Draft; onCancel: () => void; onSave: (d: Draft) => void; saving: boolean }) {
   const [d, setD] = useState<Draft>(draft);
   const update = (patch: Partial<Draft>) => setD({ ...d, ...patch });
+  const ruRef = useRef<HTMLTextAreaElement>(null);
+  const enRef = useRef<HTMLTextAreaElement>(null);
+  const [coverMode, setCoverMode] = useState<"image" | "video">(draft.youtube_url ? "video" : "image");
 
   const onUploadCover = async (file: File) => {
     const path = `journal/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
@@ -94,6 +98,28 @@ function PostForm({ draft, onCancel, onSave, saving }: { draft: Draft; onCancel:
     update({ cover_path: path });
   };
 
+  /** Upload an image and insert markdown `![caption](url)` at the cursor of the given textarea. */
+  const insertInlineImage = async (file: File, which: "ru" | "en") => {
+    const path = `journal/inline-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+    const { error } = await supabase.storage.from("media").upload(path, file, { upsert: false });
+    if (error) { alert(error.message); return; }
+    const url = mediaUrl(path)!;
+    const caption = prompt("Caption (optional, shown under the image)", "") ?? "";
+    const snippet = `\n\n![${caption}](${url})\n\n`;
+    const ta = which === "ru" ? ruRef.current : enRef.current;
+    const current = (which === "ru" ? d.body_md_ru : d.body_md_en) ?? "";
+    if (ta) {
+      const start = ta.selectionStart ?? current.length;
+      const end = ta.selectionEnd ?? current.length;
+      const next = current.slice(0, start) + snippet + current.slice(end);
+      update(which === "ru" ? { body_md_ru: next } : { body_md_en: next });
+    } else {
+      update(which === "ru" ? { body_md_ru: current + snippet } : { body_md_en: current + snippet });
+    }
+  };
+
+  const ytThumb = youtubeThumb(d.youtube_url);
+
   return (
     <div>
       <button onClick={onCancel} className="mb-6 text-xs uppercase tracking-[0.28em] text-muted-foreground hover:text-accent">← Back</button>
@@ -101,17 +127,62 @@ function PostForm({ draft, onCancel, onSave, saving }: { draft: Draft; onCancel:
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Field label="Title (RU)"><input className={inputCls} value={d.title_ru ?? ""} onChange={(e) => update({ title_ru: e.target.value })} /></Field>
         <Field label="Title (EN)"><input className={inputCls} value={d.title_en ?? ""} onChange={(e) => update({ title_en: e.target.value })} /></Field>
-        <Field label="Slug"><input className={inputCls} value={d.slug ?? ""} onChange={(e) => update({ slug: e.target.value })} /></Field>
+        <Field label="Slug"><input className={inputCls} value={d.slug ?? ""} onChange={(e) => update({ slug: e.target.value })} placeholder="my-post-slug" /></Field>
         <Field label="Published">
           <label className="flex items-center gap-2 pt-2"><input type="checkbox" checked={d.is_published ?? false} onChange={(e) => update({ is_published: e.target.checked })} /><span className="text-sm">Visible on /journal</span></label>
         </Field>
         <Field label="Excerpt (RU)" full><textarea rows={2} className={inputCls} value={d.excerpt_ru ?? ""} onChange={(e) => update({ excerpt_ru: e.target.value })} /></Field>
         <Field label="Excerpt (EN)" full><textarea rows={2} className={inputCls} value={d.excerpt_en ?? ""} onChange={(e) => update({ excerpt_en: e.target.value })} /></Field>
-        <Field label="Body markdown (RU)" full><textarea rows={8} className={inputCls + " font-mono"} value={d.body_md_ru ?? ""} onChange={(e) => update({ body_md_ru: e.target.value })} /></Field>
-        <Field label="Body markdown (EN)" full><textarea rows={8} className={inputCls + " font-mono"} value={d.body_md_en ?? ""} onChange={(e) => update({ body_md_en: e.target.value })} /></Field>
-        <Field label="Cover image" full>
-          {d.cover_path && <img src={mediaUrl(d.cover_path) ?? ""} alt="" className="mb-2 h-48 w-auto object-cover" />}
-          <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) onUploadCover(f); }} />
+
+        <Field label="Body markdown (RU) — use the button below to insert inline photos" full>
+          <textarea ref={ruRef} rows={10} className={inputCls + " font-mono"} value={d.body_md_ru ?? ""} onChange={(e) => update({ body_md_ru: e.target.value })} />
+          <div className="mt-2">
+            <label className="inline-flex cursor-pointer items-center gap-2 border border-border bg-background px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] hover:bg-muted">
+              + Insert inline photo (RU)
+              <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) insertInlineImage(f, "ru"); e.target.value = ""; }} />
+            </label>
+          </div>
+        </Field>
+        <Field label="Body markdown (EN) — use the button below to insert inline photos" full>
+          <textarea ref={enRef} rows={10} className={inputCls + " font-mono"} value={d.body_md_en ?? ""} onChange={(e) => update({ body_md_en: e.target.value })} />
+          <div className="mt-2">
+            <label className="inline-flex cursor-pointer items-center gap-2 border border-border bg-background px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] hover:bg-muted">
+              + Insert inline photo (EN)
+              <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) insertInlineImage(f, "en"); e.target.value = ""; }} />
+            </label>
+          </div>
+        </Field>
+
+        <Field label="Hero — choose photo OR video" full>
+          <div className="mb-3 flex gap-2">
+            <button type="button" onClick={() => setCoverMode("image")} className={`border px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] ${coverMode === "image" ? "border-accent bg-accent text-accent-foreground" : "border-border"}`}>Photo</button>
+            <button type="button" onClick={() => setCoverMode("video")} className={`border px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] ${coverMode === "video" ? "border-accent bg-accent text-accent-foreground" : "border-border"}`}>YouTube video</button>
+          </div>
+          {coverMode === "image" ? (
+            <div>
+              {d.cover_path && <img src={mediaUrl(d.cover_path) ?? ""} alt="" className="mb-2 h-48 w-auto object-cover" />}
+              <input type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) onUploadCover(f); }} />
+              {d.cover_path && <button type="button" onClick={() => update({ cover_path: null })} className="ml-3 text-xs text-red-600 hover:underline">Remove photo</button>}
+            </div>
+          ) : (
+            <div>
+              <input
+                className={inputCls}
+                placeholder="https://www.youtube.com/watch?v=…  or  https://youtu.be/…"
+                value={d.youtube_url ?? ""}
+                onChange={(e) => update({ youtube_url: e.target.value })}
+              />
+              {ytThumb && (
+                <div className="mt-3">
+                  <img src={ytThumb} alt="YouTube preview" className="h-40 w-auto object-cover" />
+                  <p className="mt-1 text-[10px] text-muted-foreground">Thumbnail will be shown on the journal listing; the video will be embedded on the post page.</p>
+                </div>
+              )}
+              {d.youtube_url && !ytThumb && (
+                <p className="mt-2 text-xs text-red-600">Couldn't read a video ID from this URL. Use a youtube.com/watch?v=… or youtu.be/… link.</p>
+              )}
+            </div>
+          )}
         </Field>
       </div>
       <div className="mt-8 flex gap-3">
