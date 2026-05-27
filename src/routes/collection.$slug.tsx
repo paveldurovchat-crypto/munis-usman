@@ -87,8 +87,9 @@ function ProductPage() {
   };
 
   const handleToggleWishlist = async () => {
-    const nowLiked = await wishlist.toggle(product.id);
-    if (nowLiked) {
+    const willBeLiked = !liked;
+    await wishlist.toggle(product.id);
+    if (willBeLiked) {
       toast.success(`${t("product.addedToWishlist")}: ${name}`);
     } else {
       toast.info(`${t("product.removedFromWishlist")}: ${name}`);
