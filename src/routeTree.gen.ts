@@ -79,9 +79,9 @@ const CollectionIndexRoute = CollectionIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalSlugRoute = JournalSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => JournalRoute,
+  id: '/journal/$slug',
+  path: '/journal/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionSlugRoute = CollectionSlugRouteImport.update({
   id: '/collection/$slug',
@@ -194,6 +194,7 @@ export interface RootRouteChildren {
   CustomRoute: typeof CustomRoute
   LoginRoute: typeof LoginRoute
   CollectionSlugRoute: typeof CollectionSlugRoute
+  JournalSlugRoute: typeof JournalSlugRoute
   CollectionIndexRoute: typeof CollectionIndexRoute
   JournalIndexRoute: typeof JournalIndexRoute
 }
@@ -279,10 +280,10 @@ declare module '@tanstack/react-router' {
     }
     '/journal/$slug': {
       id: '/journal/$slug'
-      path: '/$slug'
+      path: '/journal/$slug'
       fullPath: '/journal/$slug'
       preLoaderRoute: typeof JournalSlugRouteImport
-      parentRoute: typeof JournalRoute
+      parentRoute: typeof rootRouteImport
     }
     '/collection/$slug': {
       id: '/collection/$slug'
@@ -305,6 +306,7 @@ const rootRouteChildren: RootRouteChildren = {
   CustomRoute: CustomRoute,
   LoginRoute: LoginRoute,
   CollectionSlugRoute: CollectionSlugRoute,
+  JournalSlugRoute: JournalSlugRoute,
   CollectionIndexRoute: CollectionIndexRoute,
   JournalIndexRoute: JournalIndexRoute,
 }
