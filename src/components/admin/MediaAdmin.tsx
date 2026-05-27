@@ -75,9 +75,19 @@ export function MediaAdmin() {
         <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Upload new asset</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <input placeholder="Label (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={label} onChange={(e) => setLabel(e.target.value)} />
-          <input list="media-slots" placeholder="Used for, e.g. hero, tile-accessories" className="border border-border bg-background px-3 py-2 text-sm" value={usedFor} onChange={(e) => setUsedFor(e.target.value)} />
+          <select
+            className="border border-border bg-background px-3 py-2 text-sm"
+            value={usedFor}
+            onChange={(e) => setUsedFor(e.target.value)}
+          >
+            <option value="">— Used for (where on site) —</option>
+            {MEDIA_SLOTS.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
           <input type="file" accept="image/*,video/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); }} className="text-sm" />
         </div>
+        <p className="mt-2 text-[10px] text-muted-foreground">
+          Tip: pick a slot before choosing the file. Without a slot the asset just sits in the library and won't replace anything on the site.
+        </p>
       </div>
 
       <div className="mb-6 border border-border bg-background p-4">
