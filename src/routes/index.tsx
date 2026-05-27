@@ -3,15 +3,16 @@ import { SiteNav } from "@/components/SiteNav";
 import { Hero } from "@/components/Hero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useI18n } from "@/lib/i18n";
-import logoGreen from "@/assets/logo-green.svg";
-import logoGold from "@/assets/logo-gold.svg";
-import { useProducts, pickLocalized } from "@/lib/site-data";
-import { mediaUrl } from "@/lib/media";
-import { formatUzs } from "@/lib/format";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import tileAccessories from "@/assets/home-tile-accessories.jpg";
+import tileCloth from "@/assets/home-tile-cloth.jpg";
+import tileHome from "@/assets/home-tile-home.jpg";
+import tileCouture from "@/assets/home-tile-couture.jpg";
+import artOfHands from "@/assets/home-art-of-hands.jpg";
+import aboutPortrait from "@/assets/home-about-portrait.jpg";
+import craft1 from "@/assets/home-craft-1.jpg";
+import craft2 from "@/assets/home-craft-2.jpg";
+import craft3 from "@/assets/home-craft-3.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -33,209 +34,178 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-function Index() {
-  const { t, lang } = useI18n();
-  const { data: products } = useProducts();
-  const featured = (products ?? []).slice(0, 3);
+type Tile = {
+  cat: "accessories" | "cloth" | "home" | "couture";
+  label: string;
+  subKey: string;
+  image: string;
+};
 
-  // Map first product image per product (lightweight)
-  const { data: covers } = useQuery({
-    queryKey: ["home-covers", featured.map((p) => p.id).join(",")],
-    enabled: featured.length > 0,
-    queryFn: async () => {
-      const ids = featured.map((p) => p.id);
-      const { data } = await supabase.from("product_images").select("product_id, storage_path, sort_order")
-        .in("product_id", ids).order("sort_order");
-      const map: Record<string, string> = {};
-      (data ?? []).forEach((r: { product_id: string; storage_path: string }) => {
-        if (!map[r.product_id]) map[r.product_id] = r.storage_path;
-      });
-      return map;
-    },
-  });
+function Index() {
+  const { t } = useI18n();
+
+  const tiles: Tile[] = [
+    { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: tileAccessories },
+    { cat: "cloth", label: t("collection.tabCloth"), subKey: "home.tileClothSub", image: tileCloth },
+    { cat: "home", label: t("collection.tabHome"), subKey: "home.tileHomeSub", image: tileHome },
+    { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: tileCouture },
+  ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-sand text-foreground">
       <SiteNav />
-      <main>
+      <main className="pb-20 lg:pb-0">
         <Hero />
 
-        {/* Philosophy */}
-        <section id="philosophy" className="relative overflow-hidden bg-cream py-28 lg:py-40">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-16 px-6 lg:grid-cols-12 lg:gap-20 lg:px-12">
-            <FadeUp className="lg:col-span-4">
-              <p className="mb-6 text-xs uppercase tracking-[0.4em] text-muted-foreground">
-                {t("home.philosophyKicker")}
-              </p>
-              <img src={logoGreen} alt="MUNIS USMAN" className="h-40 w-auto opacity-90 lg:h-56" loading="lazy" />
-            </FadeUp>
-            <div className="lg:col-span-8">
-              <FadeUp>
-                <h2 className="whitespace-pre-line text-balance font-display text-4xl leading-[1.1] text-foreground sm:text-5xl lg:text-[3.25rem]">
-                  {t("home.philosophyTitle")}
-                </h2>
-              </FadeUp>
-              <div className="mt-12 grid gap-10 border-t border-border pt-10 sm:grid-cols-2 sm:gap-12">
-                <FadeUp delay={100}>
-                  <p className="text-pretty text-base leading-relaxed text-muted-foreground">
-                    {t("home.philosophyBody1")}
-                  </p>
+        {/* Category tiles */}
+        <section className="bg-sand pt-10 pb-6 lg:pt-16 lg:pb-12">
+          <div className="mx-auto max-w-7xl px-4 lg:px-12">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-6">
+              {tiles.map((tile, i) => (
+                <FadeUp key={tile.cat} delay={i * 90}>
+                  <Link
+                    to="/collection"
+                    search={{ cat: tile.cat } as never}
+                    className="group relative block aspect-[3/4] overflow-hidden bg-[var(--sand-dark)]"
+                  >
+                    <img
+                      src={tile.image}
+                      alt={tile.label}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--green-deep)]/75 via-[var(--green-deep)]/15 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-sand">
+                      <p className="font-display text-xl tracking-wide sm:text-2xl">{tile.label}</p>
+                      <p className="mt-1 font-display italic text-xs text-sand/80 sm:text-sm">
+                        / {t(tile.subKey)}
+                      </p>
+                    </div>
+                  </Link>
                 </FadeUp>
-                <FadeUp delay={200}>
-                  <p className="text-pretty text-base leading-relaxed text-muted-foreground">
-                    {t("home.philosophyBody2")}
-                  </p>
-                </FadeUp>
-              </div>
+              ))}
             </div>
-          </div>
-        </section>
-
-
-        {/* Signature accent */}
-        <section className="bg-forest-deep py-20 lg:py-28">
-          <div className="mx-auto max-w-4xl px-6 text-center lg:px-12">
-            <FadeUp>
-              <p className="font-display italic text-gold-soft text-3xl sm:text-4xl lg:text-5xl">
-                {t("home.philosophyAccent")}
-              </p>
-            </FadeUp>
-          </div>
-        </section>
-
-        {/* Featured Collection */}
-        <section className="bg-ivory py-28 lg:py-40">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <FadeUp>
-              <p className="mb-4 text-xs uppercase tracking-[0.4em] text-muted-foreground">
-                {t("home.featuredKicker")}
-              </p>
-            </FadeUp>
-            <FadeUp delay={80}>
-              <div className="flex flex-wrap items-end justify-between gap-6">
-                <h2 className="font-display text-5xl leading-[1.05] text-foreground lg:text-7xl">
-                  {t("home.featuredTitle")}
-                </h2>
-                <p className="max-w-sm text-sm text-muted-foreground">{t("home.featuredSubtitle")}</p>
-              </div>
-            </FadeUp>
-
-            <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-              {featured.map((p, i) => {
-                const cover = mediaUrl(covers?.[p.id] ?? null);
-                const name = pickLocalized(p, "name", lang);
-                const desc = pickLocalized(p, "desc", lang);
-                const tagLabel = p.tag === "madeToOrder" ? t("collection.madeToOrder") : t("collection.limited");
-                return (
-                  <FadeUp key={p.slug} delay={i * 120}>
-                    <Link to="/collection/$slug" params={{ slug: p.slug }} className="group block">
-                      <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                        {cover ? (
-                          <img src={cover} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]" />
-                        ) : (
-                          <ImagePlaceholder variant="sand" label={tagLabel} />
-                        )}
-                        <span className="absolute bottom-3 right-3 bg-cream/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-foreground">{formatUzs(p.price_uzs, lang)}</span>
-                      </div>
-                      <div className="mt-5">
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-accent">{tagLabel}</p>
-                        <h3 className="mt-2 font-display text-2xl text-foreground">{name}</h3>
-                        <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
-                      </div>
-                    </Link>
-                  </FadeUp>
-                );
-              })}
-            </div>
-
 
             <FadeUp delay={200}>
-              <div className="mt-16 flex justify-center">
-                <Link
-                  to="/collection"
-                  className="group inline-flex items-center gap-3 border border-forest/40 px-8 py-4 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all hover:bg-forest hover:text-cream font-sans"
-                >
-                  {t("home.featuredCta")}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
+              <div className="mt-10 flex items-center justify-center gap-4">
+                <span className="h-px w-12 bg-[var(--green)]/40" />
+                <p className="font-display italic text-[var(--green-deep)]/80 text-sm sm:text-base">
+                  {t("home.detailLine")}
+                </p>
+                <span className="h-px w-12 bg-[var(--green)]/40" />
               </div>
             </FadeUp>
           </div>
         </section>
 
-        {/* Process — burgundy section, no photo */}
-        <section className="bg-burgundy text-cream">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="relative flex items-center justify-center px-6 py-20 lg:py-0 lg:aspect-auto lg:min-h-[520px]">
-              <div
-                className="absolute inset-0 opacity-[0.08]"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 30% 30%, #C4992D 1.5px, transparent 1.5px), radial-gradient(circle at 70% 70%, #C4992D 1px, transparent 1px)",
-                  backgroundSize: "40px 40px, 28px 28px",
-                }}
-              />
-              <img src={logoGold} alt="" className="relative h-32 w-auto opacity-80 lg:h-44" loading="lazy" />
+        {/* The Art of Hands — wide editorial image with overlaid title */}
+        <section className="relative bg-sand">
+          <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden">
+            <img
+              src={artOfHands}
+              alt={t("home.artHandsTitle").replace("\n", " ")}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--green-deep)]/55 via-transparent to-transparent" />
+            <FadeUp className="absolute inset-y-0 left-0 z-10 flex items-center px-6 sm:px-12 lg:px-20">
+              <h2
+                className="whitespace-pre-line font-display text-sand text-5xl leading-[0.95] tracking-wide sm:text-6xl lg:text-7xl"
+                style={{ textShadow: "0 2px 18px rgba(0,0,0,0.25)" }}
+              >
+                {t("home.artHandsTitle")}
+              </h2>
+            </FadeUp>
+          </div>
+        </section>
+
+        {/* About the brand */}
+        <section id="philosophy" className="bg-[var(--white-warm)] py-20 lg:py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-12">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-7">
+                <FadeUp>
+                  <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--green)]/70">
+                    {t("home.aboutKicker")}
+                  </p>
+                </FadeUp>
+                <FadeUp delay={80}>
+                  <div className="mt-4 flex items-baseline gap-4">
+                    <p className="font-display text-3xl text-[var(--green-deep)] sm:text-4xl">
+                      MUNIS USMAN
+                    </p>
+                    <span className="hidden h-px flex-1 bg-[var(--green)]/30 sm:block" />
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--gold)]">
+                      {t("home.aboutSince")}
+                    </p>
+                  </div>
+                </FadeUp>
+                <FadeUp delay={140}>
+                  <p className="mt-8 font-display text-2xl leading-[1.25] text-foreground sm:text-3xl">
+                    {t("home.aboutLine1")}
+                    <br />
+                    {t("home.aboutLine2")}
+                    <br />
+                    <span className="italic text-[var(--green-deep)]/85">{t("home.aboutLine3")}</span>
+                  </p>
+                </FadeUp>
+                <FadeUp delay={220}>
+                  <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
+                    {t("home.aboutBody")}
+                  </p>
+                </FadeUp>
+              </div>
+
+              <div className="lg:col-span-5">
+                <FadeUp delay={120}>
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
+                    <img
+                      src={aboutPortrait}
+                      alt="MUNIS USMAN — studio portrait"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </FadeUp>
+              </div>
             </div>
-            <div className="flex flex-col justify-center px-6 py-20 lg:px-16 lg:py-28">
-              <FadeUp>
-                <p className="mb-6 text-xs uppercase tracking-[0.4em] text-gold-soft">
-                  {t("home.processKicker")}
-                </p>
-              </FadeUp>
-              <FadeUp delay={80}>
-                <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
-                  {t("home.processTitle")}
-                </h2>
-              </FadeUp>
-              <FadeUp delay={160}>
-                <p className="mt-8 max-w-md text-base leading-relaxed text-cream/80">
-                  {t("home.processBody")}
-                </p>
-              </FadeUp>
-              <FadeUp delay={240}>
-                <Link
-                  to="/custom"
-                  className="mt-10 inline-flex items-center gap-3 border border-gold/70 px-8 py-4 text-[11px] uppercase tracking-[0.18em] text-cream transition-all hover:bg-gold hover:text-forest-deep font-sans"
-                >
-                  {t("home.processCta")} →
-                </Link>
-              </FadeUp>
+
+            {/* Craft trio */}
+            <div className="mt-14 grid grid-cols-3 gap-3 sm:gap-4 lg:mt-20 lg:gap-6">
+              {[craft1, craft2, craft3].map((src, i) => (
+                <FadeUp key={i} delay={i * 100}>
+                  <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
+                    <img
+                      src={src}
+                      alt=""
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                    />
+                  </div>
+                </FadeUp>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Collaboration */}
-        <section className="bg-cream py-28 lg:py-40">
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-12 lg:gap-16 lg:px-12">
-            <div className="lg:col-span-5">
-              <FadeUp>
-                <p className="mb-4 text-xs uppercase tracking-[0.4em] text-muted-foreground">
-                  {t("home.collaborationKicker")}
-                </p>
-              </FadeUp>
-              <FadeUp delay={80}>
-                <h2 className="font-display text-4xl leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
-                  {t("home.collaborationTitle")}
-                </h2>
-              </FadeUp>
-            </div>
-            <div className="lg:col-span-7">
-              <FadeUp delay={120}>
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  {t("home.collaborationBody")}
-                </p>
-              </FadeUp>
-              <FadeUp delay={200}>
-                <Link
-                  to="/contact"
-                  className="group mt-10 inline-flex items-center gap-3 border border-forest/40 px-8 py-4 text-[11px] uppercase tracking-[0.18em] text-foreground transition-all hover:bg-forest hover:text-cream font-sans"
-                >
-                  {t("home.collaborationCta")}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              </FadeUp>
-            </div>
+        {/* Quote */}
+        <section className="bg-sand py-20 lg:py-28">
+          <div className="mx-auto max-w-3xl px-6 text-center lg:px-12">
+            <FadeUp>
+              <p className="font-display text-2xl leading-[1.5] text-[var(--green-deep)] sm:text-3xl">
+                <span className="mr-2 align-top text-[var(--gold)]">“</span>
+                {t("home.quoteText")}
+                <span className="ml-2 align-top text-[var(--gold)]">”</span>
+              </p>
+            </FadeUp>
+            <FadeUp delay={120}>
+              <p className="mt-6 text-sm italic text-muted-foreground">{t("home.quoteSub")}</p>
+            </FadeUp>
+            <FadeUp delay={200}>
+              <p className="mt-8 font-display italic text-[var(--gold)] text-lg">
+                — {t("home.quoteAuthor")}
+              </p>
+            </FadeUp>
           </div>
         </section>
       </main>
