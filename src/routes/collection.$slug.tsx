@@ -123,7 +123,7 @@ function ProductPage() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-accent">{tagLabel}</p>
               <div className="mt-4 flex items-start justify-between gap-4">
                 <h1 className="font-display text-4xl leading-[1.05] text-foreground lg:text-5xl">{name}</h1>
-                <button aria-label="Wishlist" onClick={() => setLiked((v) => !v)} className="mt-2 shrink-0 text-foreground transition-colors hover:text-accent">
+                <button aria-label="Wishlist" onClick={handleToggleWishlist} className="mt-2 shrink-0 text-foreground transition-colors hover:text-accent">
                   <Heart className="h-5 w-5" fill={liked ? "currentColor" : "none"} strokeWidth={1.5} />
                 </button>
               </div>
