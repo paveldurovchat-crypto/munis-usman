@@ -115,7 +115,7 @@ function Index() {
         <section className="relative bg-sand">
           <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden">
             <img
-              src={artOfHands}
+              src={artOfHandsImg}
               alt={t("home.artHandsTitle").replace("\n", " ")}
               loading="lazy"
               className="h-full w-full object-cover"
@@ -173,7 +173,7 @@ function Index() {
                 <FadeUp delay={120}>
                   <div className="relative aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
                     <img
-                      src={aboutPortrait}
+                      src={aboutPortraitImg}
                       alt="MUNIS USMAN — studio portrait"
                       loading="lazy"
                       className="h-full w-full object-cover"
@@ -185,7 +185,7 @@ function Index() {
 
             {/* Craft trio */}
             <div className="mt-14 grid grid-cols-3 gap-3 sm:gap-4 lg:mt-20 lg:gap-6">
-              {[craft1, craft2, craft3].map((src, i) => (
+              {craftImgs.map((src, i) => (
                 <FadeUp key={i} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
                     <img
