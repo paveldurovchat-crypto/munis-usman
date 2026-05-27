@@ -11,7 +11,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "О бренде · MUNIS USMAN" },
-      { name: "description", content: "История дизайнерского бренда MUNIS USMAN — Ташкент, с 2014 года." },
+      { name: "description", content: "История дизайнерского бренда MUNIS USMAN - Ташкент, с 2014 года." },
       { property: "og:title", content: "About · MUNIS USMAN" },
       { property: "og:description", content: "A heritage, handwoven since 2014. Tashkent, Uzbekistan." },
     ],
