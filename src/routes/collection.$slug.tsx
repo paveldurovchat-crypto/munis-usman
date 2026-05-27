@@ -30,7 +30,8 @@ function ProductPage() {
   const { data: product, isLoading } = useProductBySlug(slug);
   const { data: allProducts } = useProducts();
   const [selectedColorIdx, setSelectedColorIdx] = useState(0);
-  const [liked, setLiked] = useState(false);
+  const cart = useCart();
+  const wishlist = useWishlist();
 
   if (isLoading) {
     return (
