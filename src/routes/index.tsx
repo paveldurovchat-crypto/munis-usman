@@ -14,6 +14,7 @@ import craft1 from "@/assets/home-craft-1.jpg";
 import craft2 from "@/assets/home-craft-2.jpg";
 import craft3 from "@/assets/home-craft-3.jpg";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
+import logoGold from "@/assets/logo-gold.svg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -202,23 +203,38 @@ function Index() {
         </section>
 
         {/* Quote */}
-        <section className="bg-sand py-20 lg:py-28">
-          <div className="mx-auto max-w-3xl px-6 text-center lg:px-12">
+        <section className="bg-[var(--white-warm)] py-20 lg:py-28">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-20 lg:px-12">
             <FadeUp>
-              <p className="font-display text-2xl leading-[1.5] text-[var(--green-deep)] sm:text-3xl">
-                <span className="mr-2 align-top text-[var(--gold)]">“</span>
-                {t("home.quoteText")}
-                <span className="ml-2 align-top text-[var(--gold)]">”</span>
-              </p>
+              <div className="relative mx-auto flex aspect-[3/4] w-full max-w-sm items-center justify-center bg-[var(--sand-dark)]/40">
+                <div className="flex flex-col items-center gap-4">
+                  <img src={logoGold} alt="MUNIS USMAN" className="h-16 w-auto opacity-80" />
+                  <span
+                    className="text-[10px] uppercase tracking-[0.45em] text-[var(--gold)]/80"
+                    style={{ fontFamily: "Jost, system-ui, sans-serif" }}
+                  >
+                    {t("home.aboutKicker")}
+                  </span>
+                </div>
+              </div>
             </FadeUp>
-            <FadeUp delay={120}>
-              <p className="mt-6 text-sm italic text-muted-foreground">{t("home.quoteSub")}</p>
-            </FadeUp>
-            <FadeUp delay={200}>
-              <p className="mt-8 font-display italic text-[var(--gold)] text-lg">
-                — {t("home.quoteAuthor")}
-              </p>
-            </FadeUp>
+            <div className="flex flex-col gap-6">
+              <FadeUp>
+                <p className="font-display text-xl leading-[1.5] text-[var(--green-deep)] sm:text-2xl">
+                  <span className="mr-1 align-top text-[var(--gold)]">“</span>
+                  {t("home.quoteText")}
+                  <span className="ml-1 align-top text-[var(--gold)]">”</span>
+                </p>
+              </FadeUp>
+              <FadeUp delay={120}>
+                <p className="text-base leading-relaxed text-muted-foreground">{t("home.quoteSub")}</p>
+              </FadeUp>
+              <FadeUp delay={200}>
+                <p className="font-display italic text-[var(--gold)] text-lg">
+                  — {t("home.quoteAuthor")}
+                </p>
+              </FadeUp>
+            </div>
           </div>
         </section>
       </main>
