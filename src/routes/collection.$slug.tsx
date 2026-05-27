@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Heart } from "lucide-react";
+import { toast } from "sonner";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
@@ -9,7 +10,7 @@ import { useI18n } from "@/lib/i18n";
 import { useProductBySlug, useProducts, pickLocalized } from "@/lib/site-data";
 import { mediaUrl } from "@/lib/media";
 import { formatUzs } from "@/lib/format";
-import { BRAND, mailtoLink } from "@/lib/brand";
+import { BRAND } from "@/lib/brand";
 import { useCart } from "@/lib/cart";
 import { useWishlist } from "@/lib/wishlist";
 
@@ -29,7 +30,8 @@ function ProductPage() {
   const { data: product, isLoading } = useProductBySlug(slug);
   const { data: allProducts } = useProducts();
   const [selectedColorIdx, setSelectedColorIdx] = useState(0);
-  const [liked, setLiked] = useState(false);
+  const cart = useCart();
+  const wishlist = useWishlist();
 
   if (isLoading) {
     return (
@@ -64,9 +66,27 @@ function ProductPage() {
   const selectedColor = product.colors[selectedColorIdx];
 
   const related = (allProducts ?? []).filter((p) => p.slug !== product.slug).slice(0, 3);
+  const liked = wishlist.has(product.id);
 
-  const subject = `Inquiry: ${product.slug}`;
-  const body = `Hello MUNIS USMAN,\n\nI'm interested in "${name}". Please share more details.\n\nThank you!`;
+  const handleAddToCart = () => {
+    cart.add(
+      {
+        productId: product.id,
+        slug: product.slug,
+        name_ru: product.name_ru,
+        name_en: product.name_en,
+        price_uzs: product.price_uzs,
+        image: product.images[0]?.storage_path ?? null,
+        color: selectedColor?.name ?? null,
+      },
+      1,
+    );
+    toast.success(t("product.addedToCart"));
+  };
+
+  const handleToggleWishlist = async () => {
+    await wishlist.toggle(product.id);
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -103,7 +123,7 @@ function ProductPage() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-accent">{tagLabel}</p>
               <div className="mt-4 flex items-start justify-between gap-4">
                 <h1 className="font-display text-4xl leading-[1.05] text-foreground lg:text-5xl">{name}</h1>
-                <button aria-label="Wishlist" onClick={() => setLiked((v) => !v)} className="mt-2 shrink-0 text-foreground transition-colors hover:text-accent">
+                <button aria-label="Wishlist" onClick={handleToggleWishlist} className="mt-2 shrink-0 text-foreground transition-colors hover:text-accent">
                   <Heart className="h-5 w-5" fill={liked ? "currentColor" : "none"} strokeWidth={1.5} />
                 </button>
               </div>
@@ -149,10 +169,10 @@ function ProductPage() {
 
             <FadeUp delay={200}>
               <div className="mt-8 flex flex-col gap-3">
-                <a href={mailtoLink(subject, body)} className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest">
+                <button onClick={handleAddToCart} className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest">
                   {isMadeToOrder ? t("product.orderNow") : t("product.addToCart")}
                   <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                </button>
                 <a href={BRAND.instagram} target="_blank" rel="noreferrer noopener" className="inline-flex w-full items-center justify-center gap-3 border border-forest/30 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-foreground transition-all hover:border-forest">
                   Instagram
                 </a>
