@@ -95,7 +95,14 @@ export function MediaAdmin() {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
           <input placeholder="YouTube URL" className="border border-border bg-background px-3 py-2 text-sm md:col-span-2" value={ytUrl} onChange={(e) => setYtUrl(e.target.value)} />
           <input placeholder="Label (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={ytLabel} onChange={(e) => setYtLabel(e.target.value)} />
-          <input list="media-slots" placeholder="Used for, e.g. hero" className="border border-border bg-background px-3 py-2 text-sm" value={ytUsedFor} onChange={(e) => setYtUsedFor(e.target.value)} />
+          <select
+            className="border border-border bg-background px-3 py-2 text-sm"
+            value={ytUsedFor}
+            onChange={(e) => setYtUsedFor(e.target.value)}
+          >
+            <option value="">— Used for —</option>
+            {MEDIA_SLOTS.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
         </div>
         <button
           onClick={addYoutube}
