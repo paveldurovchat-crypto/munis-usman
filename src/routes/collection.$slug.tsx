@@ -81,11 +81,18 @@ function ProductPage() {
       },
       1,
     );
-    toast.success(t("product.addedToCart"));
+    toast.success(`${t("product.addedToCart")}: ${name}`, {
+      description: `${formatUzs(product.price_uzs, lang)} · ${selectedColor?.name ?? ""}`,
+    });
   };
 
   const handleToggleWishlist = async () => {
-    await wishlist.toggle(product.id);
+    const nowLiked = await wishlist.toggle(product.id);
+    if (nowLiked) {
+      toast.success(`${t("product.addedToWishlist")}: ${name}`);
+    } else {
+      toast.info(`${t("product.removedFromWishlist")}: ${name}`);
+    }
   };
 
   return (
