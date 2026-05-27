@@ -266,9 +266,11 @@ export const en = {
     kicker: "Journal",
     title: "Notes from the studio",
     subtitle: "About the brand, the people behind the pieces, and how the ideas come to life.",
-    readMore: "Read",
+    readMore: "Read the story",
     empty: "Stories from the studio will appear here soon.",
     loading: "Loading…",
+    watchVideo: "Watch video",
+
     post1Title: "Gold thread and the time it asks for",
     post1Excerpt: "How a single piece can take hundreds of hours, and why we stopped fighting it.",
     post1Date: "March 2025",
