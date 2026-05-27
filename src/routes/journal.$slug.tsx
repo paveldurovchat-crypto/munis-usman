@@ -5,7 +5,7 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useI18n } from "@/lib/i18n";
 import { useJournalPostBySlug, pickLocalized } from "@/lib/site-data";
-import { mediaUrl, youtubeEmbed, youtubeThumb } from "@/lib/media";
+import { mediaUrl, youtubeEmbed, youtubeThumb, isYoutubeShort } from "@/lib/media";
 
 export const Route = createFileRoute("/journal/$slug")({
   component: JournalPostPage,
