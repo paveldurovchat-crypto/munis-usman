@@ -37,13 +37,22 @@ export function Hero() {
               className="absolute left-1/2 top-1/2 h-[120vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 max-w-none border-0"
             />
           </div>
-        ) : (
+        ) : isImage && url ? (
           <img
-            src={isImage && url ? url : heroRelief}
+            src={url}
             alt=""
             fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
-            style={!heroAsset ? { filter: "saturate(0.85) brightness(1.03)" } : undefined}
+          />
+        ) : (
+          <video
+            src={heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroRelief}
+            className="absolute inset-0 h-full w-full object-cover"
           />
         )}
 
