@@ -75,7 +75,7 @@ export function MediaAdmin() {
         <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Upload new asset</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <input placeholder="Label (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={label} onChange={(e) => setLabel(e.target.value)} />
-          <input placeholder="Used for, e.g. hero-video, about-photo (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={usedFor} onChange={(e) => setUsedFor(e.target.value)} />
+          <input list="media-slots" placeholder="Used for, e.g. hero, tile-accessories" className="border border-border bg-background px-3 py-2 text-sm" value={usedFor} onChange={(e) => setUsedFor(e.target.value)} />
           <input type="file" accept="image/*,video/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); }} className="text-sm" />
         </div>
       </div>
@@ -85,7 +85,7 @@ export function MediaAdmin() {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
           <input placeholder="YouTube URL" className="border border-border bg-background px-3 py-2 text-sm md:col-span-2" value={ytUrl} onChange={(e) => setYtUrl(e.target.value)} />
           <input placeholder="Label (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={ytLabel} onChange={(e) => setYtLabel(e.target.value)} />
-          <input placeholder="Used for (optional)" className="border border-border bg-background px-3 py-2 text-sm" value={ytUsedFor} onChange={(e) => setYtUsedFor(e.target.value)} />
+          <input list="media-slots" placeholder="Used for, e.g. hero" className="border border-border bg-background px-3 py-2 text-sm" value={ytUsedFor} onChange={(e) => setYtUsedFor(e.target.value)} />
         </div>
         <button
           onClick={addYoutube}
