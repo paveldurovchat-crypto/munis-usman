@@ -14,7 +14,7 @@ import craft1 from "@/assets/home-craft-1.jpg";
 import craft2 from "@/assets/home-craft-2.jpg";
 import craft3 from "@/assets/home-craft-3.jpg";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
-import logoGold from "@/assets/logo-gold.svg";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
