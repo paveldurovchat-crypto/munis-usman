@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { mediaUrl, youtubeId, youtubeThumb, youtubeEmbed } from "@/lib/media";
+import { MEDIA_SLOTS } from "@/lib/media-slots";
 
 type Asset = { id: string; storage_path: string; label: string | null; kind: string; used_for: string | null };
 
@@ -60,7 +61,15 @@ export function MediaAdmin() {
 
   return (
     <div>
-      <h2 className="mb-6 font-display text-2xl">Media library</h2>
+      <h2 className="mb-2 font-display text-2xl">Media library</h2>
+      <p className="mb-6 text-xs text-muted-foreground">
+        To place a file on the homepage, set <span className="font-mono">Used for</span> to one of:&nbsp;
+        <span className="font-mono">{MEDIA_SLOTS.join(", ")}</span>. The hero accepts image, video, or YouTube (Shorts work too).
+      </p>
+
+      <datalist id="media-slots">
+        {MEDIA_SLOTS.map((s) => <option key={s} value={s} />)}
+      </datalist>
 
       <div className="mb-6 border border-border bg-background p-4">
         <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Upload new asset</p>
