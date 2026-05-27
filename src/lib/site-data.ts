@@ -35,10 +35,12 @@ export type JournalPostRow = {
   body_md_ru: string | null;
   body_md_en: string | null;
   cover_path: string | null;
+  youtube_url: string | null;
   is_published: boolean;
   published_at: string | null;
   created_at: string;
 };
+
 
 export type OrderRow = {
   id: string;
@@ -107,6 +109,22 @@ export function useJournalPosts(publishedOnly = true) {
   });
 }
 
+export function useJournalPostBySlug(slug: string) {
+  return useQuery({
+    queryKey: ["journal-post", slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("journal_posts")
+        .select("*")
+        .eq("slug", slug)
+        .eq("is_published", true)
+        .maybeSingle();
+      if (error) throw error;
+      return data as JournalPostRow | null;
+    },
+  });
+}
+
 export function pickLocalized<T extends Record<string, unknown>>(
   row: T,
   field: string,
@@ -116,3 +134,4 @@ export function pickLocalized<T extends Record<string, unknown>>(
   const fallback = `${field}_ru` as keyof T;
   return ((row[key] as string) || (row[fallback] as string) || "") as string;
 }
+

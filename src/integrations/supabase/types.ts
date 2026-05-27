@@ -29,6 +29,7 @@ export type Database = {
           title_en: string
           title_ru: string
           updated_at: string
+          youtube_url: string | null
         }
         Insert: {
           body_md_en?: string | null
@@ -44,6 +45,7 @@ export type Database = {
           title_en: string
           title_ru: string
           updated_at?: string
+          youtube_url?: string | null
         }
         Update: {
           body_md_en?: string | null
@@ -59,6 +61,7 @@ export type Database = {
           title_en?: string
           title_ru?: string
           updated_at?: string
+          youtube_url?: string | null
         }
         Relationships: []
       }
