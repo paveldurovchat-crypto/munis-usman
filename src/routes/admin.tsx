@@ -1,9 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { supabase } from "@/integrations/supabase/client";
-import { checkIsAdmin } from "@/lib/auth.functions";
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/lib/auth";
 import { ProductsAdmin } from "@/components/admin/ProductsAdmin";
 import { JournalAdmin } from "@/components/admin/JournalAdmin";
 import { MediaAdmin } from "@/components/admin/MediaAdmin";
@@ -20,7 +17,6 @@ export const Route = createFileRoute("/admin")({
   }),
 });
 
-type AdminState = "checking" | "no-session" | "not-admin" | "ok";
 type Tab = "products" | "journal" | "media" | "orders" | "settings";
 
 const TABS: { id: Tab; label: string }[] = [
@@ -33,23 +29,19 @@ const TABS: { id: Tab; label: string }[] = [
 
 function AdminPage() {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
-  const checkAdmin = useServerFn(checkIsAdmin);
-  const [state, setState] = useState<AdminState>("checking");
+  const { user, isAdmin, loading, signOut: doSignOut } = useAuth();
   const [tab, setTab] = useState<Tab>("products");
 
   useEffect(() => {
-    if (authLoading) return;
-    if (!user) { setState("no-session"); navigate({ to: "/login" }); return; }
-    checkAdmin().then((res) => setState(res.isAdmin ? "ok" : "not-admin")).catch(() => setState("not-admin"));
-  }, [user, authLoading, checkAdmin, navigate]);
+    if (!loading && !user) navigate({ to: "/login" });
+  }, [loading, user, navigate]);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    await doSignOut();
     navigate({ to: "/login" });
   };
 
-  if (state === "checking" || authLoading) {
+  if (loading || !user) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <p className="text-xs uppercase tracking-[0.28em] text-muted-foreground">Loading…</p>
@@ -57,13 +49,13 @@ function AdminPage() {
     );
   }
 
-  if (state === "not-admin") {
+  if (!isAdmin) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background px-6 text-center">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-accent">403</p>
           <h1 className="mt-3 font-display text-4xl text-foreground">Not an admin</h1>
-          <p className="mt-3 text-sm text-muted-foreground">Signed in as {user?.email}. This account does not have admin access.</p>
+          <p className="mt-3 text-sm text-muted-foreground">Signed in as {user.email}. This account does not have admin access.</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <button onClick={signOut} className="border border-forest/30 px-6 py-3 text-[11px] uppercase tracking-[0.28em] hover:border-forest">Sign out</button>
@@ -82,7 +74,7 @@ function AdminPage() {
             <h1 className="mt-1 font-display text-2xl text-foreground">MUNIS USMAN</h1>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden text-xs text-muted-foreground sm:inline">{user?.email}</span>
+            <span className="hidden text-xs text-muted-foreground sm:inline">{user.email}</span>
             <Link to="/" className="text-xs uppercase tracking-[0.28em] text-muted-foreground hover:text-accent">Site</Link>
             <button onClick={signOut} className="text-xs uppercase tracking-[0.28em] text-muted-foreground hover:text-accent">Sign out</button>
           </div>

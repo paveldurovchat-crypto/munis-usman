@@ -5,14 +5,11 @@ import logoGold from "@/assets/logo-gold.svg";
 import logoGreen from "@/assets/logo-green.svg";
 import { useI18n } from "@/lib/i18n";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
-import { useAuth } from "@/hooks/use-auth";
-import { useIsAdmin } from "@/hooks/use-is-admin";
-import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/lib/auth";
 
 export function SiteNav() {
   const { lang, setLang, t } = useI18n();
-  const { user } = useAuth();
-  const { isAdmin } = useIsAdmin();
+  const { user, isAdmin, signOut: doSignOut } = useAuth();
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -20,7 +17,7 @@ export function SiteNav() {
   const isHome = pathname === "/";
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    await doSignOut();
     navigate({ to: "/" });
   };
 
