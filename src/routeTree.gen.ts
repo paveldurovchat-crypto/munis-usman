@@ -20,6 +20,7 @@ import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CollectionIndexRouteImport } from './routes/collection.index'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as CollectionSlugRouteImport } from './routes/collection.$slug'
 
 const LoginRoute = LoginRouteImport.update({
@@ -77,6 +78,11 @@ const CollectionIndexRoute = CollectionIndexRouteImport.update({
   path: '/collection/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
+} as any)
 const CollectionSlugRoute = CollectionSlugRouteImport.update({
   id: '/collection/$slug',
   path: '/collection/$slug',
@@ -92,9 +98,10 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/custom': typeof CustomRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
   '/collection/$slug': typeof CollectionSlugRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/collection/': typeof CollectionIndexRoute
 }
 export interface FileRoutesByTo {
@@ -106,9 +113,10 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/custom': typeof CustomRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
   '/collection/$slug': typeof CollectionSlugRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/collection': typeof CollectionIndexRoute
 }
 export interface FileRoutesById {
@@ -121,9 +129,10 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/custom': typeof CustomRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
   '/collection/$slug': typeof CollectionSlugRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/collection/': typeof CollectionIndexRoute
 }
 export interface FileRouteTypes {
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/collection/$slug'
+    | '/journal/$slug'
     | '/collection/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/collection/$slug'
+    | '/journal/$slug'
     | '/collection'
   id:
     | '__root__'
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/collection/$slug'
+    | '/journal/$slug'
     | '/collection/'
   fileRoutesById: FileRoutesById
 }
@@ -180,7 +192,7 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   CustomRoute: typeof CustomRoute
-  JournalRoute: typeof JournalRoute
+  JournalRoute: typeof JournalRouteWithChildren
   LoginRoute: typeof LoginRoute
   CollectionSlugRoute: typeof CollectionSlugRoute
   CollectionIndexRoute: typeof CollectionIndexRoute
@@ -265,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
+    }
     '/collection/$slug': {
       id: '/collection/$slug'
       path: '/collection/$slug'
@@ -275,6 +294,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -284,7 +314,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   CustomRoute: CustomRoute,
-  JournalRoute: JournalRoute,
+  JournalRoute: JournalRouteWithChildren,
   LoginRoute: LoginRoute,
   CollectionSlugRoute: CollectionSlugRoute,
   CollectionIndexRoute: CollectionIndexRoute,
