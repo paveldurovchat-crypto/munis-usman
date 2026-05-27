@@ -12,14 +12,14 @@ export const Route = createFileRoute("/journal/")({
   component: JournalPage,
   head: () => ({
     meta: [
-      { title: "Журнал · MUNIS USMAN — Notes from the studio" },
-      { name: "description", content: "Истории из мастерской MUNIS USMAN — о ремесле, вдохновении и процессе создания каждой вещи. Stories from the studio — on craft, inspiration and process." },
+      { title: "Журнал · MUNIS USMAN - Notes from the studio" },
+      { name: "description", content: "Истории из мастерской MUNIS USMAN - о ремесле, вдохновении и процессе создания каждой вещи. Stories from the studio - on craft, inspiration and process." },
       { property: "og:title", content: "Journal · MUNIS USMAN" },
-      { property: "og:description", content: "Stories from the studio — on craft, inspiration and process." },
+      { property: "og:description", content: "Stories from the studio - on craft, inspiration and process." },
       { property: "og:url", content: "https://munis-usman.uz/journal" },
       { property: "og:type", content: "website" },
       { name: "twitter:title", content: "Journal · MUNIS USMAN" },
-      { name: "twitter:description", content: "Stories from the studio — on craft, inspiration and process." },
+      { name: "twitter:description", content: "Stories from the studio - on craft, inspiration and process." },
     ],
     links: [{ rel: "canonical", href: "https://munis-usman.uz/journal" }],
   }),
