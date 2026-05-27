@@ -169,10 +169,10 @@ function ProductPage() {
 
             <FadeUp delay={200}>
               <div className="mt-8 flex flex-col gap-3">
-                <a href={mailtoLink(subject, body)} className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest">
+                <button onClick={handleAddToCart} className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest">
                   {isMadeToOrder ? t("product.orderNow") : t("product.addToCart")}
                   <span className="transition-transform group-hover:translate-x-1">→</span>
-                </a>
+                </button>
                 <a href={BRAND.instagram} target="_blank" rel="noreferrer noopener" className="inline-flex w-full items-center justify-center gap-3 border border-forest/30 px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-foreground transition-all hover:border-forest">
                   Instagram
                 </a>
