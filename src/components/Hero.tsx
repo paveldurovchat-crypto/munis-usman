@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import heroRelief from "@/assets/home-hero-relief.jpg";
 import heroVideo from "@/assets/hero-video.mp4";
-import logoGreen from "@/assets/logo-green.svg";
+import logoGold from "@/assets/logo-gold.svg";
 import { useI18n } from "@/lib/i18n";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, assetYoutubeId } from "@/lib/media-slots";
 
