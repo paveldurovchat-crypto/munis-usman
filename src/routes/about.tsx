@@ -4,7 +4,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-slots";
+import logoGold from "@/assets/logo-gold.svg";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -20,6 +21,8 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   const { t } = useI18n();
+  const { data: mediaAssets } = useMediaLibrary();
+  const portraitUrl = assetDisplayUrl(pickAssetBySlot(mediaAssets, "about-page-portrait"));
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
@@ -29,8 +32,12 @@ function AboutPage() {
         <section className="bg-cream py-24 lg:py-32">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 px-6 lg:grid-cols-2 lg:gap-24 lg:px-12">
             <FadeUp>
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <ImagePlaceholder variant="sand" label={t("about.kicker")} />
+              <div className="relative aspect-[3/4] overflow-hidden bg-[var(--sand-dark)]/40 flex items-center justify-center">
+                {portraitUrl ? (
+                  <img src={portraitUrl} alt={t("about.kicker")} className="h-full w-full object-cover" />
+                ) : (
+                  <img src={logoGold} alt="MUNIS USMAN" className="h-24 w-auto opacity-80" />
+                )}
               </div>
             </FadeUp>
             <div className="flex flex-col justify-center gap-8">

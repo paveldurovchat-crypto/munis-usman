@@ -19,6 +19,7 @@ export const MEDIA_SLOTS = [
   "tile-couture",
   "art-of-hands",
   "about-portrait",
+  "about-page-portrait",
   "craft-1",
   "craft-2",
   "craft-3",
