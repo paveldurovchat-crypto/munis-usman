@@ -8,7 +8,7 @@ import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { useJournalPosts, pickLocalized } from "@/lib/site-data";
 import { mediaUrl, youtubeThumb } from "@/lib/media";
 
-export const Route = createFileRoute("/journal")({
+export const Route = createFileRoute("/journal/")({
   component: JournalPage,
   head: () => ({
     meta: [
