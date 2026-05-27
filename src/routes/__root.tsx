@@ -5,6 +5,8 @@ import { useState } from "react";
 import appCss from "../styles.css?url";
 import { LanguageProvider } from "@/lib/i18n";
 import { AuthProvider } from "@/lib/auth";
+import { CartProvider } from "@/lib/cart";
+import { WishlistProvider } from "@/lib/wishlist";
 
 
 function NotFoundComponent() {
@@ -13,14 +15,9 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <h1 className="font-display text-7xl text-foreground">404</h1>
         <h2 className="mt-4 font-display text-2xl text-foreground">Страница не найдена</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">The page you're looking for doesn't exist.</p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center border border-accent/70 px-6 py-3 text-xs uppercase tracking-[0.28em] text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-          >
+          <Link to="/" className="inline-flex items-center justify-center border border-accent/70 px-6 py-3 text-xs uppercase tracking-[0.28em] text-foreground transition-colors hover:bg-accent hover:text-accent-foreground">
             Вернуться
           </Link>
         </div>
@@ -35,29 +32,19 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
-      {
-        name: "description",
-        content:
-          "MUNIS USMAN — дизайнерский бренд носимого искусства из Ташкента. Ручная вышивка, ограниченные серии, изделия на заказ с 2014 года.",
-      },
+      { name: "description", content: "MUNIS USMAN — дизайнерский бренд носимого искусства из Ташкента. Ручная вышивка, ограниченные серии, изделия на заказ с 2014 года." },
       { name: "author", content: "MUNIS USMAN" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "MUNIS USMAN" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
       { name: "twitter:title", content: "MUNIS USMAN — Wearable Art. Crafted in Tashkent." },
-      { name: "description", content: "MUNIS USMAN is a designer brand offering handcrafted fashion and wearable art." },
       { property: "og:description", content: "MUNIS USMAN is a designer brand offering handcrafted fashion and wearable art." },
       { name: "twitter:description", content: "MUNIS USMAN is a designer brand offering handcrafted fashion and wearable art." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07d31852-901a-4033-8d8c-39118c06d72b/id-preview-1c615c81--3343d92d-ec8c-426c-9479-0554cc34e663.lovable.app-1776753850830.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07d31852-901a-4033-8d8c-39118c06d72b/id-preview-1c615c81--3343d92d-ec8c-426c-9479-0554cc34e663.lovable.app-1776753850830.png" },
     ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -67,13 +54,8 @@ export const Route = createRootRoute({
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
+      <head><HeadContent /></head>
+      <body>{children}<Scripts /></body>
     </html>
   );
 }
@@ -85,9 +67,13 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <LanguageProvider>
-          <Outlet />
-        </LanguageProvider>
+        <WishlistProvider>
+          <CartProvider>
+            <LanguageProvider>
+              <Outlet />
+            </LanguageProvider>
+          </CartProvider>
+        </WishlistProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
