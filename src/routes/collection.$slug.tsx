@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Heart } from "lucide-react";
+import { toast } from "sonner";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
@@ -9,7 +10,7 @@ import { useI18n } from "@/lib/i18n";
 import { useProductBySlug, useProducts, pickLocalized } from "@/lib/site-data";
 import { mediaUrl } from "@/lib/media";
 import { formatUzs } from "@/lib/format";
-import { BRAND, mailtoLink } from "@/lib/brand";
+import { BRAND } from "@/lib/brand";
 import { useCart } from "@/lib/cart";
 import { useWishlist } from "@/lib/wishlist";
 
