@@ -72,6 +72,7 @@ function RootComponent() {
           <CartProvider>
             <LanguageProvider>
               <Outlet />
+              <Toaster position="bottom-right" richColors />
             </LanguageProvider>
           </CartProvider>
         </WishlistProvider>
