@@ -4,7 +4,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-slots";
+import logoGold from "@/assets/logo-gold.svg";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
