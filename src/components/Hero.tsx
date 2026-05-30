@@ -1,43 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import heroRelief from "@/assets/home-hero-relief.jpg";
-import heroVideo from "@/assets/hero-video.mp4";
 import logoGold from "@/assets/logo-gold.svg";
 import { useI18n } from "@/lib/i18n";
-import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, assetYoutubeId } from "@/lib/media-slots";
+import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-slots";
 
 export function Hero() {
   const { t } = useI18n();
   const { data: assets } = useMediaLibrary();
   const heroAsset = pickAssetBySlot(assets, "hero");
 
-  const isVideo = heroAsset?.kind === "video";
-  const isYoutube = heroAsset?.kind === "youtube";
   const isImage = heroAsset?.kind === "image";
-  const ytId = assetYoutubeId(heroAsset);
   const url = assetDisplayUrl(heroAsset);
 
   return (
     <section className="relative w-full overflow-hidden bg-sand">
       <div className="relative h-[88vh] min-h-[560px] w-full">
-        {isVideo && url ? (
-          <video
-            src={url}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        ) : isYoutube && ytId ? (
-          <div className="absolute inset-0 h-full w-full overflow-hidden">
-            <iframe
-              src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&modestbranding=1&playlist=${ytId}&playsinline=1`}
-              title="Hero video"
-              allow="autoplay; encrypted-media"
-              className="absolute left-1/2 top-1/2 h-[120vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 max-w-none border-0"
-            />
-          </div>
-        ) : isImage && url ? (
+        {isImage && url ? (
           <img
             src={url}
             alt=""
@@ -45,13 +23,10 @@ export function Hero() {
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <video
-            src={heroVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={heroRelief}
+          <img
+            src={heroRelief}
+            alt=""
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover"
           />
         )}
