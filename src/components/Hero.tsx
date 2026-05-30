@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import heroRelief from "@/assets/home-hero-relief.jpg";
 import logoGold from "@/assets/logo-gold.svg";
 import { useI18n } from "@/lib/i18n";
@@ -14,7 +13,7 @@ export function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-sand">
-      <div className="relative h-[88vh] min-h-[560px] w-full">
+      <div className="relative aspect-[3/4] w-full sm:aspect-auto sm:h-[78vh] sm:min-h-[520px]">
         {isImage && url ? (
           <img
             src={url}
@@ -31,41 +30,22 @@ export function Hero() {
           />
         )}
 
-        {/* Gentle cream wash so logo reads */}
-        <div className="absolute inset-0 bg-gradient-to-b from-sand/40 via-sand/10 to-sand/55" />
+        {/* Soft sand wash for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-sand/30 via-sand/5 to-sand/45" />
 
-        {/* Centered logo + tagline */}
+        {/* Centered logo + tagline (no CTAs — matches mockup) */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center">
           <img
             src={logoGold}
             alt="MUNIS USMAN"
-            className="h-32 w-auto sm:h-40 lg:h-52 animate-fade-in"
+            className="h-28 w-auto sm:h-36 lg:h-44 animate-fade-in"
           />
-          <p className="mt-2 font-display italic text-gold/90 text-sm sm:text-base tracking-[0.2em] uppercase animate-fade-up">
+          <p className="mt-3 font-display italic text-gold/90 text-[11px] sm:text-xs tracking-[0.32em] uppercase animate-fade-up">
             Couture &amp; Accessories
           </p>
-          <p className="mt-8 max-w-md text-sm leading-relaxed text-gold/85 sm:max-w-lg sm:text-base animate-fade-up">
+          <p className="mt-6 max-w-[18rem] text-[12px] leading-relaxed text-gold/85 sm:max-w-md sm:text-sm animate-fade-up">
             {t("home.heroIntro")}
           </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 animate-fade-up">
-            <Link
-              to="/collection"
-              className="group inline-flex items-center gap-3 border border-gold/70 bg-transparent/30 px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm transition-all duration-500 hover:bg-gold/20 hover:border-gold"
-              style={{ fontFamily: "Jost, system-ui, sans-serif" }}
-            >
-              {t("home.heroCta1")}
-              <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-            </Link>
-            <Link
-              to="/custom"
-              className="group inline-flex items-center gap-3 border border-gold/70 bg-transparent/30 px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-gold backdrop-blur-sm transition-all duration-500 hover:bg-gold/20 hover:border-gold"
-              style={{ fontFamily: "Jost, system-ui, sans-serif" }}
-            >
-              {t("home.heroCta2")}
-              <span className="transition-transform duration-500 group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
         </div>
       </div>
     </section>
