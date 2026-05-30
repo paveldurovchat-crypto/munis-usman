@@ -1,19 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import heroRelief from "@/assets/home-hero-relief.jpg";
-import heroVideo from "@/assets/hero-video.mp4";
 import logoGold from "@/assets/logo-gold.svg";
 import { useI18n } from "@/lib/i18n";
-import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, assetYoutubeId } from "@/lib/media-slots";
+import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-slots";
 
 export function Hero() {
   const { t } = useI18n();
   const { data: assets } = useMediaLibrary();
   const heroAsset = pickAssetBySlot(assets, "hero");
 
-  const isVideo = heroAsset?.kind === "video";
-  const isYoutube = heroAsset?.kind === "youtube";
   const isImage = heroAsset?.kind === "image";
-  const ytId = assetYoutubeId(heroAsset);
   const url = assetDisplayUrl(heroAsset);
 
   return (
