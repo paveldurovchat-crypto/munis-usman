@@ -39,19 +39,18 @@ export function MobileBottomNav() {
               <Link
                 to={tab.to}
                 search={tab.search as never}
-                className="relative flex items-center justify-center px-2 py-2"
+                className="relative flex items-center justify-center px-2 py-3"
               >
                 {active && (
                   <svg
                     aria-hidden
-                    viewBox="0 0 120 50"
+                    viewBox="0 0 160 50"
                     preserveAspectRatio="none"
-                    className="absolute left-1/2 top-[-6px] -translate-x-1/2"
-                    style={{ width: "calc(100% + 28px)", height: "calc(100% + 12px)" }}
+                    className="pointer-events-none absolute left-1/2 -translate-x-1/2"
+                    style={{ width: "calc(100% + 60px)", height: "calc(100% + 8px)", top: "-6px" }}
                   >
-                    {/* Organic pill: rounded top, concave notches curving into bottom-left/right */}
                     <path
-                      d="M 0 50 Q 12 50 12 38 L 12 20 Q 12 4 28 4 L 92 4 Q 108 4 108 20 L 108 38 Q 108 50 120 50 Z"
+                      d="M 0 50 L 16 50 C 26 50 30 50 30 44 L 30 20 Q 30 0 50 0 L 110 0 Q 130 0 130 20 L 130 44 C 130 50 134 50 144 50 L 160 50 Z"
                       fill="#2a2a2a"
                     />
                   </svg>
