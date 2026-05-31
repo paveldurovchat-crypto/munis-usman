@@ -49,10 +49,12 @@ export function SiteNav() {
     { to: "/contact", label: t("nav.contact") },
   ] as const;
 
-  const solid = !isHome || scrolled;
-  const textClass = solid ? "text-foreground" : "text-cream";
-  const mobileLogo = solid ? logoGreen : logoWhite;
-  const desktopLogo = solid ? logoGreen : logoGold;
+  // Header is always white with dark text — per design spec
+  const solid = true;
+  const textClass = "text-foreground";
+  const mobileLogo = logoGreen;
+  const desktopLogo = logoGreen;
+  void scrolled; void isHome; void logoWhite; void logoGold; void mobileLogo;
 
   return (
     <>

@@ -68,20 +68,21 @@ function Index() {
   return (
     <div className="min-h-screen bg-sand text-foreground">
       <SiteNav />
-      <main className="pb-20 lg:pb-0">
+      <main className="pt-[56px] pb-20 lg:pt-[72px] lg:pb-0">
         <Hero />
 
         {/* Category tiles — mobile horizontal scroll, desktop 4-up grid */}
         <section className="bg-sand pt-0 pb-6 lg:pb-12">
           <div className="w-full">
-            {/* Mobile: horizontal scroll row */}
-            <div className="flex gap-0 overflow-x-auto pl-4 pt-6 pb-2 lg:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
+            {/* Mobile: horizontal scroll row — one full tile + edge of next */}
+            <div className="flex gap-0 overflow-x-auto pl-6 pt-6 pb-2 lg:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
               {tiles.map((tile) => (
                 <Link
                   key={tile.cat}
                   to="/collection"
                   search={{ cat: tile.cat } as never}
-                  className="group relative block aspect-square w-[45vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
+                  className="group relative block w-[75vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
+                  style={{ height: "56vw" }}
                 >
                   <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" />
@@ -92,6 +93,7 @@ function Index() {
                 </Link>
               ))}
             </div>
+
 
             {/* Desktop: 4-up grid, zero gap */}
             <div className="hidden lg:grid lg:grid-cols-4 lg:gap-0">
@@ -224,7 +226,7 @@ function Index() {
         </section>
 
         {/* Quote */}
-        <section className="bg-[var(--white-warm)] py-20 lg:py-28">
+        <section className="bg-[var(--white-warm)] pt-10 pb-16 lg:py-28">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center lg:px-12">
             <FadeUp>
               <p className="font-display text-xl leading-[1.5] text-[var(--green-deep)] sm:text-2xl">
