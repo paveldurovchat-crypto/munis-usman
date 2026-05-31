@@ -71,10 +71,10 @@ function Index() {
       <main className="pb-20 lg:pb-0">
         <Hero />
 
-        {/* Category tiles */}
-        <section className="bg-sand pt-10 pb-6 lg:pt-16 lg:pb-12">
-          <div className="mx-auto max-w-7xl px-4 lg:px-12">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-6">
+        {/* Category tiles — edge-to-edge 2x2 (4-up on desktop) */}
+        <section className="bg-sand pt-0 pb-6 lg:pb-12">
+          <div className="w-full">
+            <div className="grid grid-cols-2 gap-0 lg:grid-cols-4">
               {tiles.map((tile, i) => (
                 <FadeUp key={tile.cat} delay={i * 90}>
                   <Link
@@ -88,9 +88,9 @@ function Index() {
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--green-deep)]/75 via-[var(--green-deep)]/15 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-sand">
-                      <p className="font-display text-xl tracking-wide sm:text-2xl">{tile.label}</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-left text-sand">
+                      <p className="font-display text-xl tracking-wide sm:text-2xl uppercase">{tile.label}</p>
                       <p className="mt-1 font-display italic text-xs text-sand/80 sm:text-sm">
                         / {t(tile.subKey)}
                       </p>
@@ -101,7 +101,7 @@ function Index() {
             </div>
 
             <FadeUp delay={200}>
-              <div className="mt-10 flex items-center justify-center gap-4">
+              <div className="mt-10 flex items-center justify-center gap-4 px-6">
                 <span className="h-px w-12 bg-[var(--green)]/40" />
                 <p className="font-display italic text-[var(--green-deep)]/80 text-sm sm:text-base">
                   {t("home.detailLine")}
@@ -109,6 +109,7 @@ function Index() {
                 <span className="h-px w-12 bg-[var(--green)]/40" />
               </div>
             </FadeUp>
+
           </div>
         </section>
 
