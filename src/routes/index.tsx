@@ -68,7 +68,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-sand text-foreground">
       <SiteNav />
-      <main className="pb-20 lg:pb-0">
+      <main className="pt-[56px] pb-20 lg:pt-[72px] lg:pb-0">
         <Hero />
 
         {/* Category tiles — mobile horizontal scroll, desktop 4-up grid */}
