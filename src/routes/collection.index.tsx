@@ -120,15 +120,52 @@ function CollectionPage() {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
-            <button className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans">
+          <div className="relative flex items-center justify-between border-b border-border/60 px-6 py-4">
+            <button
+              type="button"
+              onClick={() => setOpenMenu(openMenu === "sort" ? null : "sort")}
+              className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans"
+            >
               {t("collection.filter")}
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" strokeWidth="1.25"><path d="M0 1h14M2 5h10M5 9h4"/></svg>
             </button>
-            <button className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans">
-              {t("collection.all")}
+            <button
+              type="button"
+              onClick={() => setOpenMenu(openMenu === "filter" ? null : "filter")}
+              className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans"
+            >
+              {t(`collection.filter${filter === "all" ? "All" : filter === "limited" ? "Limited" : "MadeToOrder"}`)}
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.25"><path d="m1 1 4 4 4-4"/></svg>
             </button>
+
+            {openMenu === "sort" && (
+              <div className="absolute left-4 top-full z-40 mt-1 min-w-[220px] border border-border/60 bg-background shadow-lg">
+                {(["newest", "priceAsc", "priceDesc"] as SortKey[]).map((k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    onClick={() => { setSort(k); setOpenMenu(null); }}
+                    className={`block w-full px-4 py-3 text-left text-[11px] uppercase tracking-[0.18em] font-sans hover:bg-muted ${sort === k ? "text-foreground" : "text-muted-foreground"}`}
+                  >
+                    {t(`collection.sort${k === "newest" ? "Newest" : k === "priceAsc" ? "PriceAsc" : "PriceDesc"}`)}
+                  </button>
+                ))}
+              </div>
+            )}
+            {openMenu === "filter" && (
+              <div className="absolute right-4 top-full z-40 mt-1 min-w-[220px] border border-border/60 bg-background shadow-lg">
+                {(["all", "limited", "madeToOrder"] as FilterKey[]).map((k) => (
+                  <button
+                    key={k}
+                    type="button"
+                    onClick={() => { setFilter(k); setOpenMenu(null); }}
+                    className={`block w-full px-4 py-3 text-left text-[11px] uppercase tracking-[0.18em] font-sans hover:bg-muted ${filter === k ? "text-foreground" : "text-muted-foreground"}`}
+                  >
+                    {t(`collection.filter${k === "all" ? "All" : k === "limited" ? "Limited" : "MadeToOrder"}`)}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
