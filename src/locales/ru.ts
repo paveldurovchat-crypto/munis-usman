@@ -351,6 +351,10 @@ export const ru = {
     contactUs: "Связаться с нами",
     returnRequest: "Запрос на возврат",
     checkOrder: "Проверить заказ",
+    mobileCustomerService: "Обслуживание клиентов",
+    privacy: "Политика конфиденциальности",
+    returns: "Возвраты",
+    country: "Узбекистан",
   },
   lang: {
     ru: "РУ",
