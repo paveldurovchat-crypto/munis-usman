@@ -110,9 +110,9 @@ export function SiteNav() {
             <img src={mobileLogo} alt="MUNIS USMAN" className="h-9 w-auto" />
           </Link>
           <div className={`flex items-center justify-end gap-4 ${textClass}`}>
-            <Link to="/collection" aria-label="Search" className="transition-colors hover:text-accent">
+            <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
               <Search className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
+            </button>
             <Link to="/account" aria-label="Wishlist" className="transition-colors hover:text-accent">
               <Heart className="h-5 w-5" strokeWidth={1.5} />
             </Link>
