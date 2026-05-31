@@ -349,6 +349,10 @@ export const en = {
     contactUs: "Contact us",
     returnRequest: "Return request",
     checkOrder: "Check order",
+    mobileCustomerService: "Customer service",
+    privacy: "Privacy policy",
+    returns: "Returns",
+    country: "Uzbekistan",
   },
   lang: {
     ru: "RU",
