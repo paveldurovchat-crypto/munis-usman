@@ -137,14 +137,14 @@ function Index() {
         <section id="philosophy" className="bg-[var(--white-warm)] py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-7">
+              <div className="text-center lg:col-span-7 lg:text-left">
                 <FadeUp>
                   <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--green)]/70">
                     {t("home.aboutKicker")}
                   </p>
                 </FadeUp>
                 <FadeUp delay={80}>
-                  <div className="mt-4 flex items-baseline gap-4">
+                  <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:items-baseline sm:gap-4 lg:items-baseline">
                     <p className="font-display text-3xl text-[var(--green-deep)] sm:text-4xl">
                       MUNIS USMAN
                     </p>
@@ -164,7 +164,7 @@ function Index() {
                   </p>
                 </FadeUp>
                 <FadeUp delay={220}>
-                  <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
+                  <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground mx-auto lg:mx-0">
                     {t("home.aboutBody")}
                   </p>
                 </FadeUp>
