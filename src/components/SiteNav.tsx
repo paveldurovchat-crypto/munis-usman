@@ -6,6 +6,7 @@ import logoGreen from "@/assets/logo-green.svg";
 import logoWhite from "@/assets/logo-white.svg";
 import { useI18n } from "@/lib/i18n";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { SearchOverlay } from "@/components/SearchOverlay";
 import { useAuth } from "@/lib/auth";
 import { useCart } from "@/lib/cart";
 
