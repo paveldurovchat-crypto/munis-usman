@@ -55,6 +55,11 @@ export function MobileBottomNav() {
           background-color: #111111;
           border-radius: 50%;
           z-index: 3;
+          pointer-events: none;
+        }
+        .nav-tab > span {
+          position: relative;
+          z-index: 5;
         }
         .nav-tab.after-active {
           z-index: 4;
