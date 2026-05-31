@@ -14,7 +14,6 @@ export function SiteFooter() {
             <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileCollab")}</h4>
             <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
               <li><Link to="/custom" className="hover:text-[var(--gold)]">{t("nav.custom")}</Link></li>
-              <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("nav.contact")}</Link></li>
             </ul>
           </div>
           <div>
@@ -27,6 +26,14 @@ export function SiteFooter() {
           <div>
             <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileHelp")}</h4>
             <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
+              <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("footer.privacy")}</Link></li>
+              <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("footer.returns")}</Link></li>
+            </ul>
+          </div>
+          <div />
+          <div>
+            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileCustomerService")}</h4>
+            <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
               <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("footer.contactUs")}</Link></li>
               <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("footer.returnRequest")}</Link></li>
               <li><Link to="/account" className="hover:text-[var(--gold)]">{t("footer.checkOrder")}</Link></li>
@@ -34,11 +41,30 @@ export function SiteFooter() {
           </div>
           <div>
             <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileCountry")}</h4>
-            <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
-              <li>Uzbekistan / RU / EN</li>
-            </ul>
+            <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] text-white/65 font-sans font-light">
+              <button type="button" className="hover:text-[var(--gold)]">{t("footer.country")}</button>
+              <span className="text-white/30">/</span>
+              <button
+                type="button"
+                onClick={() => setLang("ru")}
+                className={`uppercase transition-colors ${lang === "ru" ? "text-[var(--gold)]" : "hover:text-[var(--gold)]"}`}
+                aria-pressed={lang === "ru"}
+              >
+                RU
+              </button>
+              <span className="text-white/30">/</span>
+              <button
+                type="button"
+                onClick={() => setLang("en")}
+                className={`uppercase transition-colors ${lang === "en" ? "text-[var(--gold)]" : "hover:text-[var(--gold)]"}`}
+                aria-pressed={lang === "en"}
+              >
+                EN
+              </button>
+            </div>
           </div>
         </div>
+
 
         <div className="mt-12 border-t border-white/10 pt-6 text-center">
           <p className="font-display tracking-[0.32em] text-[12px] text-white">© MUNIS USMAN</p>
