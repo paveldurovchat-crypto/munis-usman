@@ -29,7 +29,7 @@ export function Hero() {
           <img
             src={logoGold}
             alt="MUNIS USMAN"
-            className="h-32 w-auto sm:h-40 lg:h-48 animate-fade-in"
+            className="h-24 w-auto sm:h-40 lg:h-48 animate-fade-in"
           />
           <p className="mt-3 font-display italic text-[var(--gold)] text-[11px] sm:text-xs tracking-[0.32em] uppercase animate-fade-up">
             Couture &amp; Accessories
