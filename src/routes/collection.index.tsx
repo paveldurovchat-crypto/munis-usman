@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
@@ -10,6 +11,9 @@ import { useProducts, pickLocalized } from "@/lib/site-data";
 import { mediaUrl } from "@/lib/media";
 import { formatUzs } from "@/lib/format";
 import { supabase } from "@/integrations/supabase/client";
+
+type SortKey = "newest" | "priceAsc" | "priceDesc";
+type FilterKey = "all" | "limited" | "madeToOrder";
 
 type Category = "accessories" | "cloth" | "home" | "couture";
 type Search = { cat?: Category };
