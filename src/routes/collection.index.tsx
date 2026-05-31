@@ -95,11 +95,11 @@ function CollectionPage() {
               <p className="absolute right-6 top-6 text-[10px] uppercase tracking-[0.28em] text-white/90 font-display">
                 {t(`collection.tab${activeCat.charAt(0).toUpperCase() + activeCat.slice(1)}`)}
               </p>
-              <h1 className="font-display text-3xl leading-[1.05] tracking-[0.02em] uppercase font-light max-w-[14rem]">
-                Details that<br />complete you
+              <h1 className="font-display text-3xl leading-[1.05] tracking-[0.02em] uppercase font-light max-w-[14rem] whitespace-pre-line">
+                {t("collection.bannerTitle")}
               </h1>
               <p className="mt-3 font-display italic text-[11px] text-white/85 max-w-[18rem]">
-                не просто изделия — философия воплощённая в деталях.
+                {t("collection.bannerSubtitle")}
               </p>
             </div>
           </div>
