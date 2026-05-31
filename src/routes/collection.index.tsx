@@ -84,7 +84,20 @@ function CollectionPage() {
     },
   });
 
-  const list = products ?? [];
+  const [sort, setSort] = useState<SortKey>("newest");
+  const [filter, setFilter] = useState<FilterKey>("all");
+  const [openMenu, setOpenMenu] = useState<"sort" | "filter" | null>(null);
+
+  const list = useMemo(() => {
+    let arr = products ?? [];
+    if (filter === "limited") arr = arr.filter((p) => p.tag !== "madeToOrder");
+    else if (filter === "madeToOrder") arr = arr.filter((p) => p.tag === "madeToOrder");
+    arr = [...arr];
+    if (sort === "priceAsc") arr.sort((a, b) => a.price_uzs - b.price_uzs);
+    else if (sort === "priceDesc") arr.sort((a, b) => b.price_uzs - a.price_uzs);
+    return arr;
+  }, [products, filter, sort]);
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
