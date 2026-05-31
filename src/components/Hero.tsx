@@ -12,8 +12,8 @@ export function Hero() {
   const url = assetDisplayUrl(heroAsset);
 
   return (
-    <section className="relative w-full overflow-hidden bg-forest-deep">
-      <div className="relative h-[45svh] min-h-[300px] w-full sm:h-[78vh] sm:min-h-[520px]">
+    <section className="relative w-full overflow-hidden bg-[#b48264]">
+      <div className="relative h-[50svh] min-h-[320px] w-full sm:h-screen sm:min-h-[600px]">
         <img
           src={isImage && url ? url : heroRelief}
           alt=""
@@ -21,20 +21,25 @@ export function Hero() {
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        {/* Subtle overlay for legibility while keeping stone texture visible */}
-        <div className="absolute inset-0 bg-black/25" />
+        {/* Warm terracotta tint — keeps stone texture visible with warm sandy tone */}
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(180, 130, 100, 0.35)" }} />
 
         {/* Centered logo + tagline */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center text-white">
           <img
             src={logoGold}
             alt="MUNIS USMAN"
-            className="h-16 w-auto sm:h-32 lg:h-40 animate-fade-in"
+            className="h-[55px] w-auto sm:h-20 animate-fade-in"
+            style={{ filter: "brightness(0) invert(1)" }}
           />
-          <p className="mt-2 font-display italic text-[var(--gold)] text-[10px] sm:text-xs tracking-[0.32em] uppercase animate-fade-up font-light">
+          <p className="mt-4 font-display text-white text-[22px] sm:text-[36px] tracking-[0.25em] uppercase font-light animate-fade-up">
+            MUNIS USMAN
+          </p>
+          <p className="mt-2 font-sans text-white text-[9px] sm:text-[11px] tracking-[0.35em] uppercase font-light">
             Couture &amp; Accessories
           </p>
-          <p className="mt-4 max-w-[16rem] text-[11px] leading-relaxed text-[var(--gold)]/90 sm:max-w-md sm:text-sm animate-fade-up font-light">
+          <span className="my-3 block h-5 w-px bg-white/80 sm:h-6" />
+          <p className="max-w-[18rem] text-white text-[12px] leading-[1.6] sm:max-w-md sm:text-[14px] font-light animate-fade-up">
             {t("home.heroIntro")}
           </p>
         </div>
@@ -42,3 +47,4 @@ export function Hero() {
     </section>
   );
 }
+
