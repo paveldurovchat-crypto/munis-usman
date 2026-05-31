@@ -176,8 +176,8 @@ function ProductPage() {
             </FadeUp>
 
             <FadeUp delay={200}>
-              <div className="mt-8 flex flex-col gap-3">
-                <button onClick={handleAddToCart} className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-cream transition-all hover:bg-forest">
+              <div className="mt-8 hidden lg:flex flex-col gap-3">
+                <button onClick={handleAddToCart} className="group inline-flex w-full items-center justify-center gap-3 bg-forest-deep px-8 py-4 text-[11px] uppercase tracking-[0.28em] text-white transition-all hover:bg-forest">
                   {isMadeToOrder ? t("product.orderNow") : t("product.addToCart")}
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </button>
@@ -186,6 +186,13 @@ function ProductPage() {
                 </a>
               </div>
             </FadeUp>
+
+            {/* Mobile sticky CTA */}
+            <div className="fixed inset-x-0 bottom-[112px] z-30 px-4 lg:hidden">
+              <button onClick={handleAddToCart} className="w-full rounded-[3px] bg-[#1e3a2f] py-4 text-[12px] uppercase tracking-[0.3em] text-white font-sans">
+                {isMadeToOrder ? t("product.orderNow") : t("product.addToCart")}
+              </button>
+            </div>
           </div>
         </section>
 

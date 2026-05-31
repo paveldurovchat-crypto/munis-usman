@@ -75,19 +75,19 @@ function Index() {
         <section className="bg-sand pt-0 pb-6 lg:pb-12">
           <div className="w-full">
             {/* Mobile: horizontal scroll row */}
-            <div className="flex gap-2 overflow-x-auto px-4 pt-4 pb-2 lg:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
+            <div className="flex gap-0 overflow-x-auto pl-4 pt-6 pb-2 lg:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
               {tiles.map((tile) => (
                 <Link
                   key={tile.cat}
                   to="/collection"
                   search={{ cat: tile.cat } as never}
-                  className="group relative block aspect-[3/4] w-[42vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
+                  className="group relative block aspect-square w-[45vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
                 >
                   <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 px-3 pb-3 text-left text-sand">
-                    <p className="font-display text-base tracking-wide uppercase">{tile.label}</p>
-                    <p className="mt-0.5 font-display italic text-[10px] text-sand/85">/ {t(tile.subKey)}</p>
+                  <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 px-3 pb-3 text-left text-white">
+                    <p className="font-display text-[18px] leading-none tracking-[0.06em] uppercase font-normal">{tile.label}</p>
+                    <p className="mt-1 font-display italic text-[11px] text-white/80">/ {t(tile.subKey)}</p>
                   </div>
                 </Link>
               ))}
