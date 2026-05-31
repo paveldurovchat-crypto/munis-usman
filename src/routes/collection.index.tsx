@@ -105,11 +105,11 @@ function CollectionPage() {
           </div>
           <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
             <button className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans">
-              FILTER
+              {t("collection.filter")}
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" strokeWidth="1.25"><path d="M0 1h14M2 5h10M5 9h4"/></svg>
             </button>
             <button className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans">
-              ALL
+              {t("collection.all")}
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.25"><path d="m1 1 4 4 4-4"/></svg>
             </button>
           </div>
