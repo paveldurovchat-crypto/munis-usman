@@ -76,6 +76,9 @@ export function SiteNav() {
             {isAdmin && (
               <Link to="/admin" className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>{t("nav.admin")}</Link>
             )}
+            <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
+              <Search className="h-4 w-4" strokeWidth={1.5} />
+            </button>
             {user ? (
               <Link to="/account" aria-label={t("nav.account")} className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>
                 <UserIcon className="h-4 w-4" strokeWidth={1.5} />
