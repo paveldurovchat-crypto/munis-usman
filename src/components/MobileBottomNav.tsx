@@ -28,35 +28,49 @@ export function MobileBottomNav() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="fixed inset-x-0 bottom-0 z-40 bg-[#111111] lg:hidden"
+      className="mbn-root fixed inset-x-0 bottom-0 z-40 bg-[#111111] lg:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <ul className="relative flex items-stretch justify-around px-2 pt-3">
+      <style>{`
+        .mbn-tab-active {
+          background: #2a2a2a;
+          border-radius: 20px 20px 0 0;
+          position: relative;
+          padding: 8px 18px 10px;
+          margin-bottom: -2px;
+        }
+        .mbn-tab-active::before,
+        .mbn-tab-active::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          width: 16px;
+          height: 16px;
+          background: transparent;
+        }
+        .mbn-tab-active::before {
+          left: -16px;
+          border-bottom-right-radius: 16px;
+          box-shadow: 4px 4px 0 4px #2a2a2a;
+        }
+        .mbn-tab-active::after {
+          right: -16px;
+          border-bottom-left-radius: 16px;
+          box-shadow: -4px 4px 0 4px #2a2a2a;
+        }
+      `}</style>
+      <ul className="relative flex items-end justify-around px-2 pt-4">
         {tabs.map((tab) => {
           const active = isActive(tab);
           return (
-            <li key={tab.id} className="relative flex-1">
+            <li key={tab.id} className="flex flex-1 justify-center">
               <Link
                 to={tab.to}
                 search={tab.search as never}
-                className="relative flex items-center justify-center px-2 py-3"
+                className={active ? "mbn-tab-active" : "px-3 py-2"}
               >
-                {active && (
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 160 50"
-                    preserveAspectRatio="none"
-                    className="pointer-events-none absolute left-1/2 -translate-x-1/2"
-                    style={{ width: "calc(100% + 60px)", height: "calc(100% + 8px)", top: "-6px" }}
-                  >
-                    <path
-                      d="M 0 50 L 16 50 C 26 50 30 50 30 44 L 30 20 Q 30 0 50 0 L 110 0 Q 130 0 130 20 L 130 44 C 130 50 134 50 144 50 L 160 50 Z"
-                      fill="#2a2a2a"
-                    />
-                  </svg>
-                )}
                 <span
-                  className={`relative z-10 font-sans text-[10px] uppercase tracking-[0.18em] ${
+                  className={`font-sans text-[10px] uppercase tracking-[0.18em] ${
                     active ? "text-white" : "text-white/70"
                   }`}
                 >
@@ -67,7 +81,7 @@ export function MobileBottomNav() {
           );
         })}
       </ul>
-      <Link to="/" className="mt-1 block pb-3 text-center font-sans text-[10px] text-white/55">
+      <Link to="/" className="mt-2 block pb-3 text-center font-sans text-[10px] text-white/55">
         munisusman.uz
       </Link>
     </nav>
