@@ -85,69 +85,96 @@ function CollectionPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteNav />
-      <main className="pb-24 lg:pb-0">
-        <PageHero kicker={t("collection.kicker")} title={t("collection.title")} subtitle={t("collection.subtitle")} />
+      <main className="pb-28 lg:pb-0">
+        {/* Mobile banner */}
+        <section className="relative w-full overflow-hidden lg:hidden pt-14">
+          <div className="relative h-[34vh] min-h-[220px] w-full">
+            <img src="/og-image.jpg" alt="" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 flex flex-col justify-center px-6 text-white">
+              <p className="absolute right-6 top-6 text-[10px] uppercase tracking-[0.28em] text-white/90 font-display">
+                {t(`collection.tab${activeCat.charAt(0).toUpperCase() + activeCat.slice(1)}`)}
+              </p>
+              <h1 className="font-display text-3xl leading-[1.05] tracking-[0.02em] uppercase font-light max-w-[14rem]">
+                Details that<br />complete you
+              </h1>
+              <p className="mt-3 font-display italic text-[11px] text-white/85 max-w-[18rem]">
+                не просто изделия — философия воплощённая в деталях.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
+            <button className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans">
+              FILTER
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" strokeWidth="1.25"><path d="M0 1h14M2 5h10M5 9h4"/></svg>
+            </button>
+            <button className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-foreground font-sans">
+              ALL
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.25"><path d="m1 1 4 4 4-4"/></svg>
+            </button>
+          </div>
+        </section>
 
-        <div className="sticky top-[64px] z-30 border-b border-border/60 bg-cream/95 backdrop-blur-md lg:top-[80px]">
-          <div className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto px-6 lg:px-12">
-            {tabs.map((tab) => {
-              const isActive = tab.id === activeCat;
-              return (
-                <Link
-                  key={tab.id}
-                  to="/collection"
-                  search={{ cat: tab.id }}
-                  className={`relative whitespace-nowrap py-4 text-[11px] uppercase tracking-[0.18em] font-sans transition-colors ${
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {t(tab.labelKey)}
-                  {isActive && <span className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground" />}
-                </Link>
-              );
-            })}
+        {/* Desktop hero + sticky tabs */}
+        <div className="hidden lg:block">
+          <PageHero kicker={t("collection.kicker")} title={t("collection.title")} subtitle={t("collection.subtitle")} />
+          <div className="sticky top-[80px] z-30 border-b border-border/60 bg-cream/95 backdrop-blur-md">
+            <div className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto px-12">
+              {tabs.map((tab) => {
+                const isActive = tab.id === activeCat;
+                return (
+                  <Link
+                    key={tab.id}
+                    to="/collection"
+                    search={{ cat: tab.id }}
+                    className={`relative whitespace-nowrap py-4 text-[11px] uppercase tracking-[0.18em] font-sans transition-colors ${
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {t(tab.labelKey)}
+                    {isActive && <span className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground" />}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <section className="bg-cream py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <section className="bg-background py-6 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 lg:px-12">
             {isLoading ? (
               <p className="py-20 text-center text-sm text-muted-foreground">…</p>
             ) : list.length === 0 ? (
               <p className="py-20 text-center text-sm text-muted-foreground">—</p>
             ) : (
-              <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-2 gap-x-2 gap-y-8 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3">
                 {list.map((p, i) => {
                   const cover = mediaUrl(covers?.[p.id] ?? null);
                   const colors = colorsMap?.[p.id] ?? [];
                   const name = pickLocalized(p, "name", lang);
-                  const desc = pickLocalized(p, "desc", lang);
                   const tagLabel = p.tag === "madeToOrder" ? t("collection.madeToOrder") : t("collection.limited");
                   return (
-                    <FadeUp key={p.slug} delay={(i % 3) * 100}>
+                    <FadeUp key={p.slug} delay={(i % 3) * 80}>
                       <Link to="/collection/$slug" params={{ slug: p.slug }} className="group block">
-                        <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                        <div className="relative aspect-square overflow-hidden bg-muted">
                           {cover ? (
                             <img src={cover} alt={name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]" />
                           ) : (
                             <ImagePlaceholder variant="sand" label={tagLabel} />
                           )}
-                          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-deep/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                          <span className="absolute bottom-3 right-3 bg-cream/90 px-2 py-1 text-[10px] uppercase tracking-[0.18em] text-foreground">
-                            {formatUzs(p.price_uzs, lang)}
-                          </span>
                         </div>
-                        <div className="mt-5">
-                          <p className="text-[10px] uppercase tracking-[0.3em] text-accent">{tagLabel}</p>
-                          <h3 className="mt-2 font-display text-2xl text-foreground">{name}</h3>
+                        <div className="mt-3 px-1">
                           {colors.length > 0 && (
-                            <div className="mt-2 flex items-center gap-1.5">
+                            <div className="flex items-center gap-1">
                               {colors.map((c) => (
-                                <span key={c.hex} title={c.name} className="block h-[10px] w-[10px] rounded-full border border-border/60" style={{ backgroundColor: c.hex }} />
+                                <span key={c.hex} title={c.name} className="block h-2 w-2 rounded-full" style={{ backgroundColor: c.hex }} />
                               ))}
                             </div>
                           )}
-                          <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                          <div className="mt-2 flex items-center justify-between gap-2">
+                            <h3 className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground truncate">{name}</h3>
+                            <p className="font-display text-[13px] text-foreground whitespace-nowrap">{formatUzs(p.price_uzs, lang)}</p>
+                          </div>
                         </div>
                       </Link>
                     </FadeUp>
