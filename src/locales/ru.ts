@@ -115,6 +115,8 @@ export const ru = {
     tabCloth: "Одежда",
     tabHome: "Дом",
     tabCouture: "Кутюр",
+    bannerTitle: "Детали, которые\nзавершают вас",
+    bannerSubtitle: "Не просто изделия — философия, воплощённая в деталях.",
     selectedColor: "Цвет",
     item1Name: "Чехол «Бухара»",
     item1Desc: "Минареты Бухары на закате — отпечатано на прозрачном кейсе.",
