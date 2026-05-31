@@ -11,29 +11,29 @@ export function SiteFooter() {
       <div className="px-6 pt-12 pb-28 lg:hidden">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 text-left">
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">СОТРУДНИЧЕСТВО</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileCollab")}</h4>
             <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
               <li><Link to="/custom" className="hover:text-[var(--gold)]">{t("nav.custom")}</Link></li>
               <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("nav.contact")}</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">О НАС</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileAbout")}</h4>
             <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
-              <li><Link to="/about" className="hover:text-[var(--gold)]">Философия бренда</Link></li>
-              <li><Link to="/journal" className="hover:text-[var(--gold)]">История</Link></li>
+              <li><Link to="/about" className="hover:text-[var(--gold)]">{t("footer.philosophy")}</Link></li>
+              <li><Link to="/journal" className="hover:text-[var(--gold)]">{t("footer.history")}</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">ЦЕНТР ПОМОЩИ</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileHelp")}</h4>
             <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
-              <li><Link to="/contact" className="hover:text-[var(--gold)]">Связаться с нами</Link></li>
-              <li><Link to="/contact" className="hover:text-[var(--gold)]">Запрос на возврат</Link></li>
-              <li><Link to="/account" className="hover:text-[var(--gold)]">Проверить заказ</Link></li>
+              <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("footer.contactUs")}</Link></li>
+              <li><Link to="/contact" className="hover:text-[var(--gold)]">{t("footer.returnRequest")}</Link></li>
+              <li><Link to="/account" className="hover:text-[var(--gold)]">{t("footer.checkOrder")}</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">СТРАНА / ЯЗЫК</h4>
+            <h4 className="text-[10px] uppercase tracking-[0.24em] text-white/90 font-sans">{t("footer.mobileCountry")}</h4>
             <ul className="mt-4 space-y-2.5 text-[12px] text-white/65 font-sans font-light">
               <li>Uzbekistan / RU / EN</li>
             </ul>
@@ -43,7 +43,7 @@ export function SiteFooter() {
         <div className="mt-12 border-t border-white/10 pt-6 text-center">
           <p className="font-display tracking-[0.32em] text-[12px] text-white">© MUNIS USMAN</p>
           <p className="mt-2 text-[10px] uppercase tracking-[0.28em] text-white/45 font-sans">
-            {new Date().getFullYear()} ВСЕ ПРАВА ЗАЩИЩЕНЫ
+            {new Date().getFullYear()} {t("footer.rightsShort")}
           </p>
           <div className="mt-6 flex items-center justify-center gap-6 text-white/70">
             <a href="https://munis-usman.uz" target="_blank" rel="noreferrer noopener" aria-label="Website" className="hover:text-[var(--gold)]">
