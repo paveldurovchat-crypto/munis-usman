@@ -68,15 +68,19 @@ export function MobileBottomNav() {
         {tabs.map((tab, idx) => {
           const active = idx === activeIndex;
           const afterActive = idx === activeIndex + 1;
-          const classes = ["nav-tab", "inline-flex", "items-center"];
+          const classes = ["nav-tab", "inline-flex", "items-center", "whitespace-nowrap"];
           if (active) classes.push("active");
           if (afterActive) classes.push("after-active");
           else if (!active) classes.push("px-3", "py-2");
           return (
-            <li key={tab.id} className="flex flex-1 justify-center" style={{ overflow: "visible" }}>
+            <li
+              key={tab.id}
+              className={`flex justify-center ${active ? "flex-none" : "flex-1"}`}
+              style={{ overflow: "visible" }}
+            >
               <Link to={tab.to} search={tab.search as never} className={classes.join(" ")}>
                 <span
-                  className={`font-sans text-[10px] uppercase tracking-[0.18em] ${
+                  className={`font-sans text-[10px] uppercase tracking-[0.18em] whitespace-nowrap ${
                     active ? "text-white" : "text-white/70"
                   }`}
                 >
