@@ -175,6 +175,7 @@ export function SiteNav() {
         </aside>
       </div>
 
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
       <MobileBottomNav />
     </>
   );
