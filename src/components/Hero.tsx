@@ -13,7 +13,7 @@ export function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-forest-deep">
-      <div className="relative h-[100svh] w-full sm:h-[78vh] sm:min-h-[520px]">
+      <div className="relative h-[44svh] min-h-[320px] w-full sm:h-[78vh] sm:min-h-[520px]">
         <img
           src={isImage && url ? url : heroRelief}
           alt=""
