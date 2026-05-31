@@ -7,11 +7,11 @@ export function SiteFooter() {
   const { t } = useI18n();
   return (
     <footer className="bg-forest-deep text-cream/80">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-12">
+      <div className="mx-auto max-w-7xl px-6 py-20 text-center lg:px-12 lg:text-left">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <img src={logoGold} alt="MUNIS USMAN" className="h-16 w-auto" />
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/60">
+            <img src={logoGold} alt="MUNIS USMAN" className="mx-auto h-16 w-auto lg:mx-0" />
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/60 mx-auto lg:mx-0">
               {t("footer.tagline")}
             </p>
             <p className="mt-4 text-xs uppercase tracking-[0.3em] text-gold-soft">
@@ -82,7 +82,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-cream/10 pt-8 text-xs uppercase tracking-[0.18em] text-cream/40 sm:flex-row sm:items-center" style={{ fontFamily: "Jost, system-ui, sans-serif" }}>
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 text-xs uppercase tracking-[0.18em] text-cream/40 sm:flex-row sm:items-center lg:items-start" style={{ fontFamily: "Jost, system-ui, sans-serif" }}>
           <span>© {new Date().getFullYear()} MUNIS USMAN · {t("footer.rights")} · {t("footer.crafted")}</span>
           <span>{BRAND.location}</span>
         </div>

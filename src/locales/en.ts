@@ -4,6 +4,11 @@ export const en = {
     tagline: "A Tashkent brand. Since 2014.",
     since: "Since 2014",
   },
+  search: {
+    placeholder: "Search the collection…",
+    hint: "Start typing to search",
+    empty: "No matches found",
+  },
   nav: {
     home: "Home",
     about: "About",

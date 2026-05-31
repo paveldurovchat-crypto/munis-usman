@@ -6,6 +6,7 @@ import logoGreen from "@/assets/logo-green.svg";
 import logoWhite from "@/assets/logo-white.svg";
 import { useI18n } from "@/lib/i18n";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { SearchOverlay } from "@/components/SearchOverlay";
 import { useAuth } from "@/lib/auth";
 import { useCart } from "@/lib/cart";
 
@@ -16,6 +17,7 @@ export function SiteNav() {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
@@ -74,6 +76,9 @@ export function SiteNav() {
             {isAdmin && (
               <Link to="/admin" className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>{t("nav.admin")}</Link>
             )}
+            <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
+              <Search className="h-4 w-4" strokeWidth={1.5} />
+            </button>
             {user ? (
               <Link to="/account" aria-label={t("nav.account")} className="transition-colors hover:text-accent" activeProps={{ className: "text-accent" }}>
                 <UserIcon className="h-4 w-4" strokeWidth={1.5} />
@@ -105,9 +110,9 @@ export function SiteNav() {
             <img src={mobileLogo} alt="MUNIS USMAN" className="h-9 w-auto" />
           </Link>
           <div className={`flex items-center justify-end gap-4 ${textClass}`}>
-            <Link to="/collection" aria-label="Search" className="transition-colors hover:text-accent">
+            <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
               <Search className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
+            </button>
             <Link to="/account" aria-label="Wishlist" className="transition-colors hover:text-accent">
               <Heart className="h-5 w-5" strokeWidth={1.5} />
             </Link>
@@ -170,6 +175,7 @@ export function SiteNav() {
         </aside>
       </div>
 
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
       <MobileBottomNav />
     </>
   );
