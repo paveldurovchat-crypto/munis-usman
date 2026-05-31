@@ -171,9 +171,9 @@ function CollectionPage() {
                               ))}
                             </div>
                           )}
-                          <div className="mt-2 flex items-center justify-between gap-2">
-                            <h3 className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground truncate">{name}</h3>
-                            <p className="font-display text-[13px] text-foreground whitespace-nowrap">{formatUzs(p.price_uzs, lang)}</p>
+                          <div className="mt-2 flex items-start justify-between gap-2">
+                            <h3 className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground leading-[1.35]">{name}</h3>
+                            <p className="font-display text-[13px] text-foreground whitespace-nowrap shrink-0">{formatUzs(p.price_uzs, lang)}</p>
                           </div>
                         </div>
                       </Link>
