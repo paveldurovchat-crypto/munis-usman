@@ -226,7 +226,7 @@ function Index() {
         </section>
 
         {/* Quote */}
-        <section className="bg-[var(--white-warm)] py-20 lg:py-28">
+        <section className="bg-[var(--white-warm)] pt-10 pb-16 lg:py-28">
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center lg:px-12">
             <FadeUp>
               <p className="font-display text-xl leading-[1.5] text-[var(--green-deep)] sm:text-2xl">
