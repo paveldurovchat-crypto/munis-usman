@@ -42,23 +42,19 @@ export function MobileBottomNav() {
                 className="relative flex items-center justify-center px-2 py-2"
               >
                 {active && (
-                  <span
+                  <svg
                     aria-hidden
-                    className="absolute left-1/2 top-[-6px] -translate-x-1/2 bg-[#2a2a2a]"
-                    style={{
-                      width: "calc(100% + 24px)",
-                      height: "calc(100% + 10px)",
-                      // Organic pill with concave cutouts at bottom-left & bottom-right
-                      // using radial gradients to "subtract" curves from the corners.
-                      WebkitMaskImage:
-                        "radial-gradient(circle 10px at 0% 100%, transparent 99%, #000 100%), radial-gradient(circle 10px at 100% 100%, transparent 99%, #000 100%), linear-gradient(#000, #000)",
-                      WebkitMaskComposite: "source-in, source-in, source-over",
-                      maskImage:
-                        "radial-gradient(circle 10px at 0% 100%, transparent 99%, #000 100%), radial-gradient(circle 10px at 100% 100%, transparent 99%, #000 100%), linear-gradient(#000, #000)",
-                      maskComposite: "intersect",
-                      borderRadius: "22px 22px 14px 14px",
-                    }}
-                  />
+                    viewBox="0 0 120 50"
+                    preserveAspectRatio="none"
+                    className="absolute left-1/2 top-[-6px] -translate-x-1/2"
+                    style={{ width: "calc(100% + 28px)", height: "calc(100% + 12px)" }}
+                  >
+                    {/* Organic pill: rounded top, concave notches curving into bottom-left/right */}
+                    <path
+                      d="M 0 50 Q 12 50 12 38 L 12 20 Q 12 4 28 4 L 92 4 Q 108 4 108 20 L 108 38 Q 108 50 120 50 Z"
+                      fill="#2a2a2a"
+                    />
+                  </svg>
                 )}
                 <span
                   className={`relative z-10 font-sans text-[10px] uppercase tracking-[0.18em] ${
