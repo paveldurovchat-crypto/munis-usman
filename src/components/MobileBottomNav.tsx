@@ -29,45 +29,51 @@ export function MobileBottomNav() {
     <nav
       aria-label="Mobile navigation"
       className="mbn-root fixed inset-x-0 bottom-0 z-40 bg-[#111111] lg:hidden"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      style={{ paddingBottom: "env(safe-area-inset-bottom)", overflow: "visible" }}
     >
       <style>{`
-        .mbn-tab-active {
-          background: #2a2a2a;
-          border-radius: 20px 20px 0 0;
+        .active-tab {
           position: relative;
-          padding: 8px 18px 10px;
-          margin-bottom: -2px;
+          background-color: #2a2a2a;
+          border-radius: 999px;
+          padding: 6px 18px 8px 18px;
+          margin-top: -10px;
+          z-index: 10;
         }
-        .mbn-tab-active::before,
-        .mbn-tab-active::after {
+        .active-tab::before {
           content: '';
           position: absolute;
-          bottom: 0;
-          width: 16px;
-          height: 16px;
-          background: transparent;
+          bottom: 0px;
+          left: -14px;
+          width: 14px;
+          height: 14px;
+          background-color: #111111;
+          border-bottom-right-radius: 14px;
+          box-shadow: 4px 4px 0px 4px #2a2a2a;
+          pointer-events: none;
         }
-        .mbn-tab-active::before {
-          left: -16px;
-          border-bottom-right-radius: 16px;
-          box-shadow: 4px 4px 0 4px #2a2a2a;
-        }
-        .mbn-tab-active::after {
-          right: -16px;
-          border-bottom-left-radius: 16px;
-          box-shadow: -4px 4px 0 4px #2a2a2a;
+        .active-tab::after {
+          content: '';
+          position: absolute;
+          bottom: 0px;
+          right: -14px;
+          width: 14px;
+          height: 14px;
+          background-color: #111111;
+          border-bottom-left-radius: 14px;
+          box-shadow: -4px 4px 0px 4px #2a2a2a;
+          pointer-events: none;
         }
       `}</style>
-      <ul className="relative flex items-end justify-around px-2 pt-4">
+      <ul className="relative flex items-end justify-around px-2 pt-4" style={{ overflow: "visible" }}>
         {tabs.map((tab) => {
           const active = isActive(tab);
           return (
-            <li key={tab.id} className="flex flex-1 justify-center">
+            <li key={tab.id} className="flex flex-1 justify-center" style={{ overflow: "visible" }}>
               <Link
                 to={tab.to}
                 search={tab.search as never}
-                className={active ? "mbn-tab-active" : "px-3 py-2"}
+                className={active ? "active-tab" : "px-3 py-2"}
               >
                 <span
                   className={`font-sans text-[10px] uppercase tracking-[0.18em] ${
@@ -81,6 +87,7 @@ export function MobileBottomNav() {
           );
         })}
       </ul>
+
       <Link to="/" className="mt-2 block pb-3 text-center font-sans text-[10px] text-white/55">
         munisusman.uz
       </Link>
