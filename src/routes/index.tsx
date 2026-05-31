@@ -71,10 +71,30 @@ function Index() {
       <main className="pb-20 lg:pb-0">
         <Hero />
 
-        {/* Category tiles — edge-to-edge 2x2 (4-up on desktop) */}
+        {/* Category tiles — mobile horizontal scroll, desktop 4-up grid */}
         <section className="bg-sand pt-0 pb-6 lg:pb-12">
           <div className="w-full">
-            <div className="grid grid-cols-2 gap-0 lg:grid-cols-4">
+            {/* Mobile: horizontal scroll row */}
+            <div className="flex gap-2 overflow-x-auto px-4 pt-4 pb-2 lg:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
+              {tiles.map((tile) => (
+                <Link
+                  key={tile.cat}
+                  to="/collection"
+                  search={{ cat: tile.cat } as never}
+                  className="group relative block aspect-[3/4] w-[42vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
+                >
+                  <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 px-3 pb-3 text-left text-sand">
+                    <p className="font-display text-base tracking-wide uppercase">{tile.label}</p>
+                    <p className="mt-0.5 font-display italic text-[10px] text-sand/85">/ {t(tile.subKey)}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Desktop: 4-up grid, zero gap */}
+            <div className="hidden lg:grid lg:grid-cols-4 lg:gap-0">
               {tiles.map((tile, i) => (
                 <FadeUp key={tile.cat} delay={i * 90}>
                   <Link

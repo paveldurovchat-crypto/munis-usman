@@ -13,7 +13,7 @@ export function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-forest-deep">
-      <div className="relative h-[100svh] w-full sm:h-[78vh] sm:min-h-[520px]">
+      <div className="relative h-[44svh] min-h-[320px] w-full sm:h-[78vh] sm:min-h-[520px]">
         <img
           src={isImage && url ? url : heroRelief}
           alt=""
@@ -29,7 +29,7 @@ export function Hero() {
           <img
             src={logoGold}
             alt="MUNIS USMAN"
-            className="h-32 w-auto sm:h-40 lg:h-48 animate-fade-in"
+            className="h-24 w-auto sm:h-40 lg:h-48 animate-fade-in"
           />
           <p className="mt-3 font-display italic text-[var(--gold)] text-[11px] sm:text-xs tracking-[0.32em] uppercase animate-fade-up">
             Couture &amp; Accessories

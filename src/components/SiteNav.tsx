@@ -107,7 +107,9 @@ export function SiteNav() {
             </button>
           </div>
           <Link to="/" className="flex items-center justify-center">
-            <img src={mobileLogo} alt="MUNIS USMAN" className="h-11 w-auto" />
+            <span className={`font-display text-[18px] tracking-[0.32em] uppercase font-light ${textClass}`}>
+              MUNIS USMAN
+            </span>
           </Link>
           <div className={`flex items-center justify-end gap-4 ${textClass}`}>
             <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
