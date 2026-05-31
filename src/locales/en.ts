@@ -115,6 +115,8 @@ export const en = {
     tabCloth: "Clothing",
     tabHome: "Home",
     tabCouture: "Couture",
+    bannerTitle: "Details that\ncomplete you",
+    bannerSubtitle: "Not just objects — a philosophy embodied in details.",
     selectedColor: "Colour",
     item1Name: "Bukhara case",
     item1Desc: "The minarets of Bukhara at the end of the day, printed on a clear case.",

@@ -95,11 +95,11 @@ function CollectionPage() {
               <p className="absolute right-6 top-6 text-[10px] uppercase tracking-[0.28em] text-white/90 font-display">
                 {t(`collection.tab${activeCat.charAt(0).toUpperCase() + activeCat.slice(1)}`)}
               </p>
-              <h1 className="font-display text-3xl leading-[1.05] tracking-[0.02em] uppercase font-light max-w-[14rem]">
-                Details that<br />complete you
+              <h1 className="font-display text-3xl leading-[1.05] tracking-[0.02em] uppercase font-light max-w-[14rem] whitespace-pre-line">
+                {t("collection.bannerTitle")}
               </h1>
               <p className="mt-3 font-display italic text-[11px] text-white/85 max-w-[18rem]">
-                не просто изделия — философия воплощённая в деталях.
+                {t("collection.bannerSubtitle")}
               </p>
             </div>
           </div>
@@ -171,9 +171,9 @@ function CollectionPage() {
                               ))}
                             </div>
                           )}
-                          <div className="mt-2 flex items-center justify-between gap-2">
-                            <h3 className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground truncate">{name}</h3>
-                            <p className="font-display text-[13px] text-foreground whitespace-nowrap">{formatUzs(p.price_uzs, lang)}</p>
+                          <div className="mt-2 flex items-start justify-between gap-2">
+                            <h3 className="font-sans text-[11px] uppercase tracking-[0.1em] text-foreground leading-[1.35]">{name}</h3>
+                            <p className="font-display text-[13px] text-foreground whitespace-nowrap shrink-0">{formatUzs(p.price_uzs, lang)}</p>
                           </div>
                         </div>
                       </Link>
