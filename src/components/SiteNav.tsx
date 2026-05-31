@@ -100,26 +100,26 @@ export function SiteNav() {
         </div>
 
         {/* MOBILE */}
-        <div className="mx-auto grid grid-cols-3 items-center px-4 lg:hidden">
+        <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-2 px-4 lg:hidden">
           <div className="flex items-center justify-start">
             <button aria-label="Open menu" onClick={() => setOpen(true)} className={textClass}>
-              <Menu className="h-6 w-6" strokeWidth={1.5} />
+              <Menu className="h-5 w-5" strokeWidth={1.25} />
             </button>
           </div>
-          <Link to="/" className="flex items-center justify-center">
-            <span className={`font-display text-[18px] tracking-[0.32em] uppercase font-light ${textClass}`}>
+          <Link to="/" className="flex items-center justify-center min-w-0">
+            <span className={`font-display whitespace-nowrap text-[15px] sm:text-[17px] tracking-[0.22em] uppercase font-light ${textClass}`}>
               MUNIS USMAN
             </span>
           </Link>
           <div className={`flex items-center justify-end gap-4 ${textClass}`}>
             <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
-              <Search className="h-5 w-5" strokeWidth={1.5} />
+              <Search className="h-[18px] w-[18px]" strokeWidth={1.25} />
             </button>
             <Link to="/account" aria-label="Wishlist" className="transition-colors hover:text-accent">
-              <Heart className="h-5 w-5" strokeWidth={1.5} />
+              <Heart className="h-[18px] w-[18px]" strokeWidth={1.25} />
             </Link>
             <Link to="/cart" aria-label={t("nav.cart")} className="relative transition-colors hover:text-accent">
-              <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+              <ShoppingBag className="h-[18px] w-[18px]" strokeWidth={1.25} />
               {count > 0 && (
                 <span className="absolute -right-2 -top-2 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-accent px-1 text-[9px] font-semibold text-accent-foreground">{count}</span>
               )}
