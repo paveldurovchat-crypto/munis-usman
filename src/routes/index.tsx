@@ -40,7 +40,7 @@ type Tile = {
   cat: "accessories" | "cloth" | "home" | "couture";
   label: string;
   subKey: string;
-  image: string;
+  image: string | null;
   slot: MediaSlot;
 };
 
