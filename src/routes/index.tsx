@@ -105,12 +105,15 @@ function Index() {
                     search={{ cat: tile.cat } as never}
                     className="group relative block aspect-[3/4] overflow-hidden bg-[var(--sand-dark)]"
                   >
-                    <img
-                      src={tile.image}
-                      alt={tile.label}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
-                    />
+                    {tile.image && (
+                      <img
+                        src={tile.image}
+                        alt={tile.label}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                      />
+                    )}
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-left text-sand">
                       <p className="font-display text-xl tracking-wide sm:text-2xl uppercase">{tile.label}</p>
