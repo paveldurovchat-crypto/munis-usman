@@ -4,15 +4,6 @@ import { Hero } from "@/components/Hero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import tileAccessories from "@/assets/home-tile-accessories.jpg";
-import tileCloth from "@/assets/home-tile-cloth.jpg";
-import tileHome from "@/assets/home-tile-home.jpg";
-import tileCouture from "@/assets/home-tile-couture.jpg";
-import artOfHands from "@/assets/home-art-of-hands.jpg";
-import aboutPortrait from "@/assets/home-about-portrait.jpg";
-import craft1 from "@/assets/home-craft-1.jpg";
-import craft2 from "@/assets/home-craft-2.jpg";
-import craft3 from "@/assets/home-craft-3.jpg";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
 
 
