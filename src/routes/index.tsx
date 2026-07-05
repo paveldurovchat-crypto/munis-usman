@@ -46,9 +46,10 @@ type Tile = {
 
 function Index() {
   const { t } = useI18n();
-  const { data: mediaAssets } = useMediaLibrary();
+  const { data: mediaAssets, isLoading: mediaLoading } = useMediaLibrary();
   const pick = (slot: MediaSlot, fallback: string) =>
-    assetDisplayUrl(pickAssetBySlot(mediaAssets, slot)) ?? fallback;
+    assetDisplayUrl(pickAssetBySlot(mediaAssets, slot)) ?? (mediaLoading ? null : fallback);
+
 
   const tiles: Tile[] = [
     { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: pick("tile-accessories", tileAccessories), slot: "tile-accessories" },
