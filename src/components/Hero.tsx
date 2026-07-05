@@ -1,31 +1,34 @@
-import heroRelief from "@/assets/home-hero-relief.jpg";
+import { useState } from "react";
+import heroReliefWebp from "@/assets/home-hero-relief.webp";
 import logoGold from "@/assets/logo-gold.svg";
 import { useI18n } from "@/lib/i18n";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-slots";
 
 export function Hero() {
   const { t } = useI18n();
-  const { data: assets, isLoading } = useMediaLibrary();
+  const { data: assets } = useMediaLibrary();
   const heroAsset = pickAssetBySlot(assets, "hero");
+  const overrideUrl = heroAsset?.kind === "image" ? assetDisplayUrl(heroAsset) : null;
 
-  const isImage = heroAsset?.kind === "image";
-  const url = assetDisplayUrl(heroAsset);
-  // Show real asset if present; only fall back to bundled image after loading finishes.
-  const displayUrl = isImage && url ? url : isLoading ? null : heroRelief;
+  // Bundled hero loads instantly. If admin uploaded a custom hero, swap in once ready.
+  const displayUrl = overrideUrl ?? heroReliefWebp;
 
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <section className="relative w-full overflow-hidden bg-[#b48264]">
       <div className="relative h-[50svh] min-h-[320px] w-full sm:h-screen sm:min-h-[600px]">
-        {displayUrl && (
-          <img
-            src={displayUrl}
-            alt=""
-            fetchPriority="high"
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
-          />
-        )}
-
+        <img
+          key={displayUrl}
+          src={displayUrl}
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
         {/* Warm terracotta tint — keeps stone texture visible with warm sandy tone */}
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(180, 130, 100, 0.35)" }} />
@@ -53,4 +56,3 @@ export function Hero() {
     </section>
   );
 }
-
