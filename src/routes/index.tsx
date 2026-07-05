@@ -222,13 +222,16 @@ function Index() {
               {craftImgs.map((src, i) => (
                 <FadeUp key={i} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
-                    <img
-                      src={src}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
-                    />
+                    {src && (
+                      <img
+                        src={src}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                      />
+                    )}
                   </div>
+
                 </FadeUp>
               ))}
             </div>
