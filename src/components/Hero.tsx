@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import heroReliefWebp from "@/assets/home-hero-relief.webp";
 import logoGold from "@/assets/logo-gold.svg";
 import { useI18n } from "@/lib/i18n";
