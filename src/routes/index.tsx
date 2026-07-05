@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
+import heroReliefWebp from "@/assets/home-hero-relief.webp";
 
 
 export const Route = createFileRoute("/")({
@@ -23,6 +24,9 @@ export const Route = createFileRoute("/")({
         content:
           "Handcraft studio in Tashkent. Embroidered accessories, phone cases and wearable art since 2014.",
       },
+    ],
+    links: [
+      { rel: "preload", as: "image", href: heroReliefWebp, type: "image/webp" },
     ],
   }),
 });
