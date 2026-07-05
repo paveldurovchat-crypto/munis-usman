@@ -4,15 +4,6 @@ import { Hero } from "@/components/Hero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
-import tileAccessories from "@/assets/home-tile-accessories.jpg";
-import tileCloth from "@/assets/home-tile-cloth.jpg";
-import tileHome from "@/assets/home-tile-home.jpg";
-import tileCouture from "@/assets/home-tile-couture.jpg";
-import artOfHands from "@/assets/home-art-of-hands.jpg";
-import aboutPortrait from "@/assets/home-about-portrait.jpg";
-import craft1 from "@/assets/home-craft-1.jpg";
-import craft2 from "@/assets/home-craft-2.jpg";
-import craft3 from "@/assets/home-craft-3.jpg";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
 
 
@@ -47,24 +38,25 @@ type Tile = {
 function Index() {
   const { t } = useI18n();
   const { data: mediaAssets, isLoading: mediaLoading } = useMediaLibrary();
-  const pick = (slot: MediaSlot, fallback: string) =>
-    assetDisplayUrl(pickAssetBySlot(mediaAssets, slot)) ?? (mediaLoading ? null : fallback);
+  const pick = (slot: MediaSlot) => assetDisplayUrl(pickAssetBySlot(mediaAssets, slot));
+  void mediaLoading;
 
 
   const tiles: Tile[] = [
-    { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: pick("tile-accessories", tileAccessories), slot: "tile-accessories" },
-    { cat: "cloth", label: t("collection.tabCloth"), subKey: "home.tileClothSub", image: pick("tile-cloth", tileCloth), slot: "tile-cloth" },
-    { cat: "home", label: t("collection.tabHome"), subKey: "home.tileHomeSub", image: pick("tile-home", tileHome), slot: "tile-home" },
-    { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: pick("tile-couture", tileCouture), slot: "tile-couture" },
+    { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: pick("tile-accessories"), slot: "tile-accessories" },
+    { cat: "cloth", label: t("collection.tabCloth"), subKey: "home.tileClothSub", image: pick("tile-cloth"), slot: "tile-cloth" },
+    { cat: "home", label: t("collection.tabHome"), subKey: "home.tileHomeSub", image: pick("tile-home"), slot: "tile-home" },
+    { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: pick("tile-couture"), slot: "tile-couture" },
   ];
 
-  const artOfHandsImg = pick("art-of-hands", artOfHands);
-  const aboutPortraitImg = pick("about-portrait", aboutPortrait);
+  const artOfHandsImg = pick("art-of-hands");
+  const aboutPortraitImg = pick("about-portrait");
   const craftImgs = [
-    pick("craft-1", craft1),
-    pick("craft-2", craft2),
-    pick("craft-3", craft3),
+    pick("craft-1"),
+    pick("craft-2"),
+    pick("craft-3"),
   ];
+
 
   return (
     <div className="min-h-screen bg-sand text-foreground">
