@@ -203,12 +203,15 @@ function Index() {
               <div className="lg:col-span-5">
                 <FadeUp delay={120}>
                   <div className="relative aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
-                    <img
-                      src={aboutPortraitImg}
-                      alt="MUNIS USMAN — studio portrait"
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
+                    {aboutPortraitImg && (
+                      <img
+                        src={aboutPortraitImg}
+                        alt="MUNIS USMAN — studio portrait"
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                    )}
+
                   </div>
                 </FadeUp>
               </div>
