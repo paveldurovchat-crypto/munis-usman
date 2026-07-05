@@ -5,21 +5,27 @@ import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-s
 
 export function Hero() {
   const { t } = useI18n();
-  const { data: assets } = useMediaLibrary();
+  const { data: assets, isLoading } = useMediaLibrary();
   const heroAsset = pickAssetBySlot(assets, "hero");
 
   const isImage = heroAsset?.kind === "image";
   const url = assetDisplayUrl(heroAsset);
+  // Show real asset if present; only fall back to bundled image after loading finishes.
+  const displayUrl = isImage && url ? url : isLoading ? null : heroRelief;
+
 
   return (
     <section className="relative w-full overflow-hidden bg-[#b48264]">
       <div className="relative h-[50svh] min-h-[320px] w-full sm:h-screen sm:min-h-[600px]">
-        <img
-          src={isImage && url ? url : heroRelief}
-          alt=""
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        {displayUrl && (
+          <img
+            src={displayUrl}
+            alt=""
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+          />
+        )}
+
 
         {/* Warm terracotta tint — keeps stone texture visible with warm sandy tone */}
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(180, 130, 100, 0.35)" }} />

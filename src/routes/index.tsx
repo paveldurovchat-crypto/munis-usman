@@ -40,15 +40,16 @@ type Tile = {
   cat: "accessories" | "cloth" | "home" | "couture";
   label: string;
   subKey: string;
-  image: string;
+  image: string | null;
   slot: MediaSlot;
 };
 
 function Index() {
   const { t } = useI18n();
-  const { data: mediaAssets } = useMediaLibrary();
+  const { data: mediaAssets, isLoading: mediaLoading } = useMediaLibrary();
   const pick = (slot: MediaSlot, fallback: string) =>
-    assetDisplayUrl(pickAssetBySlot(mediaAssets, slot)) ?? fallback;
+    assetDisplayUrl(pickAssetBySlot(mediaAssets, slot)) ?? (mediaLoading ? null : fallback);
+
 
   const tiles: Tile[] = [
     { cat: "accessories", label: t("collection.tabAccessories"), subKey: "home.tileAccessoriesSub", image: pick("tile-accessories", tileAccessories), slot: "tile-accessories" },
@@ -84,7 +85,7 @@ function Index() {
                   className="group relative block w-[75vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
                   style={{ height: "56vw" }}
                 >
-                  <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />
+                  {tile.image && <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />}
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 px-3 pb-3 text-left text-white">
                     <p className="font-display text-[18px] leading-none tracking-[0.06em] uppercase font-normal">{tile.label}</p>
@@ -104,12 +105,15 @@ function Index() {
                     search={{ cat: tile.cat } as never}
                     className="group relative block aspect-[3/4] overflow-hidden bg-[var(--sand-dark)]"
                   >
-                    <img
-                      src={tile.image}
-                      alt={tile.label}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
-                    />
+                    {tile.image && (
+                      <img
+                        src={tile.image}
+                        alt={tile.label}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                      />
+                    )}
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-left text-sand">
                       <p className="font-display text-xl tracking-wide sm:text-2xl uppercase">{tile.label}</p>
@@ -138,12 +142,15 @@ function Index() {
         {/* The Art of Hands — wide editorial image with overlaid title */}
         <section className="relative bg-sand">
           <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden">
-            <img
-              src={artOfHandsImg}
-              alt={t("home.artHandsTitle").replace("\n", " ")}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+            {artOfHandsImg && (
+              <img
+                src={artOfHandsImg}
+                alt={t("home.artHandsTitle").replace("\n", " ")}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            )}
+
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--green-deep)]/55 via-transparent to-transparent" />
             <FadeUp className="absolute inset-y-0 left-0 z-10 flex items-center px-6 sm:px-12 lg:px-20">
               <h2
@@ -196,12 +203,15 @@ function Index() {
               <div className="lg:col-span-5">
                 <FadeUp delay={120}>
                   <div className="relative aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
-                    <img
-                      src={aboutPortraitImg}
-                      alt="MUNIS USMAN — studio portrait"
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
+                    {aboutPortraitImg && (
+                      <img
+                        src={aboutPortraitImg}
+                        alt="MUNIS USMAN — studio portrait"
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                    )}
+
                   </div>
                 </FadeUp>
               </div>
@@ -212,13 +222,16 @@ function Index() {
               {craftImgs.map((src, i) => (
                 <FadeUp key={i} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
-                    <img
-                      src={src}
-                      alt=""
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
-                    />
+                    {src && (
+                      <img
+                        src={src}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-105"
+                      />
+                    )}
                   </div>
+
                 </FadeUp>
               ))}
             </div>
