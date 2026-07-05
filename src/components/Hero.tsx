@@ -5,11 +5,14 @@ import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl } from "@/lib/media-s
 
 export function Hero() {
   const { t } = useI18n();
-  const { data: assets } = useMediaLibrary();
+  const { data: assets, isLoading } = useMediaLibrary();
   const heroAsset = pickAssetBySlot(assets, "hero");
 
   const isImage = heroAsset?.kind === "image";
   const url = assetDisplayUrl(heroAsset);
+  // Show real asset if present; only fall back to bundled image after loading finishes.
+  const displayUrl = isImage && url ? url : isLoading ? null : heroRelief;
+
 
   return (
     <section className="relative w-full overflow-hidden bg-[#b48264]">
