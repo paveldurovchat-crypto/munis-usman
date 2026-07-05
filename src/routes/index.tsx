@@ -85,7 +85,7 @@ function Index() {
                   className="group relative block w-[75vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
                   style={{ height: "56vw" }}
                 >
-                  <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />
+                  {tile.image && <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />}
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 px-3 pb-3 text-left text-white">
                     <p className="font-display text-[18px] leading-none tracking-[0.06em] uppercase font-normal">{tile.label}</p>
