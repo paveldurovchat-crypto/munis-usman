@@ -14,21 +14,32 @@ export function Hero() {
   const displayUrl = overrideUrl ?? heroReliefWebp;
 
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Cached images may finish before React attaches onLoad — check on mount and after src change.
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setLoaded(true);
+    }
+  }, [displayUrl]);
 
   return (
     <section className="relative w-full overflow-hidden bg-[#b48264]">
       <div className="relative h-[50svh] min-h-[320px] w-full sm:h-screen sm:min-h-[600px]">
         <img
+          ref={imgRef}
           key={displayUrl}
           src={displayUrl}
           alt=""
           fetchPriority="high"
           decoding="async"
           onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out ${
             loaded ? "opacity-100" : "opacity-0"
           }`}
         />
+
 
         {/* Warm terracotta tint — keeps stone texture visible with warm sandy tone */}
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(180, 130, 100, 0.35)" }} />
