@@ -142,12 +142,15 @@ function Index() {
         {/* The Art of Hands — wide editorial image with overlaid title */}
         <section className="relative bg-sand">
           <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden">
-            <img
-              src={artOfHandsImg}
-              alt={t("home.artHandsTitle").replace("\n", " ")}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+            {artOfHandsImg && (
+              <img
+                src={artOfHandsImg}
+                alt={t("home.artHandsTitle").replace("\n", " ")}
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            )}
+
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--green-deep)]/55 via-transparent to-transparent" />
             <FadeUp className="absolute inset-y-0 left-0 z-10 flex items-center px-6 sm:px-12 lg:px-20">
               <h2
