@@ -197,7 +197,7 @@ function Index() {
 
               <div className="lg:col-span-5">
                 <FadeUp delay={120}>
-                  <div className="relative aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
+                  <div className="relative w-[155px] h-[150px] overflow-hidden bg-[var(--sand-dark)] rounded-[18px] lg:w-full lg:h-auto lg:aspect-[4/5] lg:rounded-none">
                     {aboutPortraitImg && (
                       <img
                         src={aboutPortraitImg}
@@ -213,7 +213,7 @@ function Index() {
             </div>
 
             {/* Craft trio */}
-            <div className="mt-14 grid grid-cols-3 gap-3 sm:gap-4 lg:mt-20 lg:gap-6">
+            <div className="mt-14 grid grid-cols-3 gap-[3px] sm:gap-4 lg:mt-20 lg:gap-6">
               {craftImgs.map((src, i) => (
                 <FadeUp key={i} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
