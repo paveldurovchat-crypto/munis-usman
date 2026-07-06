@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { Hero } from "@/components/Hero";
@@ -6,6 +7,8 @@ import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
 import heroReliefWebp from "@/assets/home-hero-relief.webp";
+import artOfHandsVideo from "@/assets/art-of-hands.mp4.asset.json";
+import artOfHandsPoster from "@/assets/art-of-hands-poster.jpg.asset.json";
 
 
 export const Route = createFileRoute("/")({
@@ -53,7 +56,7 @@ function Index() {
     { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: pick("tile-couture"), slot: "tile-couture" },
   ];
 
-  const artOfHandsImg = pick("art-of-hands");
+  
   const aboutPortraitImg = pick("about-portrait");
   const craftImgs = [
     pick("craft-1"),
@@ -135,17 +138,14 @@ function Index() {
           </div>
         </section>
 
-        {/* The Art of Hands — wide editorial image with overlaid title */}
+        {/* The Art of Hands — background video with overlaid title */}
         <section className="relative bg-sand">
-          <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden">
-            {artOfHandsImg && (
-              <img
-                src={artOfHandsImg}
-                alt={t("home.artHandsTitle").replace("\n", " ")}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            )}
+          <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden bg-[var(--green-deep)]">
+            <ArtOfHandsVideo
+              src={artOfHandsVideo.url}
+              poster={artOfHandsPoster.url}
+              alt={t("home.artHandsTitle").replace("\n", " ")}
+            />
 
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--green-deep)]/55 via-transparent to-transparent" />
             <FadeUp className="absolute inset-y-0 left-0 z-10 flex items-center px-6 sm:px-12 lg:px-20">
@@ -256,6 +256,69 @@ function Index() {
         </section>
       </main>
       <SiteFooter />
+    </div>
+  );
+}
+
+function ArtOfHandsVideo({ src, poster, alt }: { src: string; poster: string; alt: string }) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [inView, setInView] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            setInView(true);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+    const v = videoRef.current;
+    if (!v) return;
+    v.play().catch(() => {
+      // Autoplay blocked — poster stays visible via the <img> fallback.
+    });
+  }, [inView]);
+
+  return (
+    <div ref={containerRef} className="absolute inset-0">
+      <img
+        src={poster}
+        alt={alt}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
+      />
+      {inView && (
+        <video
+          ref={videoRef}
+          src={src}
+          poster={poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onCanPlay={() => setReady(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
+        />
+      )}
     </div>
   );
 }
