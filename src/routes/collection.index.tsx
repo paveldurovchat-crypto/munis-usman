@@ -181,9 +181,10 @@ function CollectionPage() {
                     key={tab.id}
                     to="/collection"
                     search={{ cat: tab.id }}
-                    className={`relative whitespace-nowrap py-4 text-[11px] uppercase tracking-[0.18em] font-sans transition-colors ${
+                    className={`relative whitespace-nowrap py-4 text-[21px] uppercase tracking-[0.14em] font-baskerville transition-colors ${
                       isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     }`}
+
                   >
                     {t(tab.labelKey)}
                     {isActive && <span className="absolute inset-x-0 bottom-0 h-[2px] bg-foreground" />}
