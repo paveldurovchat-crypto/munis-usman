@@ -217,6 +217,11 @@
   font-family: var(--font-baskerville);
 }
 
+@utility font-optima {
+  font-family: var(--font-optima);
+}
+
+
 
 @utility text-gold-gradient {
   background: var(--gradient-gold);
