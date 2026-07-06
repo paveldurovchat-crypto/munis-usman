@@ -71,25 +71,25 @@ function Index() {
         {/* Category tiles — mobile horizontal scroll, desktop 4-up grid */}
         <section className="bg-sand pt-0 pb-6 lg:pb-12">
           <div className="w-full">
-            {/* Mobile: horizontal scroll row — one full tile + edge of next */}
-            <div className="flex gap-0 overflow-x-auto pl-6 pt-6 pb-2 lg:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
+            {/* Mobile: static 4-column grid, edge to edge, all four visible */}
+            <div className="grid grid-cols-4 gap-[2px] lg:hidden">
               {tiles.map((tile) => (
                 <Link
                   key={tile.cat}
                   to="/collection"
                   search={{ cat: tile.cat } as never}
-                  className="group relative block w-[75vw] flex-none overflow-hidden bg-[var(--sand-dark)] snap-start"
-                  style={{ height: "56vw" }}
+                  className="group relative block aspect-[19/33] overflow-hidden bg-[var(--sand-dark)]"
                 >
                   {tile.image && <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />}
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 px-3 pb-3 text-left text-white">
-                    <p className="font-display text-[18px] leading-none tracking-[0.06em] uppercase font-normal">{tile.label}</p>
-                    <p className="mt-1 font-display italic text-[11px] text-white/80">/ {t(tile.subKey)}</p>
+                  <div className="absolute inset-x-0 bottom-0 px-1.5 pb-1.5 text-left text-white">
+                    <p className="font-display text-[10px] leading-none tracking-[0.02em] uppercase font-normal truncate">{tile.label}</p>
+                    <p className="mt-0.5 font-display italic text-[8px] text-white/80 truncate">/ {t(tile.subKey)}</p>
                   </div>
                 </Link>
               ))}
             </div>
+
 
 
             {/* Desktop: 4-up grid, zero gap */}
