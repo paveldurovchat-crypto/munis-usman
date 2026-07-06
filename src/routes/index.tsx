@@ -160,16 +160,80 @@ function Index() {
 
         {/* About the brand */}
         <section id="philosophy" className="bg-[var(--white-warm)] pt-[56px] pb-[64px] lg:py-28">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          {/* Mobile layout */}
+          <div className="px-6 lg:hidden">
+            <FadeUp>
+              <h2 className="font-display text-[28px] leading-tight text-[#4a5044]">
+                {t("home.aboutKicker")}
+              </h2>
+            </FadeUp>
+            <FadeUp delay={80}>
+              <div className="mt-4 flex items-baseline gap-3">
+                <p className="font-display text-[18px] tracking-[0.14em] text-[#4a5044]">
+                  MUNIS USMAN
+                </p>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-[#4a5044]/80">
+                  {t("home.aboutSince")}
+                </p>
+              </div>
+            </FadeUp>
+            <div className="mt-6 flex items-start gap-4">
+              <FadeUp delay={140} className="flex-1 min-w-0">
+                <p className="font-display text-[18px] leading-[1.35] text-foreground">
+                  {t("home.aboutLine1")}
+                  <br />
+                  {t("home.aboutLine2")}
+                  <br />
+                  {t("home.aboutLine3")}
+                </p>
+              </FadeUp>
+              <FadeUp delay={120}>
+                <div className="relative w-[155px] h-[150px] shrink-0 overflow-hidden rounded-[18px] bg-[var(--sand-dark)]">
+                  {aboutPortraitImg && (
+                    <img
+                      src={aboutPortraitImg}
+                      alt="MUNIS USMAN — studio portrait"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  )}
+                </div>
+              </FadeUp>
+            </div>
+            <FadeUp delay={220}>
+              <p className="mt-6 text-[15px] leading-relaxed text-muted-foreground">
+                {t("home.aboutBody")}
+              </p>
+            </FadeUp>
+            <div className="mt-8 grid grid-cols-3 gap-[3px]">
+              {craftImgs.map((src, i) => (
+                <FadeUp key={i} delay={i * 100}>
+                  <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
+                    {src && (
+                      <img
+                        src={src}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                    )}
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop layout */}
+          <div className="mx-auto hidden max-w-7xl px-6 lg:block lg:px-12">
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="text-center lg:col-span-7 lg:text-left">
+              <div className="lg:col-span-7 lg:text-left">
                 <FadeUp>
                   <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--green)]/70">
                     {t("home.aboutKicker")}
                   </p>
                 </FadeUp>
                 <FadeUp delay={80}>
-                  <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:items-baseline sm:gap-4 lg:items-baseline">
+                  <div className="mt-4 flex flex-col items-start gap-2 sm:flex-row sm:items-baseline sm:gap-4">
                     <p className="font-display text-3xl text-[var(--green-deep)] sm:text-4xl">
                       MUNIS USMAN
                     </p>
@@ -189,7 +253,7 @@ function Index() {
                   </p>
                 </FadeUp>
                 <FadeUp delay={220}>
-                  <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground mx-auto lg:mx-0">
+                  <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
                     {t("home.aboutBody")}
                   </p>
                 </FadeUp>
@@ -197,7 +261,7 @@ function Index() {
 
               <div className="lg:col-span-5">
                 <FadeUp delay={120}>
-                  <div className="relative w-[155px] h-[150px] overflow-hidden bg-[var(--sand-dark)] rounded-[18px] lg:w-full lg:h-auto lg:aspect-[4/5] lg:rounded-none">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
                     {aboutPortraitImg && (
                       <img
                         src={aboutPortraitImg}
@@ -206,16 +270,14 @@ function Index() {
                         className="h-full w-full object-cover"
                       />
                     )}
-
                   </div>
                 </FadeUp>
               </div>
             </div>
 
-            {/* Craft trio */}
-            <div className="mt-14 grid grid-cols-3 gap-[3px] sm:gap-4 lg:mt-20 lg:gap-6">
+            <div className="mt-20 grid grid-cols-3 gap-6">
               {craftImgs.map((src, i) => (
-                <FadeUp key={i} delay={i * 100}>
+                <FadeUp key={`d-${i}`} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
                     {src && (
                       <img
@@ -226,12 +288,12 @@ function Index() {
                       />
                     )}
                   </div>
-
                 </FadeUp>
               ))}
             </div>
           </div>
         </section>
+
 
         {/* Quote */}
         <section className="bg-[var(--white-warm)] pt-10 pb-16 lg:py-28">
