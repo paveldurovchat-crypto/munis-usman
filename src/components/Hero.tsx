@@ -25,7 +25,8 @@ export function Hero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#b48264]">
-      <div className="relative h-[50svh] min-h-[320px] w-full sm:h-screen sm:min-h-[600px]">
+      <div className="relative aspect-[26/21] w-full sm:aspect-auto sm:h-screen sm:min-h-[600px]">
+
         <img
           ref={imgRef}
           key={displayUrl}

@@ -58,7 +58,7 @@ export function SiteNav() {
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${solid ? "bg-cream/90 backdrop-blur-md border-b border-border/60 py-3" : "bg-transparent py-4 lg:py-6"}`}>
+      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 flex flex-col justify-center min-h-[60px] lg:min-h-0 ${solid ? "bg-cream/90 backdrop-blur-md border-b border-border/60 lg:py-3" : "bg-transparent py-4 lg:py-6"}`}>
         {/* DESKTOP */}
         <div className="mx-auto hidden max-w-7xl items-center justify-between gap-6 px-6 lg:flex lg:px-12">
           <nav className={`flex items-center gap-8 text-[11px] uppercase tracking-[0.18em] font-sans font-light ${textClass}`}>
