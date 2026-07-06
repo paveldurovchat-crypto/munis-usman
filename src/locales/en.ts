@@ -81,6 +81,8 @@ export const en = {
       "At the heart of it — a meeting of a modern eye and a deep respect for the classics.",
     quoteSub: "These are pieces beyond fashion. Ones you return to.",
     quoteAuthor: "Munis Usman",
+    quoteSignature: "Munis. M.",
+
   },
   about: {
     kicker: "About",

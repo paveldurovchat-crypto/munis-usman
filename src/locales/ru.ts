@@ -81,6 +81,8 @@ export const ru = {
       "В основе — соединение современного подхода и уважения к классике.",
     quoteSub: "Это вещи вне времени. Те, к которым возвращаются.",
     quoteAuthor: "Munis Usman",
+    quoteSignature: "Munis. M.",
+
   },
   about: {
     kicker: "О бренде",

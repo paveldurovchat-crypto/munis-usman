@@ -163,23 +163,23 @@ function Index() {
           {/* Mobile layout */}
           <div className="px-6 lg:hidden">
             <FadeUp>
-              <h2 className="font-display text-[28px] leading-tight text-[#4a5044]">
+              <h2 className="font-optima text-[28px] leading-tight text-[#4a5044]">
                 {t("home.aboutKicker")}
               </h2>
             </FadeUp>
             <FadeUp delay={80}>
               <div className="mt-4 flex items-baseline gap-3">
-                <p className="font-display text-[18px] tracking-[0.14em] text-[#4a5044]">
+                <p className="font-aboreto text-[18px] tracking-[0.08em] text-[#4a5044]">
                   MUNIS USMAN
                 </p>
-                <p className="text-[11px] uppercase tracking-[0.24em] text-[#4a5044]/80">
-                  {t("home.aboutSince")}
+                <p className="font-aboreto text-[11px] tracking-[0.16em] text-[#4a5044]/80">
+                  SINCE 2017
                 </p>
               </div>
             </FadeUp>
             <div className="mt-6 flex items-start gap-4">
               <FadeUp delay={140} className="flex-1 min-w-0">
-                <p className="font-display text-[18px] leading-[1.35] text-foreground">
+                <p className="font-optima text-[17px] leading-[1.4] text-[#4a5044]">
                   {t("home.aboutLine1")}
                   <br />
                   {t("home.aboutLine2")}
@@ -201,7 +201,7 @@ function Index() {
               </FadeUp>
             </div>
             <FadeUp delay={220}>
-              <p className="mt-6 text-[15px] leading-relaxed text-muted-foreground">
+              <p className="mt-6 font-optima text-[15px] leading-relaxed text-[#4a5044]">
                 {t("home.aboutBody")}
               </p>
             </FadeUp>
@@ -221,6 +221,35 @@ function Index() {
                 </FadeUp>
               ))}
             </div>
+
+            {/* Quote block — mobile */}
+            <FadeUp delay={120}>
+              <div className="relative mt-12 px-2">
+                <span
+                  aria-hidden
+                  className="absolute -left-1 -top-2 font-optima text-[56px] leading-none text-[#4a5044]/70"
+                >
+                  “
+                </span>
+                <div className="px-6 pt-6 text-center">
+                  <p className="font-optima text-[16px] leading-[1.55] text-[#4a5044]">
+                    {t("home.quoteText")}
+                  </p>
+                  <p className="mt-3 font-optima text-[15px] leading-[1.55] text-[#4a5044]">
+                    {t("home.quoteSub")}
+                  </p>
+                </div>
+                <span
+                  aria-hidden
+                  className="absolute -right-1 -bottom-6 font-optima text-[56px] leading-none text-[#4a5044]/70"
+                >
+                  ”
+                </span>
+                <p className="mt-8 pr-3 text-right font-andantino text-[22px] leading-none text-[#4a5044]">
+                  {t("home.quoteSignature")}
+                </p>
+              </div>
+            </FadeUp>
           </div>
 
           {/* Desktop layout */}
@@ -228,32 +257,32 @@ function Index() {
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-7 lg:text-left">
                 <FadeUp>
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-[var(--green)]/70">
+                  <h2 className="font-optima text-4xl text-[#4a5044] sm:text-5xl">
                     {t("home.aboutKicker")}
-                  </p>
+                  </h2>
                 </FadeUp>
                 <FadeUp delay={80}>
-                  <div className="mt-4 flex flex-col items-start gap-2 sm:flex-row sm:items-baseline sm:gap-4">
-                    <p className="font-display text-3xl text-[var(--green-deep)] sm:text-4xl">
+                  <div className="mt-6 flex flex-col items-start gap-2 sm:flex-row sm:items-baseline sm:gap-4">
+                    <p className="font-aboreto text-3xl tracking-[0.08em] text-[var(--green-deep)] sm:text-4xl">
                       MUNIS USMAN
                     </p>
                     <span className="hidden h-px flex-1 bg-[var(--green)]/30 sm:block" />
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-[var(--gold)]">
-                      {t("home.aboutSince")}
+                    <p className="font-aboreto text-xs tracking-[0.16em] text-[var(--gold)] sm:text-sm">
+                      SINCE 2017
                     </p>
                   </div>
                 </FadeUp>
                 <FadeUp delay={140}>
-                  <p className="mt-8 font-display text-2xl leading-[1.25] text-foreground sm:text-3xl">
+                  <p className="mt-8 font-optima text-2xl leading-[1.3] text-foreground sm:text-3xl">
                     {t("home.aboutLine1")}
                     <br />
                     {t("home.aboutLine2")}
                     <br />
-                    <span className="italic text-[var(--green-deep)]/85">{t("home.aboutLine3")}</span>
+                    {t("home.aboutLine3")}
                   </p>
                 </FadeUp>
                 <FadeUp delay={220}>
-                  <p className="mt-8 max-w-lg text-base leading-relaxed text-muted-foreground">
+                  <p className="mt-8 max-w-lg font-optima text-base leading-relaxed text-muted-foreground">
                     {t("home.aboutBody")}
                   </p>
                 </FadeUp>
@@ -291,30 +320,38 @@ function Index() {
                 </FadeUp>
               ))}
             </div>
-          </div>
-        </section>
 
-
-        {/* Quote */}
-        <section className="bg-[var(--white-warm)] pt-10 pb-16 lg:py-28">
-          <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center lg:px-12">
-            <FadeUp>
-              <p className="font-display text-xl leading-[1.5] text-[var(--green-deep)] sm:text-2xl">
-                <span className="mr-1 align-top text-[var(--gold)]">“</span>
-                {t("home.quoteText")}
-                <span className="ml-1 align-top text-[var(--gold)]">”</span>
-              </p>
-            </FadeUp>
+            {/* Quote block — desktop */}
             <FadeUp delay={120}>
-              <p className="text-base leading-relaxed text-muted-foreground">{t("home.quoteSub")}</p>
-            </FadeUp>
-            <FadeUp delay={200}>
-              <p className="font-display italic text-[var(--gold)] text-lg">
-                — {t("home.quoteAuthor")}
-              </p>
+              <div className="relative mx-auto mt-24 max-w-3xl px-6">
+                <span
+                  aria-hidden
+                  className="absolute -left-4 -top-6 font-optima text-[90px] leading-none text-[#4a5044]/70"
+                >
+                  “
+                </span>
+                <div className="px-8 pt-10 text-center">
+                  <p className="font-optima text-2xl leading-[1.45] text-[#4a5044]">
+                    {t("home.quoteText")}
+                  </p>
+                  <p className="mt-4 font-optima text-xl leading-[1.5] text-[#4a5044]">
+                    {t("home.quoteSub")}
+                  </p>
+                </div>
+                <span
+                  aria-hidden
+                  className="absolute -right-4 -bottom-10 font-optima text-[90px] leading-none text-[#4a5044]/70"
+                >
+                  ”
+                </span>
+                <p className="mt-10 pr-6 text-right font-andantino text-[34px] leading-none text-[#4a5044]">
+                  {t("home.quoteSignature")}
+                </p>
+              </div>
             </FadeUp>
           </div>
         </section>
+
       </main>
       <SiteFooter />
     </div>
