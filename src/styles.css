@@ -3,6 +3,15 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Baskerville";
+  src: url("./assets/fonts/baskerville.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -54,7 +63,9 @@
   --font-serif: "Cormorant Garamond", "Times New Roman", serif;
   --font-body: "Lora", Georgia, serif;
   --font-sans: "Jost", system-ui, sans-serif;
+  --font-baskerville: "Baskerville", "Times New Roman", serif;
 }
+
 
 :root {
   --radius: 0.25rem;
@@ -190,6 +201,11 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+@utility font-baskerville {
+  font-family: var(--font-baskerville);
+}
+
 
 @utility text-gold-gradient {
   background: var(--gradient-gold);

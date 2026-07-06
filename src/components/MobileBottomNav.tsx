@@ -29,65 +29,23 @@ export function MobileBottomNav() {
   return (
     <nav
       aria-label="Mobile navigation"
-      className="mbn-root fixed inset-x-0 bottom-0 z-40 bg-[#111111] lg:hidden"
-      style={{ paddingBottom: "env(safe-area-inset-bottom)", overflow: "visible" }}
+      className="fixed inset-x-0 bottom-0 z-40 bg-[#111111] lg:hidden"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <style>{`
-        .nav-tab.active {
-          color: #fff;
-          background-color: #3a3a3a;
-          height: 44px;
-          border-top-left-radius: 22px;
-          border-bottom-left-radius: 22px;
-          position: relative;
-          overflow: visible;
-          padding-right: 20px;
-          padding-left: 16px;
-          z-index: 2;
-        }
-        .nav-tab.active::after {
-          content: '';
-          position: absolute;
-          top: -6px;
-          right: -30px;
-          width: 70px;
-          height: 70px;
-          background-color: #111111;
-          border-radius: 50%;
-          z-index: 3;
-          pointer-events: none;
-        }
-        .nav-tab > span {
-          position: relative;
-          z-index: 5;
-        }
-        .nav-tab.after-active {
-          z-index: 4;
-          position: relative;
-        }
-      `}</style>
-      <ul
-        className="relative flex items-center justify-around px-2 pt-3"
-        style={{ overflow: "visible" }}
-      >
+      <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 px-2 pt-3">
         {tabs.map((tab, idx) => {
           const active = idx === activeIndex;
-          const afterActive = idx === activeIndex + 1;
-          const classes = ["nav-tab", "inline-flex", "items-center", "whitespace-nowrap"];
-          if (active) classes.push("active");
-          if (afterActive) classes.push("after-active");
-          else if (!active) classes.push("px-3", "py-2");
           return (
-            <li
-              key={tab.id}
-              className={`flex justify-center ${active ? "flex-none" : "flex-1"}`}
-              style={{ overflow: "visible" }}
-            >
-              <Link to={tab.to} search={tab.search as never} className={classes.join(" ")}>
+            <li key={tab.id} className="flex">
+              <Link
+                to={tab.to}
+                search={tab.search as never}
+                className={`inline-flex items-center rounded-full px-3 py-1.5 transition-colors ${
+                  active ? "bg-[#3a3a3a] text-white" : "text-white/70"
+                }`}
+              >
                 <span
-                  className={`font-sans text-[10px] uppercase tracking-[0.18em] whitespace-nowrap ${
-                    active ? "text-white" : "text-white/70"
-                  }`}
+                  className="font-baskerville text-[15px] uppercase tracking-[0.14em] leading-none whitespace-nowrap"
                 >
                   {t(tab.labelKey)}
                 </span>
