@@ -7,8 +7,8 @@ import { FadeUp } from "@/components/FadeUp";
 import { useI18n } from "@/lib/i18n";
 import { useMediaLibrary, pickAssetBySlot, assetDisplayUrl, type MediaSlot } from "@/lib/media-slots";
 import heroReliefWebp from "@/assets/home-hero-relief.webp";
-import artOfHandsVideo from "@/assets/art-of-hands.mp4.asset.json";
-import artOfHandsPoster from "@/assets/art-of-hands-poster.jpg.asset.json";
+import artOfHandsVideo from "@/assets/art-of-hands.mp4";
+import artOfHandsPoster from "@/assets/art-of-hands-poster.jpg";
 
 
 export const Route = createFileRoute("/")({
