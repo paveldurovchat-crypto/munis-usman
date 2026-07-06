@@ -142,8 +142,8 @@ function Index() {
         <section className="relative bg-sand">
           <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden bg-[var(--green-deep)]">
             <ArtOfHandsVideo
-              src={artOfHandsVideo.url}
-              poster={artOfHandsPoster.url}
+              src={artOfHandsVideo}
+              poster={artOfHandsPoster}
               alt={t("home.artHandsTitle").replace("\n", " ")}
             />
 
