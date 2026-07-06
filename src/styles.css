@@ -202,6 +202,11 @@
   text-transform: uppercase;
 }
 
+@utility font-baskerville {
+  font-family: var(--font-baskerville);
+}
+
+
 @utility text-gold-gradient {
   background: var(--gradient-gold);
   background-size: 200% 200%;
