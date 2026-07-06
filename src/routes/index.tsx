@@ -92,8 +92,8 @@ function Index() {
 
 
 
-            {/* Desktop: 4-up grid, zero gap */}
-            <div className="hidden lg:grid lg:grid-cols-4 lg:gap-0">
+            {/* Desktop: 4-up grid, 2px gap */}
+            <div className="hidden lg:grid lg:grid-cols-4 lg:gap-[2px]">
               {tiles.map((tile, i) => (
                 <FadeUp key={tile.cat} delay={i * 90}>
                   <Link
