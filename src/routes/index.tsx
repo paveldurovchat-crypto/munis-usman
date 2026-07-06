@@ -126,14 +126,13 @@ function Index() {
             </div>
 
             <FadeUp delay={200}>
-              <div className="mt-10 flex items-center justify-center gap-4 px-6">
-                <span className="h-px w-12 bg-[var(--green)]/40" />
-                <p className="font-display italic text-[var(--green-deep)]/80 text-sm sm:text-base">
+              <div className="mt-10 flex items-center justify-center px-6 py-8 lg:py-10">
+                <p className="text-center font-optima uppercase tracking-[0.14em] text-[18px] lg:text-[22px] font-normal text-[#4a5044]">
                   {t("home.detailLine")}
                 </p>
-                <span className="h-px w-12 bg-[var(--green)]/40" />
               </div>
             </FadeUp>
+
 
           </div>
         </section>

@@ -11,6 +11,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Optima";
+  src: url("./assets/fonts/optima.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -64,6 +73,8 @@
   --font-body: "Lora", Georgia, serif;
   --font-sans: "Jost", system-ui, sans-serif;
   --font-baskerville: "Baskerville", "Times New Roman", serif;
+  --font-optima: "Optima", "Segoe UI", sans-serif;
+
 }
 
 
@@ -205,6 +216,11 @@
 @utility font-baskerville {
   font-family: var(--font-baskerville);
 }
+
+@utility font-optima {
+  font-family: var(--font-optima);
+}
+
 
 
 @utility text-gold-gradient {
