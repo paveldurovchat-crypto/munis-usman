@@ -159,7 +159,7 @@ function Index() {
         </section>
 
         {/* About the brand */}
-        <section id="philosophy" className="bg-[var(--white-warm)] py-20 lg:py-28">
+        <section id="philosophy" className="bg-[var(--white-warm)] pt-[56px] pb-[64px] lg:py-28">
           <div className="mx-auto max-w-7xl px-6 lg:px-12">
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="text-center lg:col-span-7 lg:text-left">
