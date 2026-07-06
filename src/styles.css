@@ -63,7 +63,9 @@
   --font-serif: "Cormorant Garamond", "Times New Roman", serif;
   --font-body: "Lora", Georgia, serif;
   --font-sans: "Jost", system-ui, sans-serif;
+  --font-baskerville: "Baskerville", "Times New Roman", serif;
 }
+
 
 :root {
   --radius: 0.25rem;
