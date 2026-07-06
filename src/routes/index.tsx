@@ -69,7 +69,7 @@ function Index() {
         <Hero />
 
         {/* Category tiles — mobile horizontal scroll, desktop 4-up grid */}
-        <section className="bg-sand pt-0 pb-6 lg:pb-12">
+        <section className="bg-sand pt-0 pb-6 lg:mt-[2px] lg:pb-12">
           <div className="w-full">
             {/* Mobile: static 4-column grid, edge to edge, all four visible */}
             <div className="grid grid-cols-4 gap-[2px] lg:hidden">
