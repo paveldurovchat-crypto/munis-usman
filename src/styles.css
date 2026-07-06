@@ -19,6 +19,23 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Aboreto";
+  src: url("./assets/fonts/aboreto.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Andantino Script";
+  src: url("./assets/fonts/andantino-script.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 
 
 @custom-variant dark (&:is(.dark *));
@@ -74,6 +91,9 @@
   --font-sans: "Jost", system-ui, sans-serif;
   --font-baskerville: "Baskerville", "Times New Roman", serif;
   --font-optima: "Optima", "Segoe UI", sans-serif;
+  --font-aboreto: "Aboreto", "Optima", serif;
+  --font-andantino: "Andantino Script", "Snell Roundhand", cursive;
+
 
 }
 
@@ -220,6 +240,15 @@
 @utility font-optima {
   font-family: var(--font-optima);
 }
+
+@utility font-aboreto {
+  font-family: var(--font-aboreto);
+}
+
+@utility font-andantino {
+  font-family: var(--font-andantino);
+}
+
 
 
 
