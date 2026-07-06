@@ -56,7 +56,7 @@ function Index() {
     { cat: "couture", label: t("collection.tabCouture"), subKey: "home.tileCoutureSub", image: pick("tile-couture"), slot: "tile-couture" },
   ];
 
-  const artOfHandsImg = pick("art-of-hands");
+  void pick;
   const aboutPortraitImg = pick("about-portrait");
   const craftImgs = [
     pick("craft-1"),
