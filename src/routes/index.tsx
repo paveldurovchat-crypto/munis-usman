@@ -327,9 +327,9 @@ function Index() {
               <div className="relative mx-auto mt-24 max-w-3xl px-6">
                 <span
                   aria-hidden
-                  className="absolute -left-4 -top-6 font-optima text-[90px] leading-none text-[#4a5044]/70"
+                  className="absolute -left-4 top-0 font-baskerville text-[90px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
                 >
-                  “
+                  &#8220;
                 </span>
                 <div className="px-8 pt-10 text-center">
                   <p className="font-optima text-2xl leading-[1.45] text-[#4a5044]">
@@ -341,10 +341,11 @@ function Index() {
                 </div>
                 <span
                   aria-hidden
-                  className="absolute -right-4 -bottom-10 font-optima text-[90px] leading-none text-[#4a5044]/70"
+                  className="absolute -right-4 bottom-10 font-baskerville text-[90px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
                 >
-                  ”
+                  &#8221;
                 </span>
+
                 <p className="mt-10 pr-6 text-right font-andantino text-[34px] leading-none text-[#4a5044]">
                   {t("home.quoteSignature")}
                 </p>
