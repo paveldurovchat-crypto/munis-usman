@@ -9,53 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as CustomRouteImport } from './routes/custom'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CheckoutRouteImport } from './routes/checkout'
-import { Route as CartRouteImport } from './routes/cart'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AccountRouteImport } from './routes/account'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CustomRouteImport } from './routes/custom'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as CollectionIndexRouteImport } from './routes/collection.index'
-import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as CollectionSlugRouteImport } from './routes/collection.$slug'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CustomRoute = CustomRouteImport.update({
-  id: '/custom',
-  path: '/custom',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckoutRoute = CheckoutRouteImport.update({
-  id: '/checkout',
-  path: '/checkout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CartRoute = CartRouteImport.update({
-  id: '/cart',
-  path: '/cart',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AccountRoute = AccountRouteImport.update({
-  id: '/account',
-  path: '/account',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -63,14 +33,39 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
-const JournalIndexRoute = JournalIndexRouteImport.update({
-  id: '/journal/',
-  path: '/journal/',
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomRoute = CustomRouteImport.update({
+  id: '/custom',
+  path: '/custom',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CollectionIndexRoute = CollectionIndexRouteImport.update({
@@ -78,14 +73,19 @@ const CollectionIndexRoute = CollectionIndexRouteImport.update({
   path: '/collection/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const JournalSlugRoute = JournalSlugRouteImport.update({
-  id: '/journal/$slug',
-  path: '/journal/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CollectionSlugRoute = CollectionSlugRouteImport.update({
   id: '/collection/$slug',
   path: '/collection/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/journal/$slug',
+  path: '/journal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -201,53 +201,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/custom': {
-      id: '/custom'
-      path: '/custom'
-      fullPath: '/custom'
-      preLoaderRoute: typeof CustomRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkout': {
-      id: '/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof CheckoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cart': {
-      id: '/cart'
-      path: '/cart'
-      fullPath: '/cart'
-      preLoaderRoute: typeof CartRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/account': {
-      id: '/account'
-      path: '/account'
-      fullPath: '/account'
-      preLoaderRoute: typeof AccountRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -257,18 +215,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/journal/': {
-      id: '/journal/'
-      path: '/journal'
-      fullPath: '/journal/'
-      preLoaderRoute: typeof JournalIndexRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/custom': {
+      id: '/custom'
+      path: '/custom'
+      fullPath: '/custom'
+      preLoaderRoute: typeof CustomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/collection/': {
@@ -278,18 +271,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/journal/$slug': {
-      id: '/journal/$slug'
-      path: '/journal/$slug'
-      fullPath: '/journal/$slug'
-      preLoaderRoute: typeof JournalSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/collection/$slug': {
       id: '/collection/$slug'
       path: '/collection/$slug'
       fullPath: '/collection/$slug'
       preLoaderRoute: typeof CollectionSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/journal/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -313,3 +313,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
