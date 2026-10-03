@@ -74,7 +74,7 @@ function Index() {
         <Hero />
 
         {/* Category tiles — mobile horizontal scroll, desktop 4-up grid */}
-        <section className="bg-sand pt-0 pb-6 lg:mt-[2px] lg:pb-12">
+        <section className="bg-sand pt-0 lg:mt-[2px]">
           <div className="w-full">
             {/* Mobile: static 4-column grid, edge to edge, all four visible */}
             <div className="grid grid-cols-4 gap-[2px] lg:hidden">
@@ -127,21 +127,12 @@ function Index() {
               ))}
             </div>
 
-            <FadeUp delay={200}>
-              <div className="mt-10 flex items-center justify-center px-6 py-8 lg:py-10">
-                <p className="text-center font-optima uppercase tracking-[0.14em] text-[18px] lg:text-[22px] font-normal text-[#4a5044]">
-                  {t("home.detailLine")}
-                </p>
-              </div>
-            </FadeUp>
-
-
           </div>
         </section>
 
         {/* The Art of Hands — background video with overlaid title */}
         <section className="relative bg-sand">
-          <div className="relative h-[58vh] min-h-[360px] w-full overflow-hidden bg-[var(--green-deep)]">
+          <div className="relative aspect-[390/315] w-full overflow-hidden bg-[var(--green-deep)] lg:aspect-[16/7]">
             <ArtOfHandsVideo
               src={artOfHandsVideo}
               poster={artOfHandsPoster}
@@ -149,12 +140,12 @@ function Index() {
             />
 
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--green-deep)]/55 via-transparent to-transparent" />
-            <FadeUp className="absolute inset-y-0 left-0 z-10 flex items-center px-6 sm:px-12 lg:px-20">
+            <FadeUp className="absolute inset-0 z-10 flex items-center justify-center px-5 text-center sm:px-12 lg:px-20">
               <h2
-                className="whitespace-pre-line font-display text-sand text-5xl leading-[0.95] tracking-wide sm:text-6xl lg:text-7xl"
+                className="font-optima text-[25px] font-normal uppercase leading-none tracking-[0.18em] text-sand sm:text-4xl lg:text-5xl"
                 style={{ textShadow: "0 2px 18px rgba(0,0,0,0.25)" }}
               >
-                {t("home.artHandsTitle")}
+                {t("home.artHandsTitle").replace("\n", " ")}
               </h2>
             </FadeUp>
           </div>
@@ -189,8 +180,8 @@ function Index() {
                   {t("home.aboutLine3")}
                 </p>
               </FadeUp>
-              <FadeUp delay={120}>
-                <div className="relative w-[155px] h-[150px] shrink-0 overflow-hidden rounded-[18px] bg-[var(--sand-dark)]">
+              <FadeUp delay={120} className="-mr-6">
+                <div className="relative h-[150px] w-[179px] shrink-0 overflow-hidden rounded-l-[18px] bg-[var(--sand-dark)]">
                   {aboutPortraitImg && (
                     <img
                       src={aboutPortraitImg}
@@ -207,7 +198,7 @@ function Index() {
                 {t("home.aboutBody")}
               </p>
             </FadeUp>
-            <div className="mt-8 grid grid-cols-3 gap-[3px]">
+            <div className="-mx-6 mt-8 grid grid-cols-3 gap-[3px]">
               {craftImgs.map((src, i) => (
                 <FadeUp key={i} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
@@ -226,29 +217,29 @@ function Index() {
 
             {/* Quote block — mobile */}
             <FadeUp delay={120}>
-              <div className="relative mt-12 px-2">
+              <div className="relative mt-8 px-2">
                 <span
                   aria-hidden
-                  className="absolute -left-2 top-0 font-baskerville text-[56px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
+                  className="absolute left-0 top-0 font-baskerville text-[48px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
                 >
                   &#8220;
                 </span>
-                <div className="px-6 pt-6 text-center">
-                  <p className="font-optima text-[16px] leading-[1.55] text-[#4a5044]">
+                <div className="px-7 pt-4 text-center">
+                  <p className="font-optima text-[14px] leading-[1.45] text-[#4a5044]">
                     {t("home.quoteText")}
                   </p>
-                  <p className="mt-3 font-optima text-[15px] leading-[1.55] text-[#4a5044]">
+                  <p className="mt-2 font-optima text-[13px] leading-[1.45] text-[#4a5044]">
                     {t("home.quoteSub")}
                   </p>
                 </div>
                 <span
                   aria-hidden
-                  className="absolute -right-2 bottom-6 font-baskerville text-[56px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
+                  className="absolute right-0 bottom-5 font-baskerville text-[48px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
                 >
                   &#8221;
                 </span>
 
-                <p className="mt-8 pr-3 text-right font-andantino text-[22px] leading-none text-[#4a5044]">
+                <p className="mt-5 pr-3 text-right font-andantino text-[20px] leading-none text-[#4a5044]">
                   {t("home.quoteSignature")}
                 </p>
               </div>
@@ -293,7 +284,7 @@ function Index() {
 
               <div className="lg:col-span-5">
                 <FadeUp delay={120}>
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-[var(--sand-dark)]">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden rounded-l-[18px] bg-[var(--sand-dark)]">
                     {aboutPortraitImg && (
                       <img
                         src={aboutPortraitImg}
@@ -307,7 +298,7 @@ function Index() {
               </div>
             </div>
 
-            <div className="mt-20 grid grid-cols-3 gap-6">
+            <div className="mt-16 grid grid-cols-3 gap-[3px]">
               {craftImgs.map((src, i) => (
                 <FadeUp key={`d-${i}`} delay={i * 100}>
                   <div className="relative aspect-square overflow-hidden bg-[var(--sand-dark)]">
@@ -326,29 +317,29 @@ function Index() {
 
             {/* Quote block — desktop */}
             <FadeUp delay={120}>
-              <div className="relative mx-auto mt-24 max-w-3xl px-6">
+              <div className="relative mx-auto mt-16 max-w-3xl px-6">
                 <span
                   aria-hidden
-                  className="absolute -left-4 top-0 font-baskerville text-[90px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
+                  className="absolute left-0 top-0 font-baskerville text-[64px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
                 >
                   &#8220;
                 </span>
-                <div className="px-8 pt-10 text-center">
-                  <p className="font-optima text-2xl leading-[1.45] text-[#4a5044]">
+                <div className="px-10 pt-6 text-center">
+                  <p className="font-optima text-lg leading-[1.45] text-[#4a5044]">
                     {t("home.quoteText")}
                   </p>
-                  <p className="mt-4 font-optima text-xl leading-[1.5] text-[#4a5044]">
+                  <p className="mt-3 font-optima text-base leading-[1.45] text-[#4a5044]">
                     {t("home.quoteSub")}
                   </p>
                 </div>
                 <span
                   aria-hidden
-                  className="absolute -right-4 bottom-10 font-baskerville text-[90px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
+                  className="absolute right-0 bottom-8 font-baskerville text-[64px] leading-none tracking-[-0.05em] text-[#4a5044] translate-y-[0.2em]"
                 >
                   &#8221;
                 </span>
 
-                <p className="mt-10 pr-6 text-right font-andantino text-[34px] leading-none text-[#4a5044]">
+                <p className="mt-6 pr-6 text-right font-andantino text-[28px] leading-none text-[#4a5044]">
                   {t("home.quoteSignature")}
                 </p>
               </div>
@@ -405,7 +396,7 @@ function ArtOfHandsVideo({ src, poster, alt }: { src: string; poster: string; al
       <img
         src={poster}
         alt={alt}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
+        className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-100"}`}
       />
       {inView && (
         <video
@@ -418,7 +409,7 @@ function ArtOfHandsVideo({ src, poster, alt }: { src: string; poster: string; al
           playsInline
           preload="metadata"
           onCanPlay={() => setReady(true)}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
+          className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
         />
       )}
     </div>
