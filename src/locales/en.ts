@@ -62,7 +62,7 @@ export const en = {
     galleryKicker: "From the studio",
     galleryTitle: "A look inside",
     gallerySubtitle: "Fabrics, lines, hands at work. Fragments of an ordinary day.",
-    heroIntro: "Individual collections, accessories and pieces for the home.",
+    heroIntro: "individual collections, accessories and pieces for the home.",
     detailLine: "With attention to every detail",
     tilesKicker: "Collections",
     tileAccessoriesSub: "the collection",

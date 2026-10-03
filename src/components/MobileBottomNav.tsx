@@ -16,8 +16,8 @@ export function MobileBottomNav() {
   const isCollection = location.pathname.startsWith("/collection");
 
   const tabs: Tab[] = [
-    { id: "accessories", labelKey: "collection.tabAccessories", to: "/collection", search: { cat: "accessories" } },
     { id: "cloth", labelKey: "collection.tabCloth", to: "/collection", search: { cat: "cloth" } },
+    { id: "accessories", labelKey: "collection.tabAccessories", to: "/collection", search: { cat: "accessories" } },
     { id: "home", labelKey: "collection.tabHome", to: "/collection", search: { cat: "home" } },
     { id: "couture", labelKey: "collection.tabCouture", to: "/collection", search: { cat: "couture" } },
   ];
@@ -32,20 +32,20 @@ export function MobileBottomNav() {
       className="fixed inset-x-0 bottom-0 z-40 bg-[#111111] lg:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 px-2 pt-3">
+      <ul className="grid grid-cols-3 items-center justify-items-center gap-y-1 px-5 pt-3">
         {tabs.map((tab, idx) => {
           const active = idx === activeIndex;
           return (
-            <li key={tab.id} className="flex">
+            <li key={tab.id} className={`flex min-w-0 ${tab.id === "couture" ? "col-start-2" : ""}`}>
               <Link
                 to={tab.to}
                 search={tab.search as never}
-                className={`inline-flex items-center rounded-full px-3 py-1.5 transition-colors ${
+                className={`inline-flex max-w-full items-center rounded-full px-2.5 py-1.5 transition-colors ${
                   active ? "bg-[#3a3a3a] text-white" : "text-white/70"
                 }`}
               >
                 <span
-                  className="font-baskerville text-[15px] uppercase tracking-[0.14em] leading-none whitespace-nowrap"
+                  className="whitespace-nowrap font-baskerville text-[14px] uppercase leading-none tracking-[0.08em]"
                 >
                   {t(tab.labelKey)}
                 </span>
