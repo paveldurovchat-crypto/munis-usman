@@ -85,9 +85,9 @@ function Index() {
                 >
                   {tile.image && <img src={tile.image} alt={tile.label} loading="lazy" className="h-full w-full object-cover" />}
                   <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 px-1.5 pb-1.5 text-left text-white">
-                    <p className="font-display text-[10px] leading-none tracking-[0.02em] uppercase font-normal truncate">{tile.label}</p>
-                    <p className="mt-0.5 font-display italic text-[8px] text-white/80 truncate">/ {t(tile.subKey)}</p>
+                  <div className="absolute inset-x-0 bottom-0 px-1.5 pb-2 text-left text-white">
+                    <p className="font-optima text-[10px] font-normal leading-[1.05] uppercase">{tile.label}</p>
+                    <p className="mt-0.5 font-optima text-[9px] leading-none text-white/80">/ {t(tile.subKey)}</p>
                   </div>
                 </Link>
               ))}
@@ -115,8 +115,8 @@ function Index() {
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 px-4 pb-4 text-left text-sand">
-                      <p className="font-display text-xl tracking-wide sm:text-2xl uppercase">{tile.label}</p>
-                      <p className="mt-1 font-display italic text-xs text-sand/80 sm:text-sm">
+                      <p className="font-optima text-2xl font-normal uppercase sm:text-[26px]">{tile.label}</p>
+                      <p className="mt-1 font-optima text-sm text-sand/80 sm:text-[15px]">
                         / {t(tile.subKey)}
                       </p>
                     </div>

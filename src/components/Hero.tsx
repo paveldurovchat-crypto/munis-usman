@@ -50,17 +50,17 @@ export function Hero() {
           <img
             src={logoGold}
             alt="MUNIS USMAN"
-            className="h-[55px] w-auto sm:h-20 animate-fade-in"
+            className="h-[76px] w-auto animate-fade-in sm:h-20"
             style={{ filter: "brightness(0) invert(1)" }}
           />
-          <p className="mt-4 font-display text-white text-[22px] sm:text-[36px] tracking-[0.25em] uppercase font-light animate-fade-up">
+          <p className="mt-3 font-aboreto text-[24px] font-normal uppercase tracking-[0.12em] text-white animate-fade-up sm:mt-4 sm:text-[36px] sm:tracking-[0.16em]">
             MUNIS USMAN
           </p>
-          <p className="mt-2 font-sans text-white text-[9px] sm:text-[11px] tracking-[0.35em] uppercase font-light">
+          <p className="mt-2 font-optima text-[9px] font-normal uppercase tracking-[0.24em] text-white sm:text-[11px]">
             Couture &amp; Accessories
           </p>
           <span className="my-3 block h-5 w-px bg-white/80 sm:h-6" />
-          <p className="max-w-[18rem] text-white text-[12px] leading-[1.6] sm:max-w-md sm:text-[14px] font-light animate-fade-up">
+          <p className="max-w-[18rem] font-optima text-[12px] font-normal leading-[1.45] text-white animate-fade-up sm:max-w-md sm:text-[14px]">
             {t("home.heroIntro")}
           </p>
         </div>

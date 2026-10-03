@@ -102,18 +102,18 @@ export function SiteNav() {
         </div>
 
         {/* MOBILE */}
-        <div className="mx-auto grid grid-cols-[auto_1fr_auto] items-center gap-2 px-4 lg:hidden">
+        <div className="grid h-[60px] w-full grid-cols-[1fr_auto_1fr] items-center px-4 lg:hidden">
           <div className="flex items-center justify-start">
             <button aria-label="Open menu" onClick={() => setOpen(true)} className={textClass}>
-              <Menu className="h-5 w-5" strokeWidth={1.25} />
+              <Menu className="h-6 w-6 shrink-0" strokeWidth={1.1} />
             </button>
           </div>
           <Link to="/" className="flex items-center justify-center min-w-0">
-            <span className={`font-display whitespace-nowrap text-[15px] sm:text-[17px] tracking-[0.22em] uppercase font-light ${textClass}`}>
+            <span className={`whitespace-nowrap font-optima text-[17px] font-normal uppercase tracking-[0.18em] sm:text-[18px] ${textClass}`}>
               MUNIS USMAN
             </span>
           </Link>
-          <div className={`flex items-center justify-end gap-4 ${textClass}`}>
+          <div className={`flex min-w-0 items-center justify-end gap-3 ${textClass}`}>
             <button onClick={() => setSearchOpen(true)} aria-label="Search" className="transition-colors hover:text-accent">
               <Search className="h-[18px] w-[18px]" strokeWidth={1.25} />
             </button>
