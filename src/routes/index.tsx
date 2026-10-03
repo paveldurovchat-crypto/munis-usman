@@ -27,6 +27,8 @@ export const Route = createFileRoute("/")({
         content:
           "Handcraft studio in Tashkent. Embroidered accessories, phone cases and wearable art since 2014.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "preload", as: "image", href: heroReliefWebp, type: "image/webp" },
